@@ -1,0 +1,22 @@
+_Store
+.env
+.flaskenv
+*.pyc
+*.pyo
+env
+env*
+dist
+build
+*.egg
+*.egg-info
+_mailinglist
+.tox
+.cache/
+.idea/
+venv
+
+# Coverage reports
+htmlcov
+.coverage
+.coverage.*
+*,cover
