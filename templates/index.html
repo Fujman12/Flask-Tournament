@@ -48,9 +48,6 @@
               </li>
               {% endfor %}
 
-              <li>
-                <a href="#">Tournament 2</a>
-              </li>
             </ul>
           </li>
             {% if current_user.is_authenticated and current_user.role == 'organizer'%}
@@ -126,7 +123,7 @@
 
     <section id="bracket" class="dashboard">
     {% for message in get_flashed_messages() %}
-    <div class="alert alert-info">
+    <div class="alert alert-info" style="max-width: 1500px">
     <button type="button" class="close" data-dismiss="alert">&times;</button>
     {{ message }}
     </div>
