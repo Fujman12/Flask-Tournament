@@ -2,18 +2,50 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+
+
+<link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+<link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+<link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
 </head>
 <body>
-    <form action="{{ url_for('signup') }}" method="post">
-        {{ form.hidden_tag() }}
-        {{ wtf.form_field(form.username) }}
-        {{ wtf.form_field(form.first_name) }}
-        {{ wtf.form_field(form.last_name) }}
-        {{ wtf.form_field(form.email) }}
-        {{ wtf.form_field(form.password) }}
-        <button type="submit">SignUp</button>
-    </form>
+  <form action="{{ url_for('signup') }}" class="signup-form" method="post">
+      {{ form.hidden_tag() }}
+      {{ wtf.form_field(form.username) }}
+      {{ wtf.form_field(form.first_name) }}
+      {{ wtf.form_field(form.last_name) }}
+      {{ wtf.form_field(form.email) }}
+      {{ wtf.form_field(form.password) }}
+      {{ wtf.form_field(form.confirm) }}
+    <!--div class="form-group">
+      <label for="username">Username</label><br>
+      <input type="text" id="username" class="">
+    </div>
+    <div class="form-group">
+      <label for="first-name">First name</label><br>
+      <input type="text" id= first-name class="">
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last name</label><br>
+      <input type="text" id="last-name" class="">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label><br>
+      <input type="e-mail" id="email" class="">
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label><br>
+      <input type="password" id="password" class="">
+    </div>
+    <div class="form-group">
+      <label for="repeat-password">Repeat password</label><br>
+      <input type="password" id="repeat-password" class="">
+    </div-->
+    <input type="submit">
+  </form>
 </body>
 </html>

@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
         'polymorphic_on': role
     }
 
+    def __repr__(self):
+        return "User {}({} {})".format(self.username, self.first_name, self.last_name)
+
 
 class Organizer(User):
     __tablename__ = 'organizer'
@@ -29,6 +32,9 @@ class Organizer(User):
         'polymorphic_identity': 'organizer'
     }
 
+    def __repr__(self):
+        return "Organizer {}({} {})".format(self.username, self.first_name, self.last_name)
+
 
 class Judge(User):
     __tablename__ = 'judge'
@@ -39,20 +45,30 @@ class Judge(User):
         'polymorphic_identity': 'judge'
     }
 
+    def __repr__(self):
+        return "Judge {}({} {})".format(self.username, self.first_name, self.last_name)
+
 
 class Captain(User):
     __tablename__ = 'captain'
     id = db.Column(None, db.ForeignKey('user.id'), primary_key=True)
-    tournament = db.Column(db.Integer, db.ForeignKey('tournament.id'))
+    tournament_id = db.Column(db.Integer, db.ForeignKey('tournament.id'))
+    tournament = db.relationship('Tournament', foreign_keys=[tournament_id])
 
     __mapper_args__ = {
         'polymorphic_identity': 'captain'
     }
 
+    # the one-to-one relation
+    team = db.relationship("Team", uselist=False, backref="captain")
+
+    def __repr__(self):
+        return "Captain {}({} {})".format(self.username, self.first_name, self.last_name)
+
 
 class Tournament(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-
+    name = db.Column(db.String(80))
     organizer_id = db.Column(db.Integer, db.ForeignKey('organizer.id'))
     organizer = db.relationship('Organizer', foreign_keys=[organizer_id])
 
@@ -60,3 +76,18 @@ class Tournament(db.Model):
     judge = db.relationship('Judge', foreign_keys=[judge_id])
 
     captains = db.relationship('Captain', lazy='dynamic')
+
+    def __repr__(self):
+        return "Tournament {}: Organizer - {}, Judge - {}".format(self.id, self.organizer.username, self.judge.username)
+
+
+class Team(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30), unique=True)
+    total_score = db.Column(db.Integer)
+
+    captain_id = db.Column(db.Integer, db.ForeignKey('captain.id'))
+
+    def __repr__(self):
+        return "Team({}) {}: Captain - {}".format(self.id, self.name, self.captain.username)
+

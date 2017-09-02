@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, SignUpForm
-from models import User, Judge, db, Captain
+from models import db, User, Judge, Captain, Organizer, Tournament
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate, MigrateCommand
@@ -33,6 +33,7 @@ manager.add_command('db', MigrateCommand)
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
+login_manager.login_message = None
 
 
 @login_manager.user_loader
@@ -40,14 +41,31 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
+@app.route('/<pk>')
 @app.route('/')
-@login_required
-def index():
-    judge = Judge(username='Klips', password=generate_password_hash('blahblah', method='sha256'), first_name='Namename', last_name='Namename',
-                        email='email@email.com')
-    db.session.add(judge)
-    db.session.commit()
-    return render_template('index.html')
+def index(pk=0):
+    signup_form = SignUpForm()
+
+    current_tournament = Tournament.query.get(pk)
+    judges = Judge.query.all()
+    captains = Captain.query.all()
+    tournaments = Tournament.query.all()
+
+    current_captains = []
+    caps = dict()
+
+    if current_tournament:
+        current_captains = current_tournament.captains.all()
+
+        i = 1
+        for captain in current_captains:
+            key = "captain{}".format(i)
+            caps[key] = captain
+            i += 1
+    print(current_captains)
+    print(caps)
+    return render_template('index.html', signup_form=signup_form, judges=judges,
+                           captains=captains, tournaments=tournaments, current_tournament=current_tournament, caps=caps)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -71,12 +89,51 @@ def login():
 def signup():
     form = SignUpForm()
 
-    if form.validate_on_submit():
+    #username = request.form['username']
+    #first_name = request.forn['first-name']
+    #last_name = request.form['last-name']
 
-        return '<h1>New user has been created </h1>'
+    if form.validate_on_submit():
+        o = Organizer(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
+                    password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+        db.session.add(o)
+        db.session.commit()
+        flash('User successfully created! Try to Sign In')
+        return redirect(url_for('index'))
         #return form.username.data + '  ' + form.email.data + '  ' + form.password.data + '  ' + form.first_name.data + '  ' + form.last_name.data
 
     return render_template('signup.html', form=form)
+
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+    name = 'name'
+    if request.method == 'POST':
+        if 'sdf' not in request.values:
+            return 'Value is none'
+        return '{}'.format(request.values[name])
+
+    else:
+        return render_template('test.html')
+
+
+@app.route('/create_tournament', methods=['POST'])
+def create_tournament():
+    name = request.values['tournament-name']
+    judge = Judge.query.get(int(request.values['judge']))
+
+    tournament = Tournament(organizer=current_user, judge=judge, name=name)
+    for i in range(17):
+        key = 'captain{}'.format(i)
+        if key in request.values:
+            if request.values[key] != '':
+                id = request.values[key]
+                cap = Captain.query.get(int(id))
+                cap.tournament = tournament
+                db.session.add(cap)
+                db.session.commit()
+    flash('Tournament has been created successfully!')
+    return redirect(url_for('index'))
 
 
 @app.route('/logout')
