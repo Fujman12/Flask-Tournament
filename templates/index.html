@@ -807,7 +807,7 @@
                 <div class="col-md-6 mt-10">
                   <div class="judge-select-box-1">
                       <select class="form-control" name="judge1" id="judge-select-1" name="judge1">
-                        <option selected style="display: none">Select judge</option>
+                        <option selected style="display: none" disabled>Select judge</option>
                         {% for judge in judges %}
                         <option value="{{ judge.id }}">{{ judge.first_name }} {{ judge.last_name }}</option>
                         {% endfor %}
@@ -830,7 +830,7 @@
                 <div class="col-md-6 mt-10">
                   <div class="capitan-select-box-1">
                   <select class="form-control" id="capitan-select-1" name="captain1">
-                    <option selected style="display: none">Select captain</option>
+                    <option selected style="display: none" disabled>Select captain</option>
                     {% for captain in captains %}
                         <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
                     {% endfor %}
@@ -841,7 +841,7 @@
                 <div class="col-md-6 mt-10">
                   <div class="capitan-select-box-2">
                   <select class="form-control" id="capitan-select-2" name="captain2">
-                    <option selected style="display: none">Select captain</option>
+                    <option selected style="display: none" disabled>Select captain</option>
                     {% for captain in captains %}
                         <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
                     {% endfor %}
@@ -1587,7 +1587,7 @@
       $("[href='#plus-capitan-select']").on("click", function() {
           if(count_cap<16) {
               count_cap++;
-              $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="capitan-select-box-' + count_cap + '"> <select class="form-control" name="captain' + count_cap + '" id="capitan-select-' + count_cap + '"> <option value="" selected style="display: none">Select captain</option>'
+              $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="capitan-select-box-' + count_cap + '"> <select class="form-control" name="captain' + count_cap + '" id="capitan-select-' + count_cap + '"> <option value="" disabled selected style="display: none">Select captain</option>'
                       + '{% for captain in captains %}<option value="{{ captain.id }}">{{ captain.first_name }}'
                         + ' {{ captain.last_name }}</option>{% endfor %} </select> <a class="btn btn-primary" href="#minus-cap-select">-</a> </div> </div>');
 
@@ -1597,7 +1597,7 @@
       $("[href='#plus-judge-select']").on("click", function() {
           if(count_judge<5) {
               count_judge++;
-              $(".card-register .judge-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="judge-select-box-' + count_judge + '"> <select class="form-control" id="judge-select-' + count_judge + '" name="judge' + count_judge + '"> <option value="" selected style="display: none">Select judge</option>'
+              $(".card-register .judge-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="judge-select-box-' + count_judge + '"> <select class="form-control" id="judge-select-' + count_judge + '" name="judge' + count_judge + '"> <option value="" disabled selected style="display: none">Select judge</option>'
                       + '{% for judge in judges %}<option value="{{ judge.id }}">{{ judge.first_name }} '
                        +  ' {{ judge.last_name }}</option>{% endfor %} </select> <a class="btn btn-primary" href="#minus-judge-select">-</a></div> </div>');
           }
