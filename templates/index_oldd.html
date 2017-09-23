@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+{% import 'bootstrap/wtf.html' as wtf %}
+  <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Sport Scoring Application</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{{ url_for('static', filename='vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.css') }}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='css/sb-admin.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='tournament-grid/2.css') }}">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+  </head>
+
+  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <a class="navbar-brand" href="#" style="margin-right: 0">Sport Scoring Application</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Tournaments" style="position: relative;">
+            <a class="nav-link nav-link-collapse collapsed" id="tournaments" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion" aria-expanded="false">
+              <img src="{{ url_for('static', filename='img/trophy.png') }}" width="32" height="32" alt="">
+              &nbsp;<span class="nav-link-text">Tournaments</span>
+            </a>
+            <ul class="sidenav-second-level collapse" id="collapseComponents" style="">
+              {% for tourn in tournaments %}
+              <li>
+                <a href="{{ url_for('index', pk=tourn.id) }}">{{ tourn.name }}</a>
+              </li>
+              {% endfor %}
+
+            </ul>
+          </li>
+            {% if current_user.is_authenticated and current_user.role == 'organizer'%}
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="" data-original-title="Stats" style="position: relative; display: block">
+            <a class="nav-link nav-link-collapse collapsed" id="stats" data-toggle="collapse" href="#collapseMulti" data-parent="#exampleAccordion" aria-expanded="false">
+              <i class="fa fa-fw fa-dashboard"></i>
+              <span class="nav-link-text">Stats</span>
+            </a>
+            <ul class="sidenav-second-level collapse" id="collapseMulti" style="">
+              {% for tourn in tournaments %}
+              <li> <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">{{ tourn.name }}</a>
+                <ul class="sidenav-third-level collapse" id="collapseMulti2">
+                  <li> <a href="#" id="judges">Judges</a> </li>
+                  <li> <a href="#" id="teams">Teams</a> </li>
+                  <li> <a href="#" id="scores">Scores</a> </li>
+                </ul>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create tournament" data-original-title="Create tournament" style="display: block">
+            <a class="nav-link" id="create-tournament" href="#"> <i class="fa fa-fw fa-plus-square-o"></i> <span class="nav-link-text"> Create tournament</span> </a>
+          </li>
+            {% endif %}
+        </ul>
+        <ul class="navbar-nav sidenav-toggler">
+          <li class="nav-item">
+            <a class="nav-link text-center" id="sidenavToggler">
+              <i class="fa fa-fw fa-angle-right"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav">
+          
+          <li class="nav-item">
+            <form class="form-inline my-2 my-lg-0 mr-lg-2">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </form>
+          </li>
+            {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="#">Welcome, {{ current_user.username }}</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('logout') }}">
+              <i class="fa fa-fw fa-sign-out"></i>
+              Sign Out</a>
+            </li>
+            {% else %}
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+              <i class="fa fa-fw fa-user-circle-o" aria-hidden="true"></i>
+              Sign Up</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('login') }}">
+              <i class="fa fa-fw fa-sign-out"></i>
+              Sign In</a>
+          </li>
+            {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- /.content-wrapper -->
+
+    <section id="bracket" class="dashboard">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-info" style="max-width: 1615px">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{ message }}
+    </div>
+    {% endfor %}
+
+    <h2 style="text-align: center; margin-bottom: 30px; color: #2C7399; letter-spacing: 3px; text-transform: uppercase">{% if current_tournament %}{{ current_tournament.name }}{% else %} Tournament {% endif %}</h2>
+  <div class="container">
+  <div class="split split-one">
+    <div class="round round-one current">
+      <div class="round-details">Round 1<br/><span class="date">March 16</span></div>
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain1"] %}{{ caps["captain1"].first_name }} {{ caps["captain1"].last_name }} Team{% else %}Duke{% endif %}<span class="score">76</span></li>
+        <li class="team team-bottom">{% if caps["captain2"] %}{{ caps["captain2"].first_name }} {{ caps["captain2"].last_name}} Team{% else %}Virginia{% endif %}<span class="score">82</span></li>
+      </ul>
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain3"] %}{{ caps["captain3"].first_name }} {{ caps["captain3"].last_name }} Team{% else %}Wake Forest{% endif %}<span class="score">64</span></li>
+        <li class="team team-bottom">{% if caps["captain4"] %}{{ caps["captain4"].first_name }} {{ caps["captain4"].last_name }} Team{% else %}Clemson{% endif %}<span class="score">56</span></li>
+      </ul>
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain5"] %}{{ caps["captain5"].first_name }} {{ caps["captain5"].last_name }} Team{% else %}North Carolina{% endif %}<span class="score">68</span></li>
+        <li class="team team-bottom">{% if caps["captain6"] %}{{ caps["captain6"].first_name }} {{ caps["captain6"].last_name }} Team{% else %}Florida State{% endif %}<span class="score">54</span></li>
+      </ul>
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain7"] %}{{ caps["captain7"].first_name }} {{ caps["captain7"].last_name }} Team{% else %}NC State{% endif %}<span class="score">74</span></li>
+        <li class="team team-bottom">{% if caps["captain8"] %}{{ caps["captain8"].first_name }} {{ caps["captain8"].last_name }} Team{% else %}Maryland{% endif %}<span class="score">92</span></li>
+      </ul>     
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain9"] %}{{ caps["captain9"].first_name }} {{ caps["captain9"].last_name }} Team{% else %}Georgia Tech{% endif %}<span class="score">78</span></li>
+        <li class="team team-bottom">{% if caps["captain10"] %}{{ caps["captain10"].first_name }} {{ caps["captain10"].last_name }} Team{% else %}Georgia{% endif %}<span class="score">80</span></li>
+      </ul> 
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain11"] %}{{ caps["captain11"].first_name }} {{ caps["captain11"].last_name }} Team{% else %}Auburn{% endif %}<span class="score">64</span></li>
+        <li class="team team-bottom">{% if caps["captain12"] %}{{ caps["captain12"].first_name }} {{ caps["captain12"].last_name }} Team{% else %}Florida{% endif %}<span class="score">63</span></li>
+      </ul> 
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain13"] %}{{ caps["captain13"].first_name }} {{ caps["captain13"].last_name }} Team{% else %}Kentucky{% endif %}<span class="score">70</span></li>
+        <li class="team team-bottom">{% if caps["captain14"] %}{{ caps["captain14"].first_name }} {{ caps["captain14"].last_name }} Team{% else %}Alabama{% endif %}<span class="score">59</span></li>
+      </ul>
+      <ul class="matchup">
+        <li class="team team-top">{% if caps["captain15"] %}{{ caps["captain15"].first_name }} {{ caps["captain15"].last_name }} Team{% else %}Vanderbilt{% endif %}<span class="score">64</span></li>
+        <li class="team team-bottom">{% if caps["captain16"] %}{{ caps["captain16"].first_name }} {{ caps["captain16"].last_name }} Team{% else %}Gonzaga{% endif %}<span class="score">68</span></li>
+      </ul>                   
+    </div>  <!-- END ROUND ONE -->
+
+    <div class="round round-two">
+      <div class="round-details">Round 2<br/><span class="date">March 18</span></div>     
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul> 
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul> 
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul>
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul>                   
+    </div>  <!-- END ROUND TWO -->
+    
+    <div class="round round-three">
+      <div class="round-details">Round 3<br/><span class="date">March 22</span></div>     
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul> 
+      <ul class="matchup">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul>                   
+    </div>  <!-- END ROUND THREE -->    
+  </div> 
+
+  <div class="champion">
+    <div class="final">
+      <i class="fa fa-trophy"></i>
+      <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>    
+      <ul class ="matchup championship">
+        <li class="team team-top"></li>
+        <li class="team team-bottom"></li>
+      </ul>
+    </div>    
+  </div>
+  <div class="champion winner" style="display: none">
+    <div class="final">
+      <i class="fa fa-trophy"></i>
+      <div class="round-details">winner<br/></div>    
+      <ul class ="matchup championship">
+        <li class="team team-winner"></li>
+      </ul>
+    </div>    
+  </div>
+</div>
+  <div class="btn-wrapper">
+    <!--button class="btn btn-primary btn-lg mt-30" data-target="#exampleModal" data-toggle="modal">Sign Up</button-->
+    <button class="btn btn-primary btn-lg mt-30 demo-button">Demo</button>
+  </div>
+  </section>
+  <section id="bracket" class="data-table-page">
+    <div class="container">
+    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Team</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Team</th>
+                <th>Score</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <tr>
+                <td>Tiger Nixon</td>
+                <td>System Architect</td>
+                <td>Edinburgh</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>Garrett Winters</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>63</td>
+            </tr>
+            <tr>
+                <td>Ashton Cox</td>
+                <td>Junior Technical Author</td>
+                <td>San Francisco</td>
+                <td>66</td>
+            </tr>
+            <tr>
+                <td>Cedric Kelly</td>
+                <td>Senior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>Airi Satou</td>
+                <td>Accountant</td>
+                <td>Tokyo</td>
+                <td>33</td>
+            </tr>
+            <tr>
+                <td>Brielle Williamson</td>
+                <td>Integration Specialist</td>
+                <td>New York</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>Herrod Chandler</td>
+                <td>Sales Assistant</td>
+                <td>San Francisco</td>
+                <td>59</td>
+            </tr>
+            <tr>
+                <td>Rhona Davidson</td>
+                <td>Integration Specialist</td>
+                <td>Tokyo</td>
+                <td>55</td>
+            </tr>
+            <tr>
+                <td>Colleen Hurst</td>
+                <td>Javascript Developer</td>
+                <td>San Francisco</td>
+                <td>39</td>
+            </tr>
+            <tr>
+                <td>Sonya Frost</td>
+                <td>Software Engineer</td>
+                <td>Edinburgh</td>
+                <td>23</td>
+            </tr>
+            <tr>
+                <td>Jena Gaines</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Quinn Flynn</td>
+                <td>Support Lead</td>
+                <td>Edinburgh</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>Charde Marshall</td>
+                <td>Regional Director</td>
+                <td>San Francisco</td>
+                <td>36</td>
+            </tr>
+            <tr>
+                <td>Haley Kennedy</td>
+                <td>Senior Marketing Designer</td>
+                <td>London</td>
+                <td>43</td>
+            </tr>
+            <tr>
+                <td>Tatyana Fitzpatrick</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td>Michael Silva</td>
+                <td>Marketing Designer</td>
+                <td>London</td>
+                <td>66</td>
+            </tr>
+            <tr>
+                <td>Paul Byrd</td>
+                <td>Chief Financial Officer (CFO)</td>
+                <td>New York</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>Gloria Little</td>
+                <td>Systems Administrator</td>
+                <td>New York</td>
+                <td>59</td>
+            </tr>
+            <tr>
+                <td>Bradley Greer</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>Dai Rios</td>
+                <td>Personnel Lead</td>
+                <td>Edinburgh</td>
+                <td>35</td>
+            </tr>
+            <tr>
+                <td>Jenette Caldwell</td>
+                <td>Development Lead</td>
+                <td>New York</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Yuri Berry</td>
+                <td>Chief Marketing Officer (CMO)</td>
+                <td>New York</td>
+                <td>40</td>
+            </tr>
+            <tr>
+                <td>Caesar Vance</td>
+                <td>Pre-Sales Support</td>
+                <td>New York</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>Doris Wilder</td>
+                <td>Sales Assistant</td>
+                <td>Sidney</td>
+                <td>23</td>
+            </tr>
+            <tr>
+                <td>Angelica Ramos</td>
+                <td>Chief Executive Officer (CEO)</td>
+                <td>London</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>Gavin Joyce</td>
+                <td>Developer</td>
+                <td>Edinburgh</td>
+                <td>42</td>
+            </tr>
+            <tr>
+                <td>Jennifer Chang</td>
+                <td>Regional Director</td>
+                <td>Singapore</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>Brenden Wagner</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>28</td>
+            </tr>
+            <tr>
+                <td>Fiona Green</td>
+                <td>Chief Operating Officer (COO)</td>
+                <td>San Francisco</td>
+                <td>48</td>
+            </tr>
+            <tr>
+                <td>Shou Itou</td>
+                <td>Regional Marketing</td>
+                <td>Tokyo</td>
+                <td>20</td>
+            </tr>
+            <tr>
+                <td>Michelle House</td>
+                <td>Integration Specialist</td>
+                <td>Sidney</td>
+                <td>37</td>
+            </tr>
+            <tr>
+                <td>Suki Burks</td>
+                <td>Developer</td>
+                <td>London</td>
+                <td>53</td>
+            </tr>
+            <tr>
+                <td>Prescott Bartlett</td>
+                <td>Technical Author</td>
+                <td>London</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td>Gavin Cortez</td>
+                <td>Team Leader</td>
+                <td>San Francisco</td>
+                <td>22</td>
+            </tr>
+            <tr>
+                <td>Martena Mccray</td>
+                <td>Post-Sales support</td>
+                <td>Edinburgh</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td>Unity Butler</td>
+                <td>Marketing Designer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>Howard Hatfield</td>
+                <td>Office Manager</td>
+                <td>San Francisco</td>
+                <td>51</td>
+            </tr>
+            <tr>
+                <td>Hope Fuentes</td>
+                <td>Secretary</td>
+                <td>San Francisco</td>
+                <td>41</td>
+            </tr>
+            <tr>
+                <td>Vivian Harrell</td>
+                <td>Financial Controller</td>
+                <td>San Francisco</td>
+                <td>62</td>
+            </tr>
+            <tr>
+                <td>Timothy Mooney</td>
+                <td>Office Manager</td>
+                <td>London</td>
+                <td>37</td>
+            </tr>
+            <tr>
+                <td>Jackson Bradshaw</td>
+                <td>Director</td>
+                <td>New York</td>
+                <td>65</td>
+            </tr>
+            <tr>
+                <td>Olivia Liang</td>
+                <td>Support Engineer</td>
+                <td>Singapore</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>Bruno Nash</td>
+                <td>Software Engineer</td>
+                <td>London</td>
+                <td>38</td>
+            </tr>
+            <tr>
+                <td>Sakura Yamamoto</td>
+                <td>Support Engineer</td>
+                <td>Tokyo</td>
+                <td>37</td>
+            </tr>
+            <tr>
+                <td>Thor Walton</td>
+                <td>Developer</td>
+                <td>New York</td>
+                <td>61</td>
+            </tr>
+            <tr>
+                <td>Finn Camacho</td>
+                <td>Support Engineer</td>
+                <td>San Francisco</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>Serge Baldwin</td>
+                <td>Data Coordinator</td>
+                <td>Singapore</td>
+                <td>64</td>
+            </tr>
+            <tr>
+                <td>Zenaida Frank</td>
+                <td>Software Engineer</td>
+                <td>New York</td>
+                <td>63</td>
+            </tr>
+            <tr>
+                <td>Zorita Serrano</td>
+                <td>Software Engineer</td>
+                <td>San Francisco</td>
+                <td>56</td>
+            </tr>
+            <tr>
+                <td>Jennifer Acosta</td>
+                <td>Junior Javascript Developer</td>
+                <td>Edinburgh</td>
+                <td>43</td>
+            </tr>
+            <tr>
+                <td>Cara Stevens</td>
+                <td>Sales Assistant</td>
+                <td>New York</td>
+                <td>46</td>
+            </tr>
+            <tr>
+                <td>Hermione Butler</td>
+                <td>Regional Director</td>
+                <td>London</td>
+                <td>47</td>
+            </tr>
+            <tr>
+                <td>Lael Greer</td>
+                <td>Systems Administrator</td>
+                <td>London</td>
+                <td>21</td>
+            </tr>
+            <tr>
+                <td>Jonas Alexander</td>
+                <td>Developer</td>
+                <td>San Francisco</td>
+                <td>30</td>
+            </tr>
+            <tr>
+                <td>Shad Decker</td>
+                <td>Regional Director</td>
+                <td>Edinburgh</td>
+                <td>51</td>
+            </tr>
+            <tr>
+                <td>Michael Bruce</td>
+                <td>Javascript Developer</td>
+                <td>Singapore</td>
+                <td>29</td>
+            </tr>
+            <tr>
+                <td>Donna Snider</td>
+                <td>Customer Support</td>
+                <td>New York</td>
+                <td>27</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+  </section>
+  <section id="bracket" class="create-tournament-box">
+    <div class="container">
+      <div class="card card-register mx-auto mt-5" style="width: 330px">
+        <div class="card-header">
+          Create tournament
+        </div>
+        <div class="card-body">
+          <form action="{{ url_for('create_tournament') }}" method="post">
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="exampleInputName">Tournament name</label>
+                  <input type="text" name="tournament-name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter tournament name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Judge</label>
+              <select class="form-control" name="judge">
+                <option value="" style="display: none">Select judge from the list</option>
+                {% for judge in judges %}
+                    <option value="{{ judge.id }}">{{ judge.first_name }} {{ judge.last_name }}</option>
+                {% endfor %}
+                <!--option value="Chriss">Chris</option-->
+              </select>
+            </div>
+            <div class="form-group capitan-select-section">
+              <div class="form-row">
+                <div class="col-md-6">
+                  <label for="exampleInputPassword1">Captain 1</label>
+                  <select class="form-control" name="captain1">
+                    <option value="" style="display: none">Select captain 1</option>
+                      {% for captain in captains %}
+                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="exampleConfirmPassword">Captain 2</label>
+                  <select class="form-control" name="captain2">
+                    <option value="" style="display: none">Select captain 2</option>
+                      {% for captain in captains %}
+                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+              </div>
+              <a class="btn btn-primary mt-10" href="#plus-select">+</a>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Create</button>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+    <!-- Scroll to Top Button -->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Choose account type</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="card text-white bg-warning o-hidden h-100">
+              <div class="card-body">
+                <div class="mr-5">
+                  Organizer account
+                </div>
+              </div>
+              <a href="{{ url_for('signup') }}" class="card-footer text-white clearfix small z-1 close"  id="signup-org" aria-label="Close"  >
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+            <div class="card text-white bg-primary o-hidden h-100 mt-10">
+              <div class="card-body">
+                <div class="mr-5">
+                  Judge account
+                </div>
+              </div>
+              <a href="#" class="card-footer text-white clearfix small z-1 close"  aria-label="Close" data-target="#exampleModal2" >
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+            <div class="card text-white bg-success o-hidden h-100 mt-10">
+              <div class="card-body">
+                <div class="mr-5">
+                  Team captain account
+                </div>
+              </div>
+              <a href="#" class="card-footer text-white clearfix small z-1 close" aria-label="Close" data-target="#exampleModal2" >
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                  <i class="fa fa-angle-right"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+            <form action="{{ url_for('signup') }}" method="post" id="js-signup-form">
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+
+            <form>
+              <div class="input-group mt-10">
+                <span class="input-group-addon"></span>
+                <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+              </div>
+              <div class="input-group mt-10">
+                <span class="input-group-addon"></span>
+                <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="login.html">Ok</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Custom Js -->
+    <script src="{{ url_for('static', filename='js/action.js') }}"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.js') }}"></script>
+
+    <script src='https://unpkg.com/vue'></script>
+    <!-- Custom scripts for this template -->
+    <script src="{{ url_for('static', filename='js/sb-admin.min.js') }}"></script>
+    <!--script>
+      $("[href='#organiser']").click(function() {
+        $("[data-original-title='Stats'], [data-original-title='Create tournament']").css("display", "block");
+      });
+    </script-->
+    <script>
+    $(".data-table-page").css("display", "none");
+      $("#judges, #scores, #teams").on("click", function() {
+          $("section").css("display", "none");
+          $(".data-table-page").css("display", "block");
+      });
+      
+      $("body").on("click", "#tournaments", function() {
+          $("section").css("display", "none");
+          $(".dashboard").css("display", "block");
+      });
+      $(".create-tournament-box").css("display", "none");
+      $("body").on("click", "#create-tournament", function() {
+          $("section").css("display", "none");
+          $(".create-tournament-box").css("display", "block");
+      });
+      var count = 2;
+      $("[href='#plus-select']").on("click", function() {
+          count++;
+          $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <label for="exampleConfirmPassword">Select Captain ' + count + ' </label> <select class="form-control" name="captain' + count + '"><option value="" style="display: none">Select captain ' + count + ' </option>{% for captain in captains %}<option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>{% endfor %} </select></div>');
+      });
+      $('#example').DataTable();
+    </script>
+    <script>
+        var windowWidth = $(window).width();
+        if(windowWidth > 992) {
+           $("body").addClass("sidenav-toggled");
+        }
+    </script>
+    <script>
+      var counter = 1;
+      var n = 9;
+      var k = 5;
+      var values = [];
+      var value;
+      $(".demo-button").on("click", function() {
+        switch(counter) {
+          case 1: 
+                  $(".split-one > div").removeClass("current");
+                  $(".split-one div:nth-child(2)").addClass("current");
+                  for(var i = 2; i <= n; i++){ 
+                    value = $('.round-one .matchup:nth-child(' + i + ') .team-top').html();
+                    
+                    values.push(value);
+                  }
+                  for(var j = 2, i = 0; j<=k; j++, i += 2){
+                      $('.round-two .matchup:nth-child(' + j + ') .team-top').append(values[i]);
+                      $('.round-two .matchup:nth-child(' + j + ') .team-bottom').append(values[i+1]);
+                  }
+                  values = [];
+                  counter++;
+                  n = k;
+                  k = 3;
+                  break;
+          case 2:
+                  $(".split-one > div:nth-child(2)").removeClass("current");
+                  $(".split-one > div:nth-child(3)").addClass("current");
+                  for(var i = 2; i <= n; i++){ 
+                    value = $('.round-two .matchup:nth-child(' + i + ') .team-top').html();
+                    
+                    values.push(value);
+                  }
+                  for(var j = 2, i = 0; j<=k; j++, i += 2){
+                      $('.round-three .matchup:nth-child(' + j + ') .team-top').append(values[i]);
+                      $('.round-three .matchup:nth-child(' + j + ') .team-bottom').append(values[i+1]);
+                  }
+                  values = [];
+                  counter++;
+                  n = k;
+                  k = 1;
+                  break;
+          case 3:
+                  $(".split-one > div:nth-child(3)").removeClass("current");
+                  $(".champion .matchup").addClass("current");
+                  for(var i = 2; i <= n; i++){ 
+                    value = $('.round-three .matchup:nth-child(' + i + ') .team-top').html();
+                    
+                    values.push(value);
+                  }
+                  var i = 0;
+                  $('.champion .matchup .team-top').append(values[i]);
+                  $('.champion .matchup .team-bottom').append(values[i+1]);
+                  values = [];
+                  value = 0;
+                  counter++;
+                  n = k;
+                  k = 1;
+                  break;
+          case 4:
+                  $(".champion").css("display", "none");
+                  $(".winner").css("display", "block");
+                  $(".winner").addClass("current");
+                  value = $('.champion .matchup .team-top').html();
+                  $('.winner .matchup .team-winner').append(value);
+                  counter++;
+                  break;
+        }
+      });
+    </script>
+  </body>
+
+</html>

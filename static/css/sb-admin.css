@@ -14,6 +14,7 @@ body.fixed-nav {
 
 .scroll-to-top {
   position: fixed;
+  z-index: 3;
   left: 15px;
   bottom: 3px;
   display: none;
@@ -293,7 +294,7 @@ a[data-target="#exampleModal2"] {
   text-shadow: none;
   opacity: 1; }
 
-a#signup-org {
+.signup-link {
   font-size: 12.8px;
   font-weight: normal;
   color: #000;
@@ -323,10 +324,28 @@ a#signup-org {
     margin-top: 5px; }
   .signup-form input[type="checkbox"], .signin-form input[type="checkbox"] {
     width: unset;
-    height: auto;
-    margin-top: 5px;
-  }
+    margin-top: -3px;
+    vertical-align: top; }
 
 .signin-form {
   margin-top: -117px;
   margin-left: -100px; }
+
+@media (min-width: 480px) {
+  .data-table-teams-wrapper {
+    width: 90%;
+    margin: 0 auto; } }
+
+.create-participant-box, .create-team-table {
+  display: none; }
+
+.create-team-table {
+  padding: 40px 0px !important; }
+
+[class^=capitan-select-box] label, [class^=judge-select-box] label {
+  display: block;
+}
+[class^=capitan-select-box] select, [class^=judge-select-box] select {
+  display: inline-block;
+  width: unset;
+}

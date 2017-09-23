@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, SignUpForm
@@ -7,16 +7,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
-
+import random
 
 def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'Thisissecretkey!'
     #local
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
     # pythonwnyehre
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$newdb'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$newdb'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -88,44 +88,38 @@ def login():
     return render_template('login.html', form=form)
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
+@app.route('/signup/<role>', methods=['GET', 'POST'])
+def signup(role=None):
     form = SignUpForm()
 
-    #username = request.form['username']
-    #first_name = request.forn['first-name']
-    #last_name = request.form['last-name']
-
     if form.validate_on_submit():
-        o = Organizer(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
-                    password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
-        db.session.add(o)
+        if role == 'organizer':
+            new_user = Organizer(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
+                            password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+        elif role == 'judge':
+            new_user = Judge(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
+                        password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+        elif role == 'captain':
+            new_user = Captain(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
+                        password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+
+        db.session.add(new_user)
         db.session.commit()
-        flash('User successfully created! Try to Sign In')
+        flash('New user has been created! Try to Sign In')
+
         return redirect(url_for('index'))
         #return form.username.data + '  ' + form.email.data + '  ' + form.password.data + '  ' + form.first_name.data + '  ' + form.last_name.data
 
-    return render_template('signup.html', form=form)
 
-
-@app.route('/test', methods=['GET', 'POST'])
-def test():
-    name = 'name'
-    if request.method == 'POST':
-        if 'sdf' not in request.values:
-            return 'Value is none'
-        return '{}'.format(request.values[name])
-
-    else:
-        return render_template('test.html')
+    return render_template('signup.html', form=form, role=role)
 
 
 @app.route('/create_tournament', methods=['POST'])
 def create_tournament():
     name = request.values['tournament-name']
-    judge = Judge.query.get(int(request.values['judge']))
 
-    tournament = Tournament(organizer=current_user, judge=judge, name=name)
+    tournament = Tournament(organizer=current_user, name=name)
+
     for i in range(17):
         key = 'captain{}'.format(i)
         if key in request.values:
@@ -135,6 +129,17 @@ def create_tournament():
                 cap.tournament = tournament
                 db.session.add(cap)
                 db.session.commit()
+
+    for i in range(6):
+        key = 'judge{}'.format(i)
+        if key in request.values:
+            if request.values[key] != '':
+                id = request.values[key]
+                judge = Judge.query.get(int(id))
+                tournament.judges.append(judge)
+                db.session.add(tournament)
+                db.session.commit()
+
     flash('Tournament has been created successfully!')
     return redirect(url_for('index'))
 
@@ -145,5 +150,37 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
+
+@app.route('/judges_list/<tournament_id>')
+def judges_list(tournament_id):
+    tournament = Tournament.query.filter_by(id=tournament_id).first()
+    judges = tournament.judges.all()
+
+    data = []
+
+    for judge in judges:
+        data.append({'name': judge.first_name + ' ' + judge.last_name, 'email': judge.email})
+
+    print(data)
+    return jsonify(data)
+
+
+@app.route('/captains_list/<tournament_id>')
+def captains_list(tournament_id):
+    tournament = Tournament.query.filter_by(id=tournament_id).first()
+    captains = tournament.captains.all()
+
+    data = []
+
+    for captain in captains:
+        data.append({'name': captain.first_name + ' ' + captain.last_name,
+                     'email': captain.email, 'team': '{} {} Team'.format(captain.first_name, captain.last_name),
+                     'score': random.randint(40,90)})
+
+    return jsonify(data)
+
+
 if __name__ == '__main__':
     manager.run()
+
+

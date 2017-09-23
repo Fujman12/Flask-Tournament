@@ -36,10 +36,17 @@ class Organizer(User):
         return "Organizer {}({} {})".format(self.username, self.first_name, self.last_name)
 
 
+judge_tournaments = db.Table('judge_tournaments',
+     db.Column('judge_id', db.Integer, db.ForeignKey('judge.id')),
+     db.Column('tournament_id', db.Integer, db.ForeignKey('tournament.id')),
+)
+
+
 class Judge(User):
     __tablename__ = 'judge'
     id = db.Column(None, db.ForeignKey('user.id'), primary_key=True)
-    tournaments = db.relationship('Tournament', lazy='dynamic')
+    tournaments = db.relationship('Tournament', secondary=judge_tournaments,
+                                  backref=db.backref('judges', lazy='dynamic'))
 
     __mapper_args__ = {
         'polymorphic_identity': 'judge'
@@ -72,13 +79,10 @@ class Tournament(db.Model):
     organizer_id = db.Column(db.Integer, db.ForeignKey('organizer.id'))
     organizer = db.relationship('Organizer', foreign_keys=[organizer_id])
 
-    judge_id = db.Column(db.Integer, db.ForeignKey('judge.id'))
-    judge = db.relationship('Judge', foreign_keys=[judge_id])
-
     captains = db.relationship('Captain', lazy='dynamic')
 
     def __repr__(self):
-        return "Tournament {}: Organizer - {}, Judge - {}".format(self.id, self.organizer.username, self.judge.username)
+        return "Tournament {} (id-{}): Organizer - {}".format(self.name, self.id, self.organizer.username)
 
 
 class Team(db.Model):
@@ -91,3 +95,12 @@ class Team(db.Model):
     def __repr__(self):
         return "Team({}) {}: Captain - {}".format(self.id, self.name, self.captain.username)
 
+
+#class JudgeTournament(db.Model):
+#    id = db.Column(db.Integer, primary_key=True)
+#
+#    judge_id = db.Column(db.Integer, db.ForeignKey('judge.id'))
+#    judge = db.relationship('Judge', foreign_keys=[judge_id])
+
+#    tournament_id = db.Column(db.Integer, db.ForeignKey('tournament.id'))
+#    tournament = db.relationship('Tournament', foreign_keys=[tournament_id])

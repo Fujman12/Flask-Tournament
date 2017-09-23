@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-{% import 'bootstrap/wtf.html' as wtf %}
+
   <head>
 
     <meta charset="utf-8">
@@ -9,8 +9,9 @@
 
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Sport Scoring Application</title>
+    <title>Flask-Tournament</title>
 
+    <link href="{{ url_for('static', filename='assets/css/gsdk-bootstrap-wizard.css') }}" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -25,6 +26,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='tournament-grid/2.css') }}">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
+
   </head>
 
   <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -47,7 +49,6 @@
                 <a href="{{ url_for('index', pk=tourn.id) }}">{{ tourn.name }}</a>
               </li>
               {% endfor %}
-
             </ul>
           </li>
             {% if current_user.is_authenticated and current_user.role == 'organizer'%}
@@ -58,11 +59,11 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseMulti" style="">
               {% for tourn in tournaments %}
-              <li> <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti2">{{ tourn.name }}</a>
-                <ul class="sidenav-third-level collapse" id="collapseMulti2">
-                  <li> <a href="#" id="judges">Judges</a> </li>
-                  <li> <a href="#" id="teams">Teams</a> </li>
-                  <li> <a href="#" id="scores">Scores</a> </li>
+              <li> <a class="nav-link-collapse collapsed" data-toggle="collapse" href="#collapseMulti{{ tourn.id }}">{{ tourn.name }}</a>
+                <ul class="sidenav-third-level collapse" id="collapseMulti{{ tourn.id }}">
+                  <li> <a href="#" class="judges" data-url="{{ url_for('judges_list', tournament_id=tourn.id) }}">Judges</a> </li>
+                  <li> <a href="#" class="teams" data-url="{{ url_for('captains_list', tournament_id=tourn.id) }}">Teams</a> </li>
+                  <li> <a href="#" id="scores">Team Members</a> </li>
                 </ul>
               </li>
               {% endfor %}
@@ -70,6 +71,19 @@
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create tournament" data-original-title="Create tournament" style="display: block">
             <a class="nav-link" id="create-tournament" href="#"> <i class="fa fa-fw fa-plus-square-o"></i> <span class="nav-link-text"> Create tournament</span> </a>
+          </li>
+            {% endif %}
+            {% if current_user.is_authenticated and current_user.role == 'captain' %}
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Create team" data-original-title="Create team" style="display: block">
+            <a class="nav-link" id="create-team" href="#"> <i class="fa fa-fw fa-plus-square-o"></i> <span class="nav-link-text"> Create team</span> </a>
+          </li>
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Team table" data-original-title="Team table" style="display: block">
+            <a class="nav-link" id="team-table" href="#"><i class="fa fa-table fa-fw" aria-hidden="true"></i><span class="nav-link-text"> Team table</span> </a>
+          </li>
+            {% endif %}
+            {% if current_user.is_authenticated and current_user.role == 'judge' %}
+          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Select participant" data-original-title="Select participant" style="display: block">
+            <a class="nav-link" id="select-participant" href="#"> <i class="fa fa-fw fa-plus-square-o"></i> <span class="nav-link-text"> Select participant</span> </a>
           </li>
             {% endif %}
         </ul>
@@ -94,7 +108,7 @@
               </div>
             </form>
           </li>
-            {% if current_user.is_authenticated %}
+          {% if current_user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="#">Welcome, {{ current_user.username }}</a>
             </li>
@@ -118,17 +132,16 @@
         </ul>
       </div>
     </nav>
-
+    
+    
     <!-- /.content-wrapper -->
-
-    <section id="bracket" class="dashboard">
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-info" style="max-width: 1615px">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{ message }}
-    </div>
-    {% endfor %}
-
+  <section id="bracket" class="dashboard">
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-info" style="max-width: 1615px">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  {{ message }}
+  </div>
+  {% endfor %}
     <h2 style="text-align: center; margin-bottom: 30px; color: #2C7399; letter-spacing: 3px; text-transform: uppercase">{% if current_tournament %}{{ current_tournament.name }}{% else %} Tournament {% endif %}</h2>
   <div class="container">
   <div class="split split-one">
@@ -149,15 +162,15 @@
       <ul class="matchup">
         <li class="team team-top">{% if caps["captain7"] %}{{ caps["captain7"].first_name }} {{ caps["captain7"].last_name }} Team{% else %}NC State{% endif %}<span class="score">74</span></li>
         <li class="team team-bottom">{% if caps["captain8"] %}{{ caps["captain8"].first_name }} {{ caps["captain8"].last_name }} Team{% else %}Maryland{% endif %}<span class="score">92</span></li>
-      </ul>     
+      </ul>
       <ul class="matchup">
         <li class="team team-top">{% if caps["captain9"] %}{{ caps["captain9"].first_name }} {{ caps["captain9"].last_name }} Team{% else %}Georgia Tech{% endif %}<span class="score">78</span></li>
         <li class="team team-bottom">{% if caps["captain10"] %}{{ caps["captain10"].first_name }} {{ caps["captain10"].last_name }} Team{% else %}Georgia{% endif %}<span class="score">80</span></li>
-      </ul> 
+      </ul>
       <ul class="matchup">
         <li class="team team-top">{% if caps["captain11"] %}{{ caps["captain11"].first_name }} {{ caps["captain11"].last_name }} Team{% else %}Auburn{% endif %}<span class="score">64</span></li>
         <li class="team team-bottom">{% if caps["captain12"] %}{{ caps["captain12"].first_name }} {{ caps["captain12"].last_name }} Team{% else %}Florida{% endif %}<span class="score">63</span></li>
-      </ul> 
+      </ul>
       <ul class="matchup">
         <li class="team team-top">{% if caps["captain13"] %}{{ caps["captain13"].first_name }} {{ caps["captain13"].last_name }} Team{% else %}Kentucky{% endif %}<span class="score">70</span></li>
         <li class="team team-bottom">{% if caps["captain14"] %}{{ caps["captain14"].first_name }} {{ caps["captain14"].last_name }} Team{% else %}Alabama{% endif %}<span class="score">59</span></li>
@@ -165,84 +178,264 @@
       <ul class="matchup">
         <li class="team team-top">{% if caps["captain15"] %}{{ caps["captain15"].first_name }} {{ caps["captain15"].last_name }} Team{% else %}Vanderbilt{% endif %}<span class="score">64</span></li>
         <li class="team team-bottom">{% if caps["captain16"] %}{{ caps["captain16"].first_name }} {{ caps["captain16"].last_name }} Team{% else %}Gonzaga{% endif %}<span class="score">68</span></li>
-      </ul>                   
+      </ul>
     </div>  <!-- END ROUND ONE -->
 
-    <div class="round round-two">
-      <div class="round-details">Round 2<br/><span class="date">March 18</span></div>     
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul> 
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul> 
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul>
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul>                   
-    </div>  <!-- END ROUND TWO -->
-    
-    <div class="round round-three">
-      <div class="round-details">Round 3<br/><span class="date">March 22</span></div>     
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul> 
-      <ul class="matchup">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul>                   
-    </div>  <!-- END ROUND THREE -->    
-  </div> 
+        <div class="round round-two">
+          <div class="round-details">Round 2<br/><span class="date">March 18</span></div>     
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul> 
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul> 
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul>                   
+        </div>  <!-- END ROUND TWO -->
 
-  <div class="champion">
-    <div class="final">
-      <i class="fa fa-trophy"></i>
-      <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>    
-      <ul class ="matchup championship">
-        <li class="team team-top"></li>
-        <li class="team team-bottom"></li>
-      </ul>
-    </div>    
-  </div>
-  <div class="champion winner" style="display: none">
-    <div class="final">
-      <i class="fa fa-trophy"></i>
-      <div class="round-details">winner<br/></div>    
-      <ul class ="matchup championship">
-        <li class="team team-winner"></li>
-      </ul>
-    </div>    
-  </div>
-</div>
-  <div class="btn-wrapper">
-    <!--button class="btn btn-primary btn-lg mt-30" data-target="#exampleModal" data-toggle="modal">Sign Up</button-->
-    <button class="btn btn-primary btn-lg mt-30 demo-button">Demo</button>
-  </div>
+        <div class="round round-three">
+          <div class="round-details">Round 3<br/><span class="date">March 22</span></div>     
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul> 
+          <ul class="matchup">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul>                   
+        </div>  <!-- END ROUND THREE -->    
+      </div> 
+
+      <div class="champion">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>    
+          <ul class ="matchup championship">
+            <li class="team team-top"></li>
+            <li class="team team-bottom"></li>
+          </ul>
+        </div>    
+      </div>
+      <div class="champion winner" style="display: none">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">winner<br/></div>    
+          <ul class ="matchup championship">
+            <li class="team team-winner"></li>
+          </ul>
+        </div>    
+      </div>
+    </div>
+    <div class="btn-wrapper">
+      <button class="btn btn-primary btn-lg mt-30 demo-button">Demo</button>
+    </div>
   </section>
-  <section id="bracket" class="data-table-page">
+  <section id="bracket" class="judge-select-wizard" style="display: none">
     <div class="container">
-    <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+      <!--      Wizard container        -->
+      <div class="wizard-container">
+
+          <div class="card wizard-card" data-color="orange" id="wizardProfile">
+              <h5 style="padding: 0 10px 10px 18px;">Team A - Bob</h5>
+              <form action="" method="">
+          <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+      <div class="wizard-navigation">
+        <ul style="height: 38px">
+            <li><a href="#about" data-toggle="tab">Criteria 1</a></li>
+            <li><a href="#account" data-toggle="tab">Criteria 2</a></li>
+            <li><a href="#address" data-toggle="tab">Criteria 3</a></li>
+        </ul>
+      </div>
+                  <div class="tab-content">
+                      <div class="tab-pane" id="about">
+                        <div class="wizard-content-wrapper"> 
+                          <div class="wizard-content-header">
+                            <h2>Defensa</h2>
+                            <h4>Medidas cauterlares</h4>
+                          </div>
+                          <div class="wizard-main-content mt-20">
+                            <div class="wizard-content-line-1">
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-2">
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-3">
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="account">
+                        <div class="wizard-content-wrapper"> 
+                          <div class="wizard-content-header">
+                            <h2>Defensa</h2>
+                            <h4>Medidas cauterlares</h4>
+                          </div>
+                          <div class="wizard-main-content mt-20">
+                            <div class="wizard-content-line-1">
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-2">
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-3">
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane" id="address">
+                        <div class="wizard-content-wrapper"> 
+                          <div class="wizard-content-header">
+                            <h2>Defensa</h2>
+                            <h4>Medidas cauterlares</h4>
+                          </div>
+                          <div class="wizard-main-content mt-20">
+                            <div class="wizard-content-line-1">
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-2">
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                            <div class="wizard-content-line-3">
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                              <ul>
+                                <li><a>1</a></li>
+                                <li><a>2</a></li>
+                                <li><a>3</a></li>
+                                <li><a>4</a></li>
+                                <li><a>5</a></li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="wizard-footer height-wizard mt-30">
+                      <div class="pull-right">
+                          <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
+                          <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
+
+                      </div>
+
+                      <div class="pull-left">
+                          <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+
+              </form>
+          </div>
+      </div> <!-- wizard container -->
+    </div> <!--  big container -->
+  </section>
+  <section id="bracket" class="data-table-judges">
+    <div class="container">
+    <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
-                <th>Team</th>
-                <th>Score</th>
+                <th>Email</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
                 <th>Name</th>
-                <th>Position</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </tfoot>
+        <tbody>
+
+        </tbody>
+    </table>
+    </div>
+  </section>
+  <section id="bracket" class="data-table-teams">
+  <div class="container">
+    <div class="data-table-teams-wrapper">
+    <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Captain</th>
                 <th>Team</th>
-                <th>Score</th>
+                <th>E-mail</th>
+                <th>Total Score</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Captain</th>
+                <th>Team</th>
+                <th>E-mail</th>
+                <th>Total Score</th>
             </tr>
         </tfoot>
         <tbody>
@@ -591,58 +784,593 @@
         </tbody>
     </table>
     </div>
+  </div>
   </section>
   <section id="bracket" class="create-tournament-box">
     <div class="container">
-      <div class="card card-register mx-auto mt-5" style="width: 330px">
+      <div class="card card-register mx-auto mt-5">
         <div class="card-header">
           Create tournament
         </div>
         <div class="card-body">
-          <form action="{{ url_for('create_tournament') }}" method="post">
+          <form action="{{ url_for('create_tournament') }}" method="post" >
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="exampleInputName">Tournament name</label>
-                  <input type="text" name="tournament-name" class="form-control" id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter tournament name">
+                  <input type="text" class="form-control" name="tournament-name"  title="Only letters and numbers" required id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter tournament name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group judge-select-section">
+              <div class="form-row">
+                <div class="col-md-6 mt-10">
+                  <div class="judge-select-box-1">
+                      <select class="form-control" name="judge1" id="judge-select-1" name="judge1">
+                        <option selected style="display: none">Select judge</option>
+                        {% for judge in judges %}
+                        <option value="{{ judge.id }}">{{ judge.first_name }} {{ judge.last_name }}</option>
+                        {% endfor %}
+                      </select>
+                      <a class="btn btn-primary" href="#minus-judge-select">-</a>
+                  </div>
+                </div>
+                <!--div class="col-md-6 mt-10">
+                  <label for="judge-select-2">Select Judge 2</label>
+                  <select class="form-control" id="judge-select-2" name="judge2">
+                    <option value="" style="display: none">Select judge 2</option>
+                    <option value="">{judge name}</option>
+                  </select>
+                </div-->
+              </div>
+              <a class="btn btn-primary mt-10" href="#plus-judge-select">+</a>
+            </div>
+            <div class="form-group capitan-select-section">
+              <div class="form-row">
+                <div class="col-md-6 mt-10">
+                  <div class="capitan-select-box-1">
+                  <select class="form-control" id="capitan-select-1" name="captain1">
+                    <option selected style="display: none">Select captain</option>
+                    {% for captain in captains %}
+                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
+                    {% endfor %}
+                  </select>
+                  <a class="btn btn-primary" href="#minus-judge-select">-</a>
+                  </div>
+                </div>
+                <div class="col-md-6 mt-10">
+                  <div class="capitan-select-box-2">
+                  <select class="form-control" id="capitan-select-2" name="captain2">
+                    <option selected style="display: none">Select captain</option>
+                    {% for captain in captains %}
+                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
+                    {% endfor %}
+                  </select>
+                  <a class="btn btn-primary" href="#minus-judge-select">-</a>
+                  </div>
+                </div>
+              </div>
+              <a class="btn btn-primary mt-10" href="#plus-capitan-select">+</a>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Create">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="bracket" class="create-participant-box">
+    <div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header">
+          Create participant
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="participant-name">Name</label>
+                  <input type="text" class="form-control" id="participant-name" pattern="[A-Za-z ]{1,60}" maxlength="32" title="Only letters." aria-describedby="nameHelp" placeholder="Enter name" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group participant-select-section">
+              <div class="form-row">
+                <div class="col-md-12 mt-10">
+                  <label for="participant-email">Email</label>
+                  <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Email must be in the following order: characters@characters.domain" class="form-control" id="participant-email" aria-describedby="nameHelp" placeholder="Enter email" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group participant-select-section">
+              <div class="form-row">
+                <div class="col-md-12 mt-10">
+                  <label for="select-participant-role">Role</label>
+                  <select class="form-control" id="select-participant-role" required>
+                    <option value="" style="display: none">Select role</option>
+                    <option value="">Juror</option>
+                    <option value="">Lead Prosecutor</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <input type="submit" class="btn btn-primary btn-block" value="Save and add another" href="#add-another">
+            <input type="submit" class="btn btn-primary btn-block" value="Save" href="#complete">
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="bracket" class="create-team-table">
+    <div class="contaidner">
+      <div class="data-table-teams-wrapper">
+        <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Office</th>
+              <th>Age</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Tiger Nixon</td>
+              <td>System Architect</td>
+              <td>Edinburgh</td>
+              <td>61</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Garrett Winters</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>63</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Ashton Cox</td>
+              <td>Junior Technical Author</td>
+              <td>San Francisco</td>
+              <td>66</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Cedric Kelly</td>
+              <td>Senior Javascript Developer</td>
+              <td>Edinburgh</td>
+              <td>22</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Airi Satou</td>
+              <td>Accountant</td>
+              <td>Tokyo</td>
+              <td>33</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Brielle Williamson</td>
+              <td>Integration Specialist</td>
+              <td>New York</td>
+              <td>61</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Herrod Chandler</td>
+              <td>Sales Assistant</td>
+              <td>San Francisco</td>
+              <td>59</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Rhona Davidson</td>
+              <td>Integration Specialist</td>
+              <td>Tokyo</td>
+              <td>55</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Colleen Hurst</td>
+              <td>Javascript Developer</td>
+              <td>San Francisco</td>
+              <td>39</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Sonya Frost</td>
+              <td>Software Engineer</td>
+              <td>Edinburgh</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jena Gaines</td>
+              <td>Office Manager</td>
+              <td>London</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Quinn Flynn</td>
+              <td>Support Lead</td>
+              <td>Edinburgh</td>
+              <td>22</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Charde Marshall</td>
+              <td>Regional Director</td>
+              <td>San Francisco</td>
+              <td>36</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Haley Kennedy</td>
+              <td>Senior Marketing Designer</td>
+              <td>London</td>
+              <td>43</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Tatyana Fitzpatrick</td>
+              <td>Regional Director</td>
+              <td>London</td>
+              <td>19</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Michael Silva</td>
+              <td>Marketing Designer</td>
+              <td>London</td>
+              <td>66</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Paul Byrd</td>
+              <td>Chief Financial Officer (CFO)</td>
+              <td>New York</td>
+              <td>64</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Gloria Little</td>
+              <td>Systems Administrator</td>
+              <td>New York</td>
+              <td>59</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Bradley Greer</td>
+              <td>Software Engineer</td>
+              <td>London</td>
+              <td>41</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Dai Rios</td>
+              <td>Personnel Lead</td>
+              <td>Edinburgh</td>
+              <td>35</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jenette Caldwell</td>
+              <td>Development Lead</td>
+              <td>New York</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Yuri Berry</td>
+              <td>Chief Marketing Officer (CMO)</td>
+              <td>New York</td>
+              <td>40</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Caesar Vance</td>
+              <td>Pre-Sales Support</td>
+              <td>New York</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Doris Wilder</td>
+              <td>Sales Assistant</td>
+              <td>Sidney</td>
+              <td>23</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Angelica Ramos</td>
+              <td>Chief Executive Officer (CEO)</td>
+              <td>London</td>
+              <td>47</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Gavin Joyce</td>
+              <td>Developer</td>
+              <td>Edinburgh</td>
+              <td>42</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jennifer Chang</td>
+              <td>Regional Director</td>
+              <td>Singapore</td>
+              <td>28</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Brenden Wagner</td>
+              <td>Software Engineer</td>
+              <td>San Francisco</td>
+              <td>28</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Fiona Green</td>
+              <td>Chief Operating Officer (COO)</td>
+              <td>San Francisco</td>
+              <td>48</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Shou Itou</td>
+              <td>Regional Marketing</td>
+              <td>Tokyo</td>
+              <td>20</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Michelle House</td>
+              <td>Integration Specialist</td>
+              <td>Sidney</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Suki Burks</td>
+              <td>Developer</td>
+              <td>London</td>
+              <td>53</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Prescott Bartlett</td>
+              <td>Technical Author</td>
+              <td>London</td>
+              <td>27</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Gavin Cortez</td>
+              <td>Team Leader</td>
+              <td>San Francisco</td>
+              <td>22</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Martena Mccray</td>
+              <td>Post-Sales support</td>
+              <td>Edinburgh</td>
+              <td>46</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Unity Butler</td>
+              <td>Marketing Designer</td>
+              <td>San Francisco</td>
+              <td>47</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Howard Hatfield</td>
+              <td>Office Manager</td>
+              <td>San Francisco</td>
+              <td>51</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Hope Fuentes</td>
+              <td>Secretary</td>
+              <td>San Francisco</td>
+              <td>41</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Vivian Harrell</td>
+              <td>Financial Controller</td>
+              <td>San Francisco</td>
+              <td>62</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Timothy Mooney</td>
+              <td>Office Manager</td>
+              <td>London</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jackson Bradshaw</td>
+              <td>Director</td>
+              <td>New York</td>
+              <td>65</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Olivia Liang</td>
+              <td>Support Engineer</td>
+              <td>Singapore</td>
+              <td>64</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Bruno Nash</td>
+              <td>Software Engineer</td>
+              <td>London</td>
+              <td>38</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Sakura Yamamoto</td>
+              <td>Support Engineer</td>
+              <td>Tokyo</td>
+              <td>37</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Thor Walton</td>
+              <td>Developer</td>
+              <td>New York</td>
+              <td>61</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Finn Camacho</td>
+              <td>Support Engineer</td>
+              <td>San Francisco</td>
+              <td>47</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Serge Baldwin</td>
+              <td>Data Coordinator</td>
+              <td>Singapore</td>
+              <td>64</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Zenaida Frank</td>
+              <td>Software Engineer</td>
+              <td>New York</td>
+              <td>63</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Zorita Serrano</td>
+              <td>Software Engineer</td>
+              <td>San Francisco</td>
+              <td>56</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jennifer Acosta</td>
+              <td>Junior Javascript Developer</td>
+              <td>Edinburgh</td>
+              <td>43</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Cara Stevens</td>
+              <td>Sales Assistant</td>
+              <td>New York</td>
+              <td>46</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Hermione Butler</td>
+              <td>Regional Director</td>
+              <td>London</td>
+              <td>47</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Lael Greer</td>
+              <td>Systems Administrator</td>
+              <td>London</td>
+              <td>21</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Jonas Alexander</td>
+              <td>Developer</td>
+              <td>San Francisco</td>
+              <td>30</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Shad Decker</td>
+              <td>Regional Director</td>
+              <td>Edinburgh</td>
+              <td>51</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Michael Bruce</td>
+              <td>Javascript Developer</td>
+              <td>Singapore</td>
+              <td>29</td>
+            </tr>
+            <tr>
+              <td><button class="btn btn-primary btn-sm demo-button">Edit</button></td>
+              <td>Donna Snider</td>
+              <td>Customer Support</td>
+              <td>New York</td>
+              <td>27</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <section id="bracket" class="judge-select-participant" style="display: none">
+    <div class="container">
+      <div class="card card-register mx-auto mt-5">
+        <div class="card-header">
+          Select participant
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="select-tournament">Tournament</label>
+                  <select class="form-control" id="select-tournament">
+                    <option value="" selected style="display: none">Select tournament</option>
+                    <option value="">{tournament name}</option>
+                  </select>
                 </div>
               </div>
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Judge</label>
-              <select class="form-control" name="judge">
-                <option value="" style="display: none">Select judge from the list</option>
-                {% for judge in judges %}
-                    <option value="{{ judge.id }}">{{ judge.first_name }} {{ judge.last_name }}</option>
-                {% endfor %}
-                <!--option value="Chriss">Chris</option-->
-              </select>
-            </div>
-            <div class="form-group capitan-select-section">
               <div class="form-row">
-                <div class="col-md-6">
-                  <label for="exampleInputPassword1">Captain 1</label>
-                  <select class="form-control" name="captain1">
-                    <option value="" style="display: none">Select captain 1</option>
-                      {% for captain in captains %}
-                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
-                      {% endfor %}
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label for="exampleConfirmPassword">Captain 2</label>
-                  <select class="form-control" name="captain2">
-                    <option value="" style="display: none">Select captain 2</option>
-                      {% for captain in captains %}
-                        <option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>
-                      {% endfor %}
+                <div class="col-md-12">
+                  <label for="select-team">Team</label>
+                  <select class="form-control" id="select-team">
+                    <option value="" style="display: none">Select team</option>
+                    <option value="">{team name}</option>
                   </select>
                 </div>
               </div>
-              <a class="btn btn-primary mt-10" href="#plus-select">+</a>
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Create</button>
-
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="select-participant">Participant</label>
+                  <select class="form-control" id="select-participant">
+                    <option value="" style="display: none">Select participant</option>
+                    <option value="">{participant name}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <a class="btn btn-primary btn-block participant-select-button" href="#">Select</a>
           </form>
         </div>
       </div>
@@ -667,10 +1395,10 @@
             <div class="card text-white bg-warning o-hidden h-100">
               <div class="card-body">
                 <div class="mr-5">
-                  Organizer account
+                  Organiser account
                 </div>
               </div>
-              <a href="{{ url_for('signup') }}" class="card-footer text-white clearfix small z-1 close"  id="signup-org" aria-label="Close"  >
+              <a href="{{ url_for('signup', role='organizer') }}" class="card-footer text-white clearfix small z-1 close signup-link" aria-label="Close" >
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fa fa-angle-right"></i>
@@ -683,7 +1411,7 @@
                   Judge account
                 </div>
               </div>
-              <a href="#" class="card-footer text-white clearfix small z-1 close"  aria-label="Close" data-target="#exampleModal2" >
+              <a href="{{ url_for('signup', role='judge') }}" class="card-footer text-white clearfix small z-1 close signup-link" aria-label="Close">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fa fa-angle-right"></i>
@@ -696,7 +1424,7 @@
                   Team captain account
                 </div>
               </div>
-              <a href="#" class="card-footer text-white clearfix small z-1 close" aria-label="Close" data-target="#exampleModal2" >
+              <a href="{{ url_for('signup', role='captain') }}" class="card-footer text-white clearfix small z-1 close signup-link" aria-label="Close">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fa fa-angle-right"></i>
@@ -714,42 +1442,33 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sign Up</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Fill form</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">
             
-            <form action="{{ url_for('signup') }}" method="post" id="js-signup-form">
-
-            </form>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Sign In</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-
             <form>
+              <div class="input-group">
+                <span class="input-group-addon"></span>
+                <input id="first-name" type="text" class="form-control" name="first-name" placeholder="First name">
+              </div>
               <div class="input-group mt-10">
                 <span class="input-group-addon"></span>
-                <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+                <input id="last-name" type="text" class="form-control" name="last-name" placeholder="Last name">
+              </div>
+              <div class="input-group mt-10">
+                <span class="input-group-addon"></span>
+                <input id="email" type="text" class="form-control" name="email" placeholder="Email">
               </div>
               <div class="input-group mt-10">
                 <span class="input-group-addon"></span>
                 <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+              <div class="input-group mt-10">
+                <span class="input-group-addon"></span>
+                <input id="confirm" type="password" class="form-control" name="confirm" placeholder="Confirm">
               </div>
             </form>
 
@@ -761,8 +1480,7 @@
         </div>
       </div>
     </div>
-    <!-- Custom Js -->
-    <script src="{{ url_for('static', filename='js/action.js') }}"></script>
+    
     <!-- Bootstrap core JavaScript -->
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
@@ -773,36 +1491,139 @@
     <script src="{{ url_for('static', filename='vendor/datatables/jquery.dataTables.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/datatables/dataTables.bootstrap4.js') }}"></script>
 
-    <script src='https://unpkg.com/vue'></script>
     <!-- Custom scripts for this template -->
     <script src="{{ url_for('static', filename='js/sb-admin.min.js') }}"></script>
-    <!--script>
+
+    <script src="{{ url_for('static', filename='assets/js/jquery.bootstrap.wizard.js') }}" type="text/javascript"></script>
+
+    <!--  Plugin for the Wizard -->
+    <script src="{{ url_for('static', filename='assets/js/gsdk-bootstrap-wizard.js') }}"></script>
+
+    <!--  More information about jquery.validate here: http://jqueryvalidation.org/  -->
+    <script src="{{ url_for('static', filename='assets/js/jquery.validate.min.js') }}"></script>
+
+    <script>
       $("[href='#organiser']").click(function() {
         $("[data-original-title='Stats'], [data-original-title='Create tournament']").css("display", "block");
       });
-    </script-->
-    <script>
-    $(".data-table-page").css("display", "none");
-      $("#judges, #scores, #teams").on("click", function() {
-          $("section").css("display", "none");
-          $(".data-table-page").css("display", "block");
+      $("[href='#judge']").click(function() {
+        $("[data-original-title='Select participant']").css("display", "block");
       });
-      
-      $("body").on("click", "#tournaments", function() {
+      $("[href='#captain']").click(function() {
+        $("[data-original-title='Create team'], [data-original-title='Team table']").css("display", "block");
+      });
+    </script>
+    <script>
+      $(".data-table-judges,.data-table-teams").css("display", "none");
+      $(".judges").on("click", function() {
+          $("section").css("display", "none");
+          $(".data-table-judges").css("display", "block");
+          var btn = $(this);
+          $.ajax({
+              url: btn.attr('data-url'),
+              type: 'get',
+              success: function (data) {
+                  console.log(data);
+                  var judges_html = ''
+                  data.forEach(function (judge, index) {
+                      judges_html += '<tr><td>' + judge.name + '</td><td>' + judge.email + '</td><td> Judge </td></tr>'
+                  });
+
+                  $(".data-table-judges tbody").html(judges_html);
+              }
+          })
+
+      });
+      $(".teams").on("click", function() {
+          $("section").css("display", "none");
+          $(".data-table-teams").css("display", "block");
+
+          var btn = $(this);
+          $.ajax({
+              url: btn.attr('data-url'),
+              type: 'get',
+              success: function (data) {
+                  console.log(data);
+                  var captains_html = ''
+                  data.forEach(function (cap, index) {
+                      captains_html += '<tr><td>' + cap.name + '</td><td>' + cap.team + '</td><td>' + cap.email +
+                                        '</td><td>'+ cap.score +'</td></tr>';
+                  });
+
+                  $(".data-table-teams tbody").html(captains_html);
+              }
+          })
+      });
+      $("#tournaments").on("click", function() {
           $("section").css("display", "none");
           $(".dashboard").css("display", "block");
       });
       $(".create-tournament-box").css("display", "none");
-      $("body").on("click", "#create-tournament", function() {
+      $("#create-tournament").on("click", function() {
           $("section").css("display", "none");
           $(".create-tournament-box").css("display", "block");
       });
-      var count = 2;
-      $("[href='#plus-select']").on("click", function() {
-          count++;
-          $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <label for="exampleConfirmPassword">Captain ' + count + ' </label> <select class="form-control" name="captain' + count + '"><option value="" style="display: none">Select captain ' + count + ' </option>{% for captain in captains %}<option value="{{ captain.id }}">{{ captain.first_name }} {{ captain.last_name }}</option>{% endfor %} </select></div>');
+      $("#select-participant").on("click", function() {
+          $("section").css("display", "none");
+          $(".judge-select-participant").css("display", "block");
+      });
+      $(".participant-select-button").on("click", function() {
+          $("section").css("display", "none");
+          $(".judge-select-wizard").css("display", "block");
+      });
+      $("#create-team").on("click", function() {
+          $("section").css("display", "none");
+          $(".create-participant-box").css("display", "block");
+      });
+      $("#team-table").on("click", function() {
+          $("section").css("display", "none");
+          $(".create-team-table").css("display", "block");
+      });
+      // $("#create-team").on("click", function() {
+      //     $("section").css("display", "none");
+      //     $(".judge-select-wizard").css("display", "block");
+      // });
+      var count_cap = 2;
+      $("[href='#plus-capitan-select']").on("click", function() {
+          if(count_cap<16) {
+              count_cap++;
+              $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="capitan-select-box-' + count_cap + '"> <select class="form-control" name="captain' + count_cap + '" id="capitan-select-' + count_cap + '"> <option value="" selected style="display: none">Select captain</option>'
+                      + '{% for captain in captains %}<option value="{{ captain.id }}">{{ captain.first_name }}'
+                        + ' {{ captain.last_name }}</option>{% endfor %} </select> <a class="btn btn-primary" href="#minus-cap-select">-</a> </div> </div>');
+
+          }
+      });
+      var count_judge = 1;
+      $("[href='#plus-judge-select']").on("click", function() {
+          if(count_judge<5) {
+              count_judge++;
+              $(".card-register .judge-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="judge-select-box-' + count_judge + '"> <select class="form-control" id="judge-select-' + count_judge + '" name="judge' + count_judge + '"> <option value="" selected style="display: none">Select judge</option>'
+                      + '{% for judge in judges %}<option value="{{ judge.id }}">{{ judge.first_name }} '
+                       +  ' {{ judge.last_name }}</option>{% endfor %} </select> <a class="btn btn-primary" href="#minus-judge-select">-</a></div> </div>');
+          }
+      });
+      $("body").on('click', "[href='#minus-judge-select']", function () {
+          $(this).parent().parent().remove();
+          count_judge--;
+      });
+      $("body").on('click', "[href='#minus-cap-select']", function () {
+          $(this).parent().parent().remove();
+          count_cap--;
       });
       $('#example').DataTable();
+
+      $(".wizard-content-line-1 li").on("click", function(){
+          $(".wizard-content-line-1 li").css({"background-color": "unset"});
+          $(this).css({"background-color": "#FF9500"});
+      });
+      $(".wizard-content-line-2 li").on("click", function(){
+          $(".wizard-content-line-2 li").css({"background-color": "unset"});
+          $(this).css({"background-color": "#FF9500"});
+      });
+      $(".wizard-content-line-3 li").on("click", function(){
+          $(".wizard-content-line-3 li").css({"background-color": "unset"});
+          $(this).css({"background-color": "#FF9500"});
+      });
     </script>
     <script>
         var windowWidth = $(window).width();
