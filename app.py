@@ -2,21 +2,22 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from forms import LoginForm, SignUpForm
-from models import db, User, Judge, Captain, Organizer, Tournament
+from models import db, User, Judge, Captain, Organizer, Tournament, Team, Member
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 import random
 
+
 def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'Thisissecretkey!'
     #local
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
     # pythonwnyehre
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$newdb'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$newdb'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -100,8 +101,10 @@ def signup(role=None):
             new_user = Judge(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
                         password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
         elif role == 'captain':
+            team = Team(name='{} {} Team'.format(form.first_name.data, form.last_name.data))
             new_user = Captain(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
-                        password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+                        password=generate_password_hash(form.password.data, method='sha256'),
+                        email=form.email.data, team=team)
 
         db.session.add(new_user)
         db.session.commit()
@@ -175,10 +178,84 @@ def captains_list(tournament_id):
     for captain in captains:
         data.append({'name': captain.first_name + ' ' + captain.last_name,
                      'email': captain.email, 'team': '{} {} Team'.format(captain.first_name, captain.last_name),
-                     'score': random.randint(40,90)})
+                     'score': random.randint(40, 90)})
 
     return jsonify(data)
 
+
+@app.route('/create_member', methods=['POST'])
+def create_member():
+    if current_user.role == 'captain':
+        team = current_user.team
+        name = request.values['name']
+        email = request.values['email']
+        role = request.values['role']
+        member = Member(team=team, name=name, email=email, role=role)
+        db.session.add(member)
+        db.session.commit()
+
+        return jsonify({'status': 'OK'})
+
+    return jsonify({'status': 'Bad request'})
+
+
+@app.route('/members_list', methods=['GET'])
+def members_list():
+    data = []
+
+    if current_user.role == 'captain':
+        team = current_user.team
+        members = team.members
+
+        for member in members:
+            data.append({'edit_url': url_for('edit_participant', id=member.id), 'name': member.name, 'email': member.email, 'role': member.role,
+                         'score': random.randint(40, 90)})
+
+        print(members)
+
+        return jsonify(data)
+    else:
+        print('Shoit')
+
+
+@app.route('/edit_participant/<id>', methods=['GET', 'POST'])
+def edit_participant(id):
+    if current_user.role == 'captain':
+        member = Member.query.filter_by(id=id).first()
+        data = dict()
+        if request.method == 'GET':
+            data['name'] = member.name
+            data['email'] = member.email
+            data['role'] = member.role
+
+            return jsonify(data)
+
+        else:
+            name = request.values['name']
+            email = request.values['email']
+            role = request.values['role']
+
+            member.name = name
+            member.email = email
+            member.role = role
+
+            db.session.add(member)
+            db.session.commit()
+
+            return jsonify({'status': 'OK'})
+
+
+@app.route('/edit_team_name', methods=['POST'])
+def edit_team_name():
+    if current_user.role == 'captain':
+        team = current_user.team
+        team.name = request.values['name']
+        db.session.add(team)
+        db.session.commit()
+
+        return jsonify({'status': 'OK'})
+    else:
+        return jsonify({'status': 'Bad request'})
 
 if __name__ == '__main__':
     manager.run()

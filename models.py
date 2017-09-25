@@ -96,11 +96,14 @@ class Team(db.Model):
         return "Team({}) {}: Captain - {}".format(self.id, self.name, self.captain.username)
 
 
-#class JudgeTournament(db.Model):
-#    id = db.Column(db.Integer, primary_key=True)
-#
-#    judge_id = db.Column(db.Integer, db.ForeignKey('judge.id'))
-#    judge = db.relationship('Judge', foreign_keys=[judge_id])
+class Member(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30))
+    email = db.Column(db.String(50), unique=True)
+    role = db.Column(db.String(20))
 
-#    tournament_id = db.Column(db.Integer, db.ForeignKey('tournament.id'))
-#    tournament = db.relationship('Tournament', foreign_keys=[tournament_id])
+    team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
+    team = db.relationship('Team', foreign_keys=[team_id], backref='members')
+
+    def __repr__(self):
+        return "{} from team {}".format(self.name, self.team.name)
