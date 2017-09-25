@@ -50,7 +50,7 @@ def load_user(user_id):
 def index(pk=0):
     signup_form = SignUpForm()
 
-    current_tournament = Tournament.query.get(pk)
+    current_tournament = Tournament.query.first()
     judges = Judge.query.all()
     captains = Captain.query.all()
     tournaments = Tournament.query.all()
