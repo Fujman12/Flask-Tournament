@@ -177,7 +177,7 @@ def captains_list(tournament_id):
 
     for captain in captains:
         data.append({'name': captain.first_name + ' ' + captain.last_name,
-                     'email': captain.email, 'team': '{} {} Team'.format(captain.first_name, captain.last_name),
+                     'email': captain.email, 'team': captain.team.name,
                      'score': random.randint(40, 90)})
 
     return jsonify(data)
