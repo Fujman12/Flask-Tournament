@@ -50,7 +50,10 @@ def load_user(user_id):
 def index(pk=0):
     signup_form = SignUpForm()
 
-    current_tournament = Tournament.query.first()
+    current_tournament = Tournament.query.filter_by(pk=pk).first()
+    if current_tournament is None:
+        current_tournament = Tournament.query.first()
+
     judges = Judge.query.all()
     captains = Captain.query.all()
     tournaments = Tournament.query.all()
