@@ -1,12 +1,13 @@
 from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
 from flask_bootstrap import Bootstrap
-from flask_sqlalchemy import SQLAlchemy
+from flask_admin.contrib.sqla import ModelView
 from forms import LoginForm, SignUpForm
 from models import db, User, Judge, Captain, Organizer, Tournament, Team, Member
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from flask_admin import Admin
 import random
 
 
@@ -38,6 +39,15 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 login_manager.login_message = None
+
+admin = Admin(app, name='Admin Panel', template_mode='bootstrap3')
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Captain, db.session))
+admin.add_view(ModelView(Organizer, db.session))
+admin.add_view(ModelView(Tournament, db.session))
+admin.add_view(ModelView(Judge, db.session))
+admin.add_view(ModelView(Member, db.session))
+
 
 
 @login_manager.user_loader
