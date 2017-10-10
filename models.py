@@ -81,6 +81,12 @@ class Tournament(db.Model):
 
     captains = db.relationship('Captain', lazy='dynamic')
 
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+        }
+
     def __repr__(self):
         return "Tournament {} (id-{}): Organizer - {}".format(self.name, self.id, self.organizer.username)
 
@@ -88,9 +94,28 @@ class Tournament(db.Model):
 class Team(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
-    total_score = db.Column(db.Integer)
+    total_score = db.Column(db.DECIMAL(4, 2))
 
     captain_id = db.Column(db.Integer, db.ForeignKey('captain.id'))
+
+    def count_score(self):
+        total_score = 0
+        for member in self.members:
+            if member.score:
+                total_score += member.score
+
+        self.total_score = total_score
+
+        db.session.add(self)
+        db.session.commit()
+
+        return None
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
 
     def __repr__(self):
         return "Team({}) {}: Captain - {}".format(self.id, self.name, self.captain.username)
@@ -101,9 +126,16 @@ class Member(db.Model):
     name = db.Column(db.String(30))
     email = db.Column(db.String(50), unique=True)
     role = db.Column(db.String(20))
+    score = db.Column(db.DECIMAL(4, 2))
 
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
     team = db.relationship('Team', foreign_keys=[team_id], backref='members')
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'name': self.name
+        }
 
     def __repr__(self):
         return "{} from team {}".format(self.name, self.team.name)

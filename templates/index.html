@@ -63,7 +63,7 @@
                 <ul class="sidenav-third-level collapse" id="collapseMulti{{ tourn.id }}">
                   <li> <a href="#" class="judges" data-url="{{ url_for('judges_list', tournament_id=tourn.id) }}">Judges</a> </li>
                   <li> <a href="#" class="teams" data-url="{{ url_for('captains_list', tournament_id=tourn.id) }}">Teams</a> </li>
-                  <li> <a href="#" id="scores">Team Members</a> </li>
+                  <li> <a href="#"  class="team-members" data-url="{{ url_for('all_members', tournament_id=tourn.id) }}" >Team Members</a> </li>
                 </ul>
               </li>
               {% endfor %}
@@ -237,8 +237,8 @@
       <div class="wizard-container">
 
           <div class="card wizard-card" data-color="orange" id="wizardProfile">
-              <h5 style="padding: 0 10px 10px 18px;">Team A - Bob</h5>
-              <form action="" method="">
+              <h5 style="padding: 0 10px 10px 18px;" class="js-judge-wizard-header">Team A - Bob</h5>
+              <form action="" method="" class="js-judge-form">
           <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
       <div class="wizard-navigation">
@@ -257,7 +257,8 @@
                           </div>
                           <div class="wizard-main-content mt-20">
                             <div class="wizard-content-line-1">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-1" type="hidden" class="wizard-line-input-1">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -267,7 +268,8 @@
                               </ul>
                             </div>
                             <div class="wizard-content-line-2">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-2" type="hidden" class="wizard-line-input-2">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -277,7 +279,8 @@
                               </ul>
                             </div>
                             <div class="wizard-content-line-3">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-3" type="hidden" class="wizard-line-input-3">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -296,8 +299,9 @@
                             <h4>Medidas cauterlares</h4>
                           </div>
                           <div class="wizard-main-content mt-20">
-                            <div class="wizard-content-line-1">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-4">
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-4" type="hidden" class="wizard-line-input-4">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -306,8 +310,9 @@
                                 <li><a>5</a></li>
                               </ul>
                             </div>
-                            <div class="wizard-content-line-2">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-5">
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-5" type="hidden" class="wizard-line-input-5">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -316,8 +321,9 @@
                                 <li><a>5</a></li>
                               </ul>
                             </div>
-                            <div class="wizard-content-line-3">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-6">
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-6" type="hidden" class="wizard-line-input-6">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -336,8 +342,9 @@
                             <h4>Medidas cauterlares</h4>
                           </div>
                           <div class="wizard-main-content mt-20">
-                            <div class="wizard-content-line-1">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-7">
+                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-7" type="hidden" class="wizard-line-input-7">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -346,8 +353,9 @@
                                 <li><a>5</a></li>
                               </ul>
                             </div>
-                            <div class="wizard-content-line-2">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-8">
+                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-8" type="hidden" class="wizard-line-input-8">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -356,8 +364,9 @@
                                 <li><a>5</a></li>
                               </ul>
                             </div>
-                            <div class="wizard-content-line-3">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p> 
+                            <div class="wizard-content-line-9">
+                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                              <input name="wizard-input-9" type="hidden" class="wizard-line-input-9">
                               <ul>
                                 <li><a>1</a></li>
                                 <li><a>2</a></li>
@@ -373,7 +382,7 @@
                   <div class="wizard-footer height-wizard mt-30">
                       <div class="pull-right">
                           <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
-                          <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish' value='Finish' />
+                          <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm js-judge-finish' name='finish' value='Finish' />
 
                       </div>
 
@@ -411,6 +420,7 @@
     </table>
     </div>
   </section>
+
   <section id="bracket" class="data-table-teams">
   <div class="container">
     <div class="data-table-teams-wrapper">
@@ -432,353 +442,12 @@
             </tr>
         </tfoot>
         <tbody>
-            <tr>
-                <td>Tiger Nixon</td>
-                <td>System Architect</td>
-                <td>Edinburgh</td>
-                <td>61</td>
-            </tr>
-            <tr>
-                <td>Garrett Winters</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>63</td>
-            </tr>
-            <tr>
-                <td>Ashton Cox</td>
-                <td>Junior Technical Author</td>
-                <td>San Francisco</td>
-                <td>66</td>
-            </tr>
-            <tr>
-                <td>Cedric Kelly</td>
-                <td>Senior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-            </tr>
-            <tr>
-                <td>Airi Satou</td>
-                <td>Accountant</td>
-                <td>Tokyo</td>
-                <td>33</td>
-            </tr>
-            <tr>
-                <td>Brielle Williamson</td>
-                <td>Integration Specialist</td>
-                <td>New York</td>
-                <td>61</td>
-            </tr>
-            <tr>
-                <td>Herrod Chandler</td>
-                <td>Sales Assistant</td>
-                <td>San Francisco</td>
-                <td>59</td>
-            </tr>
-            <tr>
-                <td>Rhona Davidson</td>
-                <td>Integration Specialist</td>
-                <td>Tokyo</td>
-                <td>55</td>
-            </tr>
-            <tr>
-                <td>Colleen Hurst</td>
-                <td>Javascript Developer</td>
-                <td>San Francisco</td>
-                <td>39</td>
-            </tr>
-            <tr>
-                <td>Sonya Frost</td>
-                <td>Software Engineer</td>
-                <td>Edinburgh</td>
-                <td>23</td>
-            </tr>
-            <tr>
-                <td>Jena Gaines</td>
-                <td>Office Manager</td>
-                <td>London</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td>Quinn Flynn</td>
-                <td>Support Lead</td>
-                <td>Edinburgh</td>
-                <td>22</td>
-            </tr>
-            <tr>
-                <td>Charde Marshall</td>
-                <td>Regional Director</td>
-                <td>San Francisco</td>
-                <td>36</td>
-            </tr>
-            <tr>
-                <td>Haley Kennedy</td>
-                <td>Senior Marketing Designer</td>
-                <td>London</td>
-                <td>43</td>
-            </tr>
-            <tr>
-                <td>Tatyana Fitzpatrick</td>
-                <td>Regional Director</td>
-                <td>London</td>
-                <td>19</td>
-            </tr>
-            <tr>
-                <td>Michael Silva</td>
-                <td>Marketing Designer</td>
-                <td>London</td>
-                <td>66</td>
-            </tr>
-            <tr>
-                <td>Paul Byrd</td>
-                <td>Chief Financial Officer (CFO)</td>
-                <td>New York</td>
-                <td>64</td>
-            </tr>
-            <tr>
-                <td>Gloria Little</td>
-                <td>Systems Administrator</td>
-                <td>New York</td>
-                <td>59</td>
-            </tr>
-            <tr>
-                <td>Bradley Greer</td>
-                <td>Software Engineer</td>
-                <td>London</td>
-                <td>41</td>
-            </tr>
-            <tr>
-                <td>Dai Rios</td>
-                <td>Personnel Lead</td>
-                <td>Edinburgh</td>
-                <td>35</td>
-            </tr>
-            <tr>
-                <td>Jenette Caldwell</td>
-                <td>Development Lead</td>
-                <td>New York</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td>Yuri Berry</td>
-                <td>Chief Marketing Officer (CMO)</td>
-                <td>New York</td>
-                <td>40</td>
-            </tr>
-            <tr>
-                <td>Caesar Vance</td>
-                <td>Pre-Sales Support</td>
-                <td>New York</td>
-                <td>21</td>
-            </tr>
-            <tr>
-                <td>Doris Wilder</td>
-                <td>Sales Assistant</td>
-                <td>Sidney</td>
-                <td>23</td>
-            </tr>
-            <tr>
-                <td>Angelica Ramos</td>
-                <td>Chief Executive Officer (CEO)</td>
-                <td>London</td>
-                <td>47</td>
-            </tr>
-            <tr>
-                <td>Gavin Joyce</td>
-                <td>Developer</td>
-                <td>Edinburgh</td>
-                <td>42</td>
-            </tr>
-            <tr>
-                <td>Jennifer Chang</td>
-                <td>Regional Director</td>
-                <td>Singapore</td>
-                <td>28</td>
-            </tr>
-            <tr>
-                <td>Brenden Wagner</td>
-                <td>Software Engineer</td>
-                <td>San Francisco</td>
-                <td>28</td>
-            </tr>
-            <tr>
-                <td>Fiona Green</td>
-                <td>Chief Operating Officer (COO)</td>
-                <td>San Francisco</td>
-                <td>48</td>
-            </tr>
-            <tr>
-                <td>Shou Itou</td>
-                <td>Regional Marketing</td>
-                <td>Tokyo</td>
-                <td>20</td>
-            </tr>
-            <tr>
-                <td>Michelle House</td>
-                <td>Integration Specialist</td>
-                <td>Sidney</td>
-                <td>37</td>
-            </tr>
-            <tr>
-                <td>Suki Burks</td>
-                <td>Developer</td>
-                <td>London</td>
-                <td>53</td>
-            </tr>
-            <tr>
-                <td>Prescott Bartlett</td>
-                <td>Technical Author</td>
-                <td>London</td>
-                <td>27</td>
-            </tr>
-            <tr>
-                <td>Gavin Cortez</td>
-                <td>Team Leader</td>
-                <td>San Francisco</td>
-                <td>22</td>
-            </tr>
-            <tr>
-                <td>Martena Mccray</td>
-                <td>Post-Sales support</td>
-                <td>Edinburgh</td>
-                <td>46</td>
-            </tr>
-            <tr>
-                <td>Unity Butler</td>
-                <td>Marketing Designer</td>
-                <td>San Francisco</td>
-                <td>47</td>
-            </tr>
-            <tr>
-                <td>Howard Hatfield</td>
-                <td>Office Manager</td>
-                <td>San Francisco</td>
-                <td>51</td>
-            </tr>
-            <tr>
-                <td>Hope Fuentes</td>
-                <td>Secretary</td>
-                <td>San Francisco</td>
-                <td>41</td>
-            </tr>
-            <tr>
-                <td>Vivian Harrell</td>
-                <td>Financial Controller</td>
-                <td>San Francisco</td>
-                <td>62</td>
-            </tr>
-            <tr>
-                <td>Timothy Mooney</td>
-                <td>Office Manager</td>
-                <td>London</td>
-                <td>37</td>
-            </tr>
-            <tr>
-                <td>Jackson Bradshaw</td>
-                <td>Director</td>
-                <td>New York</td>
-                <td>65</td>
-            </tr>
-            <tr>
-                <td>Olivia Liang</td>
-                <td>Support Engineer</td>
-                <td>Singapore</td>
-                <td>64</td>
-            </tr>
-            <tr>
-                <td>Bruno Nash</td>
-                <td>Software Engineer</td>
-                <td>London</td>
-                <td>38</td>
-            </tr>
-            <tr>
-                <td>Sakura Yamamoto</td>
-                <td>Support Engineer</td>
-                <td>Tokyo</td>
-                <td>37</td>
-            </tr>
-            <tr>
-                <td>Thor Walton</td>
-                <td>Developer</td>
-                <td>New York</td>
-                <td>61</td>
-            </tr>
-            <tr>
-                <td>Finn Camacho</td>
-                <td>Support Engineer</td>
-                <td>San Francisco</td>
-                <td>47</td>
-            </tr>
-            <tr>
-                <td>Serge Baldwin</td>
-                <td>Data Coordinator</td>
-                <td>Singapore</td>
-                <td>64</td>
-            </tr>
-            <tr>
-                <td>Zenaida Frank</td>
-                <td>Software Engineer</td>
-                <td>New York</td>
-                <td>63</td>
-            </tr>
-            <tr>
-                <td>Zorita Serrano</td>
-                <td>Software Engineer</td>
-                <td>San Francisco</td>
-                <td>56</td>
-            </tr>
-            <tr>
-                <td>Jennifer Acosta</td>
-                <td>Junior Javascript Developer</td>
-                <td>Edinburgh</td>
-                <td>43</td>
-            </tr>
-            <tr>
-                <td>Cara Stevens</td>
-                <td>Sales Assistant</td>
-                <td>New York</td>
-                <td>46</td>
-            </tr>
-            <tr>
-                <td>Hermione Butler</td>
-                <td>Regional Director</td>
-                <td>London</td>
-                <td>47</td>
-            </tr>
-            <tr>
-                <td>Lael Greer</td>
-                <td>Systems Administrator</td>
-                <td>London</td>
-                <td>21</td>
-            </tr>
-            <tr>
-                <td>Jonas Alexander</td>
-                <td>Developer</td>
-                <td>San Francisco</td>
-                <td>30</td>
-            </tr>
-            <tr>
-                <td>Shad Decker</td>
-                <td>Regional Director</td>
-                <td>Edinburgh</td>
-                <td>51</td>
-            </tr>
-            <tr>
-                <td>Michael Bruce</td>
-                <td>Javascript Developer</td>
-                <td>Singapore</td>
-                <td>29</td>
-            </tr>
-            <tr>
-                <td>Donna Snider</td>
-                <td>Customer Support</td>
-                <td>New York</td>
-                <td>27</td>
-            </tr>
         </tbody>
     </table>
     </div>
   </div>
   </section>
+
   <section id="bracket" class="create-tournament-box">
     <div class="container">
       <div class="card card-register mx-auto mt-5">
@@ -851,6 +520,7 @@
       </div>
     </div>
   </section>
+
   <section id="bracket" class="create-participant-box">
     <div class="container">
       <div class="card card-register mx-auto mt-5">
@@ -895,6 +565,7 @@
       </div>
     </div>
   </section>
+
   <section id="bracket" class="create-team-table">
     <div class="contaidner">
       <div class="data-table-teams-wrapper">
@@ -923,6 +594,36 @@
       </div>
     </div>
   </section>
+
+  <section id="bracket" class="organizer-team-members">
+    <div class="contaidner">
+      <div class="data-oranizer-team-members-wrapper">
+        <table id="example1" class="table table-striped table-bordered" cellspacing="0" width="100%">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th>Name</th>
+              <th>Team</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Score</th>
+            </tr>
+          </tfoot>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <section id="bracket" class="judge-select-participant" style="display: none">
     <div class="container">
       <div class="card card-register mx-auto mt-5">
@@ -935,9 +636,8 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="select-tournament">Tournament</label>
-                  <select class="form-control" id="select-tournament">
-                    <option value="" selected style="display: none">Select tournament</option>
-                    <option value="">{tournament name}</option>
+                  <select class="form-control js-judge-select-tournament" id="select-tournament">
+                    <option value="" selected style="display: none" disabled>Select tournament</option>
                   </select>
                 </div>
               </div>
@@ -946,9 +646,8 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="select-team">Team</label>
-                  <select class="form-control" id="select-team">
-                    <option value="" style="display: none">Select team</option>
-                    <option value="">{team name}</option>
+                  <select class="form-control js-judge-select-team" id="select-team">
+                    <option value="" style="display: none" disabled>Select team</option>
                   </select>
                 </div>
               </div>
@@ -957,9 +656,8 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="select-participant">Participant</label>
-                  <select class="form-control" id="select-participant">
+                  <select class="form-control js-judge-select-participant" id="select-participant">
                     <option value="" style="display: none">Select participant</option>
-                    <option value="">{participant name}</option>
                   </select>
                 </div>
               </div>
@@ -1209,6 +907,28 @@
               }
           })
       });
+      $('.team-members').on('click', function(){
+          $("section").css("display", "none");
+          $(".organizer-team-members").css("display", "block");
+
+          var btn = $(this);
+          $.ajax({
+              url: btn.attr('data-url'),
+              type: 'get',
+              success: function(data){
+                  console.log(data);
+                  var all_members_html = '';
+                  data.forEach(function (member, index){
+                     all_members_html += '<tr><td>' + member.name + '</td><td>' + member.team + '</td><td>' +
+                                         member.email + '</td><td>' + member.role + '</td><td>' +
+                                         member.score + '</td></tr>';
+
+                  });
+                  $(".data-oranizer-team-members-wrapper tbody").html(all_members_html);
+              }
+          })
+      })
+
       $("#tournaments").on("click", function() {
           $("section").css("display", "none");
           $(".dashboard").css("display", "block");
@@ -1218,13 +938,85 @@
           $("section").css("display", "none");
           $(".create-tournament-box").css("display", "block");
       });
+
       $("#select-participant").on("click", function() {
           $("section").css("display", "none");
           $(".judge-select-participant").css("display", "block");
+          var tournaments_html = '<option value="" style="display:none" disabled>  Select tournament </option>';
+          //var tournaments_html = $('.js-judge-select-tournament').html();
+          $.ajax({
+              url: '{{ url_for('judges_tournaments') }}',
+              type: 'get',
+              success: function(data){
+                  console.log(data);
+                  var tournaments = data.tournaments;
+                  tournaments.forEach(function (tourn, index) {
+                      tournaments_html += '<option value="'+ tourn.id +'">' + tourn.name + '</option>';
+
+                  });
+                  $('.js-judge-select-tournament').html(tournaments_html);
+                  $('.js-judge-select-tournament').trigger('change');
+              }
+          });
+
       });
+
+      $('.js-judge-select-tournament').on('change', function(){
+          var select = $(this);
+          var teams_html = '<option value="" style="display:none" disabled>  Select team </option>';
+          //var teams_html = $('.js-judge-select-team').html();
+          $.ajax({
+              url: '{{ url_for('tournaments_teams') }}',
+              type: 'post',
+              data: {'id': select.val()},
+              success: function(data) {
+                  console.log(data);
+                  var teams = data.teams;
+                  teams.forEach(function (team, index) {
+                      teams_html += '<option value="'+ team.id +'">' + team.name + '</option>';
+
+                  });
+                  $('.js-judge-select-team').html(teams_html);
+                  $('.js-judge-select-team').trigger('change');
+              }
+          });
+
+      });
+
+      $('.js-judge-select-team').on('change', function () {
+          var select = $(this);
+          var participants_html = '<option value="" style="display:none" disabled>  Select participant </option>';
+
+          $.ajax({
+              url: '{{ url_for('teams_participants') }}',
+              type: 'post',
+              data: {'id': select.val()},
+              success: function(data) {
+                  var participants = data.participants;
+                  participants.forEach(function (p, index) {
+                      participants_html += '<option value="'+ p.id +'">' + p.name + '</option>';
+
+                  });
+                  $('.js-judge-select-participant').html(participants_html);
+              }
+          })
+      });
+
       $(".participant-select-button").on("click", function() {
-          $("section").css("display", "none");
-          $(".judge-select-wizard").css("display", "block");
+          if ($('.js-judge-select-participant').val() != '' && $('.js-judge-select-participant').val() != null) {
+              $("section").css("display", "none");
+              $(".judge-select-wizard").css("display", "block");
+              $.ajax({
+                  url: '{{ url_for('judge_select_participant') }}',
+                  type: 'post',
+                  data: {'id': $('.js-judge-select-participant').val()},
+                  success: function(data) {
+                      console.log(data);
+                      $('.js-judge-wizard-header').text('Team '+ $('.js-judge-select-team option:selected').text() +
+                          ' – ' +$('.js-judge-select-participant option:selected').text())
+                  }
+              })
+          }
       });
       $("#create-team").on("click", function() {
           $("section").css("display", "none");
@@ -1289,18 +1081,87 @@
       });
       $('#example').DataTable();
 
+      function select_li(element){
+          element.css({"background-color": "#FF9500"});
+          //element.addClass('active');
+          return element.find('a').text();
+      }
+
       $(".wizard-content-line-1 li").on("click", function(){
           $(".wizard-content-line-1 li").css({"background-color": "unset"});
-          $(this).css({"background-color": "#FF9500"});
+          $(".wizard-content-line-1 li").removeClass('active');
+
+          $(".wizard-content-line-1 input").val(select_li($(this)));
       });
       $(".wizard-content-line-2 li").on("click", function(){
           $(".wizard-content-line-2 li").css({"background-color": "unset"});
-          $(this).css({"background-color": "#FF9500"});
+          $(".wizard-content-line-2 li").removeClass('active');
+          $(".wizard-content-line-2 input").val(select_li($(this)));
       });
       $(".wizard-content-line-3 li").on("click", function(){
           $(".wizard-content-line-3 li").css({"background-color": "unset"});
-          $(this).css({"background-color": "#FF9500"});
+          $(".wizard-content-line-3 li").removeClass('active');
+          $(".wizard-content-line-3 input").val(select_li($(this)));
       });
+      $(".wizard-content-line-4 li").on("click", function(){
+          $(".wizard-content-line-4 li").css({"background-color": "unset"});
+          $(".wizard-content-line-4 li").removeClass('active');
+          $(".wizard-content-line-4 input").val(select_li($(this)));
+      });
+      $(".wizard-content-line-5 li").on("click", function(){
+          $(".wizard-content-line-5 li").css({"background-color": "unset"});
+          $(".wizard-content-line-5 li").removeClass('active');
+          $(".wizard-content-line-5 input").val(select_li($(this)));
+      });
+      $(".wizard-content-line-6 li").on("click", function(){
+          $(".wizard-content-line-6 li").css({"background-color": "unset"});
+          $(".wizard-content-line-6 li").removeClass('active');
+          $(".wizard-content-line-6 input").val(select_li($(this)));
+      });
+      $(".wizard-content-line-7 li").on("click", function(){
+          $(".wizard-content-line-7 li").css({"background-color": "unset"});
+          $(".wizard-content-line-7 li").removeClass('active');
+          $(".wizard-content-line-7 input").val(select_li($(this)));
+      });
+      $(".wizard-content-line-8 li").on("click", function(){
+          $(".wizard-content-line-8 li").css({"background-color": "unset"});
+          $(".wizard-content-line-8 li").removeClass('active');
+          $(".wizard-content-line-8 input").val(select_li($(this)));
+      });
+      $(".wizard-content-line-9 li").on("click", function(){
+          $(".wizard-content-line-9 li").css({"background-color": "unset"});
+          $(".wizard-content-line-9 li").removeClass('active');
+          $(".wizard-content-line-9 input").val(select_li($(this)));
+      });
+
+      $('.js-judge-finish').on('click', function(){
+          if ($('.wizard-content-line-1 input').val() != '' &&
+              $('.wizard-content-line-2 input').val() != '' &&
+              $('.wizard-content-line-3 input').val() != '' &&
+              $('.wizard-content-line-4 input').val() != '' &&
+              $('.wizard-content-line-5 input').val() != '' &&
+              $('.wizard-content-line-6 input').val() != '' &&
+              $('.wizard-content-line-7 input').val() != '' &&
+              $('.wizard-content-line-8 input').val() != '' &&
+              $('.wizard-content-line-9 input').val() != '' ) {
+              var sure = confirm('You are about to submit '+ $('.js-judge-wizard-header').text() + '. ' +
+                  '\nYou won\'t be able to edit scores.');
+              if (sure) {
+                  var form = $('.js-judge-form').serialize();
+                  $.ajax({
+                      url: '{{ url_for('judge_submit_score') }}',
+                      type: 'post',
+                      data: form,
+                      success: function (data) {
+                          console.log(data);
+                          location.reload();
+                      }
+                  })
+              }
+          } else {
+              alert('The form is incomplete! Please score all the subsections')
+          }
+      })
     </script>
     <script>
         var windowWidth = $(window).width();

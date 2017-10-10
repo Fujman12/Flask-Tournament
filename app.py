@@ -9,6 +9,7 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_admin import Admin
 import random
+from decimal import *
 
 
 def create_app():
@@ -47,7 +48,6 @@ admin.add_view(ModelView(Organizer, db.session))
 admin.add_view(ModelView(Tournament, db.session))
 admin.add_view(ModelView(Judge, db.session))
 admin.add_view(ModelView(Member, db.session))
-
 
 
 @login_manager.user_loader
@@ -191,7 +191,7 @@ def captains_list(tournament_id):
     for captain in captains:
         data.append({'name': captain.first_name + ' ' + captain.last_name,
                      'email': captain.email, 'team': captain.team.name,
-                     'score': random.randint(40, 90)})
+                     'score': str(captain.team.total_score)})
 
     return jsonify(data)
 
@@ -211,7 +211,7 @@ def create_member():
 
     return jsonify({'status': 'Bad request'})
 
-
+# for captain
 @app.route('/members_list', methods=['GET'])
 def members_list():
     data = []
@@ -222,13 +222,29 @@ def members_list():
 
         for member in members:
             data.append({'edit_url': url_for('edit_participant', id=member.id), 'name': member.name, 'email': member.email, 'role': member.role,
-                         'score': random.randint(40, 90)})
+                         'score': str(member.score)})
 
         print(members)
 
         return jsonify(data)
     else:
         print('Shoit')
+
+
+@app.route('/all_members/<tournament_id>', methods=['GET'])
+def all_members(tournament_id):
+    data = []
+
+    if current_user.role == 'organizer':
+        tourn = Tournament.query.filter_by(id=tournament_id).first()
+        for captain in tourn.captains:
+            if captain.team:
+                for member in captain.team.members:
+                    data.append({'name': member.name, 'email': member.email, 'role': member.role, 'team': member.team.name,
+                                 'score': str(member.score)})
+
+        return jsonify(data)
+
 
 
 @app.route('/edit_participant/<id>', methods=['GET', 'POST'])
@@ -269,6 +285,70 @@ def edit_team_name():
         return jsonify({'status': 'OK'})
     else:
         return jsonify({'status': 'Bad request'})
+
+
+@app.route('/judges_tournaments', methods=['GET'])
+def judges_tournaments():
+    if current_user.role == 'judge':
+
+        return jsonify(tournaments=[t.serialize() for t in current_user.tournaments])
+
+
+@app.route('/tournaments_teams', methods=['GET', 'POST'])
+def tournaments_teams():
+    if current_user.role == 'judge':
+        tournament_id = request.values['id']
+        tournament = Tournament.query.filter_by(id=tournament_id).first()
+        teams = []
+        for captain in tournament.captains:
+            if captain.team:
+                teams.append(captain.team)
+
+        return jsonify(teams=[team.serialize() for team in teams])
+
+
+@app.route('/teams_participants', methods=['POST'])
+def teams_participants():
+    if current_user.role == 'judge':
+        team_id = request.values['id']
+        team = Team.query.filter_by(id=team_id).first()
+        if team is not None:
+
+            return jsonify(participants=[participant.serialize() for participant in team.members
+                                         if participant.score is None])
+
+        else:
+            return jsonify(participants=[])
+
+
+@app.route('/judge_select_participant', methods=['POST'])
+def judge_select_participant():
+    if current_user.role == 'judge':
+        member_id = request.values['id']
+        session['member_id'] = member_id
+
+        return jsonify({'status': 'OK'})
+
+
+@app.route('/judge_submit_score', methods=['POST'])
+def judge_submit_score():
+    if current_user.role == 'judge':
+        total_score = 0
+        for i in range(10):
+            key = 'wizard-input-{}'.format(i)
+            if key in request.values:
+                score = request.values[key]
+                total_score += Decimal(score)
+
+        member = Member.query.filter_by(id=session['member_id']).first()
+        member.score = total_score
+
+        db.session.add(member)
+        db.session.commit()
+        member.team.count_score()
+        flash('You have successfully submitted score for {} from {}'.format(member.name, member.team.name))
+    return jsonify({'score': str(total_score), 'team_score': str(member.team.total_score)})
+
 
 if __name__ == '__main__':
     manager.run()
