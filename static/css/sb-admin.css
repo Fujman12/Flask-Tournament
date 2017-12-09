@@ -40,6 +40,9 @@ body.fixed-nav {
 .mt-20 {
   margin-top: 20px; }
 
+.mb-30{
+  margin-bottom: 30px;  }
+
 .mt-10 {
   margin-top: 10px; }
 
@@ -341,6 +344,9 @@ a[data-target="#exampleModal2"] {
 
 .create-team-table {
   padding: 40px 0px !important; }
+
+.table tbody tr td{
+  vertical-align: baseline!important;  }
 
 [class^=capitan-select-box] label, [class^=judge-select-box] label {
   display: block;
