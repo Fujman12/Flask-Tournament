@@ -17,9 +17,9 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'Thisissecretkey!'
     #local
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
     # pythonwnyehre
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$new'
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$new'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     migrate = Migrate(app, db)
@@ -48,6 +48,10 @@ admin.add_view(ModelView(Organizer, db.session))
 admin.add_view(ModelView(Tournament, db.session))
 admin.add_view(ModelView(Judge, db.session))
 admin.add_view(ModelView(Member, db.session))
+
+
+def do_something():
+    print('Ok. let\'s go!')
 
 
 @login_manager.user_loader
@@ -109,15 +113,15 @@ def signup(role=None):
     if form.validate_on_submit():
         if role == 'organizer':
             new_user = Organizer(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
-                            password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+                                 password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
         elif role == 'judge':
             new_user = Judge(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
-                        password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
+                             password=generate_password_hash(form.password.data, method='sha256'), email=form.email.data)
         elif role == 'captain':
             team = Team(name='{} {} Team'.format(form.first_name.data, form.last_name.data))
             new_user = Captain(username=form.username.data, first_name=form.first_name.data, last_name=form.last_name.data,
-                        password=generate_password_hash(form.password.data, method='sha256'),
-                        email=form.email.data, team=team)
+                               password=generate_password_hash(form.password.data, method='sha256'),
+                               email=form.email.data, team=team)
 
         db.session.add(new_user)
         db.session.commit()
@@ -125,7 +129,6 @@ def signup(role=None):
 
         return redirect(url_for('index'))
         #return form.username.data + '  ' + form.email.data + '  ' + form.password.data + '  ' + form.first_name.data + '  ' + form.last_name.data
-
 
     return render_template('signup.html', form=form, role=role)
 
@@ -196,6 +199,23 @@ def captains_list(tournament_id):
     return jsonify(data)
 
 
+@app.route('/all_members/<tournament_id>', methods=['GET'])
+def all_members(tournament_id):
+    data = []
+
+    if current_user.role == 'organizer':
+        tourn = Tournament.query.filter_by(id=tournament_id).first()
+        for captain in tourn.captains:
+            if captain.team:
+                for member in captain.team.members:
+                    data.append({'name': member.name, 'email': member.email, 'role': member.role, 'team': member.team.name,
+                                 'score': str(member.score)})
+
+        return jsonify(data)
+
+
+# CAPTAIN SECTION
+
 @app.route('/create_member', methods=['POST'])
 def create_member():
     if current_user.role == 'captain':
@@ -210,6 +230,7 @@ def create_member():
         return jsonify({'status': 'OK'})
 
     return jsonify({'status': 'Bad request'})
+
 
 # for captain
 @app.route('/members_list', methods=['GET'])
@@ -229,22 +250,6 @@ def members_list():
         return jsonify(data)
     else:
         print('Shoit')
-
-
-@app.route('/all_members/<tournament_id>', methods=['GET'])
-def all_members(tournament_id):
-    data = []
-
-    if current_user.role == 'organizer':
-        tourn = Tournament.query.filter_by(id=tournament_id).first()
-        for captain in tourn.captains:
-            if captain.team:
-                for member in captain.team.members:
-                    data.append({'name': member.name, 'email': member.email, 'role': member.role, 'team': member.team.name,
-                                 'score': str(member.score)})
-
-        return jsonify(data)
-
 
 
 @app.route('/edit_participant/<id>', methods=['GET', 'POST'])
@@ -286,6 +291,8 @@ def edit_team_name():
     else:
         return jsonify({'status': 'Bad request'})
 
+
+# JUDGE SECTION
 
 @app.route('/judges_tournaments', methods=['GET'])
 def judges_tournaments():
