@@ -139,3 +139,26 @@ class Member(db.Model):
 
     def __repr__(self):
         return "{} from team {}".format(self.name, self.team.name)
+
+
+captain_pair = db.Table('captain_pair',
+     db.Column('captain_id', db.Integer, db.ForeignKey('captain.id')),
+     db.Column('pair_id', db.Integer, db.ForeignKey('pair.id')),
+)
+
+
+class Pair(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    round = db.Column(db.Integer, default=1)
+    captains = db.relationship('Captain', secondary=captain_pair,
+                               backref=db.backref('pairs', lazy='dynamic'))
+    tournament_id = db.Column(db.Integer, db.ForeignKey('tournament.id'))
+    tournament = db.relationship('Tournament', foreign_keys=[tournament_id], backref='pairs')
+
+    assessed = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return "Pair #{} '{}' vs '{}'. Round #{}".format(self.id,
+                                                         self.captains[0].team.name,
+                                                         self.captains[1].team.name,
+                                                         self.round)
