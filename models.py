@@ -80,6 +80,61 @@ class Tournament(db.Model):
     organizer = db.relationship('Organizer', foreign_keys=[organizer_id])
 
     captains = db.relationship('Captain', lazy='dynamic')
+    current_round = db.Column(db.Integer, default=1)
+
+    def next_round(self):
+        all_assessed = True
+        current_pairs = []
+
+        for pair in self.pairs:
+            if pair.round == self.current_round:
+                current_pairs.append(pair)
+
+        for pair in current_pairs:
+            if not pair.assessed:
+                all_assessed = False
+
+        winners = []
+
+        if all_assessed:
+
+            for pair in current_pairs:
+                pair.assessed = False
+                if pair.captains[0].team.total_score > pair.captains[1].team.total_score:
+                    winners.append(pair.captains[0])
+                else:
+                    winners.append(pair.captains[1])
+
+                db.session.add(pair)
+                db.session.commit()
+            print(winners)
+
+            for cap in winners:
+                cap.team.total_score = 0
+                for member in cap.team.members:
+                    member.score = 0
+                    db.session.add(member)
+                    db.session.commit()
+                db.session.add(cap)
+                db.session.commit()
+
+            self.current_round += 1
+            p = Pair(tournament=self)
+            p.round = self.current_round
+            for winner in winners:
+                if len(p.captains) < 2:
+                    p.captains.append(winner)
+                else:
+                    p = Pair(tournament=self)
+                    p.round = self.current_round
+                    p.captains.append(winner)
+                db.session.add(p)
+                db.session.add(self)
+                db.session.commit()
+
+            return True
+
+        return False
 
     def serialize(self):
         return {
@@ -155,7 +210,20 @@ class Pair(db.Model):
     tournament_id = db.Column(db.Integer, db.ForeignKey('tournament.id'))
     tournament = db.relationship('Tournament', foreign_keys=[tournament_id], backref='pairs')
 
+    cap0_score = db.Column(db.DECIMAL(4, 2))
+    cap1_score = db.Column(db.DECIMAL(4, 2))
+
     assessed = db.Column(db.Boolean, default=False)
+
+    def update_scores(self):
+
+        self.cap0_score = self.captains[0].team.total_score
+        self.cap1_score = self.captains[1].team.total_score
+
+        db.session.add(self)
+        db.session.commit()
+
+        return True
 
     def __repr__(self):
         return "Pair #{} '{}' vs '{}'. Round #{}".format(self.id,

@@ -2,7 +2,7 @@ from flask import Flask, render_template, redirect, url_for, request, flash, ses
 from flask_bootstrap import Bootstrap
 from flask_admin.contrib.sqla import ModelView
 from forms import LoginForm, SignUpForm
-from models import db, User, Judge, Captain, Organizer, Tournament, Team, Member
+from models import db, User, Judge, Captain, Organizer, Tournament, Team, Member, Pair
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
 from flask_migrate import Migrate, MigrateCommand
@@ -72,6 +72,24 @@ def index(pk=0):
     captains = Captain.query.all()
     tournaments = Tournament.query.all()
 
+    round1 = []
+    round2 = []
+    round3 = []
+    round4 = []
+    round5 = []
+
+    for pair in current_tournament.pairs:
+        if pair.round == 1:
+            round1.append(pair)
+        elif pair.round == 2:
+            round2.append(pair)
+        elif pair.round == 3:
+            round3.append(pair)
+        elif pair.round == 4:
+            round4.append(pair)
+        elif pair.round == 5:
+            round5.append(pair)
+
     current_captains = []
     caps = dict()
 
@@ -85,8 +103,18 @@ def index(pk=0):
             i += 1
     print(current_captains)
     print(caps)
-    return render_template('index.html', signup_form=signup_form, judges=judges,
-                           captains=captains, tournaments=tournaments, current_tournament=current_tournament, caps=caps)
+    return render_template('index.html',
+                           signup_form=signup_form,
+                           judges=judges,
+                           captains=captains,
+                           tournaments=tournaments,
+                           current_tournament=current_tournament,
+                           caps=caps,
+                           round1=round1,
+                           round2=round2,
+                           round3=round3,
+                           round4=round4,
+                           round5=round5)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -138,6 +166,7 @@ def create_tournament():
     name = request.values['tournament-name']
 
     tournament = Tournament(organizer=current_user, name=name)
+    pair = Pair(tournament=tournament)
 
     for i in range(17):
         key = 'captain{}'.format(i)
@@ -146,7 +175,15 @@ def create_tournament():
                 id = request.values[key]
                 cap = Captain.query.get(int(id))
                 cap.tournament = tournament
+
+                if len(pair.captains) < 2:
+                    pair.captains.append(cap)
+                else:
+                    pair = Pair(tournament=tournament)
+                    pair.captains.append(cap)
+
                 db.session.add(cap)
+                db.session.add(pair)
                 db.session.commit()
 
     for i in range(6):
