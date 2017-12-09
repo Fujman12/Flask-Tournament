@@ -99,7 +99,6 @@ class Tournament(db.Model):
         if all_assessed:
 
             for pair in current_pairs:
-                pair.assessed = False
                 if pair.captains[0].team.total_score > pair.captains[1].team.total_score:
                     winners.append(pair.captains[0])
                 else:
