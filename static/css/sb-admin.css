@@ -40,8 +40,14 @@ body.fixed-nav {
 .mt-20 {
   margin-top: 20px; }
 
+.mb-20{
+  margin-bottom: 20px;  }
+
 .mb-30{
   margin-bottom: 30px;  }
+
+.mb-80{
+  margin-bottom: 80px;  }
 
 .mt-10 {
   margin-top: 10px; }
