@@ -368,13 +368,23 @@ def tournaments_pairs():
 def positions_to_assess():
     if current_user.role == 'judge':
         pair_id = request.values['id']
+        print(pair_id)
         pair = Pair.query.filter_by(id=pair_id).first()
 
         positions_to_assess =[]
+
         for pos in positions:
+            team0_position = False
+            team1_position = False
             for member in pair.captains[0].team.members:
                 if member.role == pos and not member.assessed:
-                    positions_to_assess.append(pos)
+                    team0_position = True
+            for member in pair.captains[1].team.members:
+                if member.role == pos and not member.assessed:
+                    team1_position = True
+
+            if team0_position and team1_position:
+                positions_to_assess.append(pos)
 
         return jsonify(positions_to_assess=positions_to_assess)
 
@@ -388,19 +398,25 @@ def select_position():
 
         member0_id = None
         member1_id = None
+        member0 = None
+        member1 = None
 
         for member in pair.captains[0].team.members:
             if member.role == position:
                 member0_id = member.id
+                member0 = member
 
         for member in pair.captains[1].team.members:
             if member.role == position:
                 member1_id = member.id
+                member1 = member
 
         session['member0_id'] = member0_id
         session['member1_id'] = member1_id
 
-        return jsonify({'mem0': session['member0_id'], 'mem1': session['member1_id']})
+        return jsonify({'member0': member0.serialize(), 'member1': member1.serialize(),
+                        'member0_team': member0.team.serialize(),
+                        'member1_team': member1.team.serialize()})
 
 
 @app.route('/teams_participants', methods=['POST'])
@@ -429,21 +445,37 @@ def judge_select_participant():
 @app.route('/judge_submit_score', methods=['POST'])
 def judge_submit_score():
     if current_user.role == 'judge':
-        total_score = 0
+        total_score0 = 0
+        total_score1 = 0
         for i in range(10):
-            key = 'wizard-input-{}'.format(i)
+            key = 'wizard-input-first-{}'.format(i)
             if key in request.values:
                 score = request.values[key]
-                total_score += Decimal(score)
+                print(score)
+                total_score0 += Decimal(score)
 
-        member = Member.query.filter_by(id=session['member_id']).first()
-        member.score = total_score
+        for i in range(10):
+            key = 'wizard-input-second-{}'.format(i)
+            if key in request.values:
+                score = request.values[key]
+                print(score)
+                total_score1 += Decimal(score)
 
-        db.session.add(member)
+        member0 = Member.query.filter_by(id=session['member0_id']).first()
+        member1 = Member.query.filter_by(id=session['member1_id']).first()
+        member0.score = total_score0
+        member1.score = total_score1
+
+        db.session.add(member0)
+        db.session.add(member1)
         db.session.commit()
-        member.team.count_score()
-        flash('You have successfully submitted score for {} from {}'.format(member.name, member.team.name))
-    return jsonify({'score': str(total_score), 'team_score': str(member.team.total_score)})
+        member0.team.count_score()
+        member1.team.count_score()
+        flash('You have successfully submitted score for {} from {} and {} from {}'.format(member0.name,
+                                                                                           member0.team.name,
+                                                                                           member1.name,
+                                                                                           member1.team.name))
+    return jsonify({'member0_score': str(total_score0), 'team0_score': str(member0.team.total_score)})
 
 
 if __name__ == '__main__':
