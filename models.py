@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
-
+from enums import positions
 db = SQLAlchemy()
 
 
@@ -185,6 +185,8 @@ class Member(db.Model):
     team_id = db.Column(db.Integer, db.ForeignKey('team.id'))
     team = db.relationship('Team', foreign_keys=[team_id], backref='members')
 
+    assessed = db.Column(db.Boolean, default=False)
+
     def serialize(self):
         return {
             'id': self.id,
@@ -223,6 +225,14 @@ class Pair(db.Model):
         db.session.commit()
 
         return True
+
+    def serialize(self):
+        return {
+            'id': self.id,
+            'round': self.round,
+            'team0': self.captains[0].team.serialize(),
+            'team1': self.captains[1].team.serialize()
+        }
 
     def __repr__(self):
         return "Pair #{} '{}' vs '{}'. Round #{}".format(self.id,

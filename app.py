@@ -8,6 +8,7 @@ from flask_login import UserMixin, LoginManager, login_user, login_required, log
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask_admin import Admin
+from enums import positions
 import random
 from decimal import *
 
@@ -349,6 +350,57 @@ def tournaments_teams():
                 teams.append(captain.team)
 
         return jsonify(teams=[team.serialize() for team in teams])
+
+
+@app.route('/tournaments_pairs', methods=['GET', 'POST'])
+def tournaments_pairs():
+    if current_user.role == 'judge':
+        tournament_id = request.values['id']
+        tournament = Tournament.query.filter_by(id=tournament_id).first()
+        current_pairs = []
+        for pair in tournament.pairs:
+            if pair.round == tournament.current_round:
+                current_pairs.append(pair)
+        return jsonify(pairs=[pair.serialize() for pair in current_pairs])
+
+
+@app.route('/positions_to_assess', methods=['GET', 'POST'])
+def positions_to_assess():
+    if current_user.role == 'judge':
+        pair_id = request.values['id']
+        pair = Pair.query.filter_by(id=pair_id).first()
+
+        positions_to_assess =[]
+        for pos in positions:
+            for member in pair.captains[0].team.members:
+                if member.role == pos and not member.assessed:
+                    positions_to_assess.append(pos)
+
+        return jsonify(positions_to_assess=positions_to_assess)
+
+
+@app.route('/select_position', methods=['GET', 'POST'])
+def select_position():
+    if current_user.role == 'judge':
+        position = request.values['position']
+        pair_id = request.values['id']
+        pair = Pair.query.filter_by(id=pair_id).first()
+
+        member0_id = None
+        member1_id = None
+
+        for member in pair.captains[0].team.members:
+            if member.role == position:
+                member0_id = member.id
+
+        for member in pair.captains[1].team.members:
+            if member.role == position:
+                member1_id = member.id
+
+        session['member0_id'] = member0_id
+        session['member1_id'] = member1_id
+
+        return jsonify({'mem0': session['member0_id'], 'mem1': session['member1_id']})
 
 
 @app.route('/teams_participants', methods=['POST'])
