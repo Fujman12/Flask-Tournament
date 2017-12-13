@@ -136,7 +136,7 @@
   </div>
   {% endfor %}
     <h2 style="text-align: center; margin-bottom: 30px; color: #2C7399; letter-spacing: 3px; text-transform: uppercase">{% if current_tournament %}{{ current_tournament.name }}{% else %} Tournament {% endif %}</h2>
-  <div class="container">
+  <div class="container sixteen-teams">
   <div class="split split-one">
     <div class="round round-one current">
       <div class="round-details">Round 1<br/><span class="date">March 16</span></div>
@@ -227,6 +227,101 @@
         </div>    
       </div>
     </div>
+
+    <div class="container eight-teams" style="display: none">
+      <div class="split split-one">
+
+        <div class="round round-two">
+          <div class="round-details">Round 1<br/><span class="date">March 18</span></div>
+          <ul class="matchup">
+            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-bottom">{% if round2[0] %}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}Virginia<span class="score">76</span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round2[2]%}{{ round2[2].captains[0].team.name }} <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2]%}{{ round2[2].captains[1].team.name }} <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round2[3]%}{{ round2[3].captains[0].team.name }} <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3]%}{{ round2[3].captains[1].team.name }} <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+        </div>  <!-- END ROUND TWO -->
+
+        <div class="round round-three">
+          <div class="round-details">Round 2<br/><span class="date">March 22</span></div>
+          <ul class="matchup">
+            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[0].team.name }} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[1].team.name }} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+        </div>  <!-- END ROUND THREE -->
+      </div>
+
+      <div class="champion">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>
+          <ul class ="matchup championship">
+            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[0].team.name }} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[1].team.name }} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="champion winner" style="display: none">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">winner<br/></div>
+          <ul class ="matchup championship">
+            <li class="team team-winner"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container four-teams" style="display: none">
+      <div class="split split-one">
+
+        <div class="round round-three">
+          <div class="round-details">Round 1<br/><span class="date">March 22</span></div>
+          <ul class="matchup">
+            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[0].team.name }} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[1].team.name }} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+        </div>  <!-- END ROUND THREE -->
+      </div>
+
+      <div class="champion">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">championship <br/><span class="date">March 30 - Apr. 1</span></div>
+          <ul class ="matchup championship">
+            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[0].team.name }} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[1].team.name }} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}Duke<span class="score">76</span>{% endif %}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="champion winner" style="display: none">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">winner<br/></div>
+          <ul class ="matchup championship">
+            <li class="team team-winner"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
     <div class="btn-wrapper">
       <button class="btn btn-primary btn-lg mt-30 demo-button">Demo</button>
     </div>
@@ -583,6 +678,19 @@
                 <div class="col-md-12">
                   <label for="exampleInputName">Tournament name</label>
                   <input type="text" class="form-control" name="tournament-name"  title="Only letters and numbers" required id="exampleInputName" aria-describedby="nameHelp" placeholder="Enter tournament name">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="col-md-12">
+                  <label for="exampleInputNumberOfTeams">Choose number of teams</label>
+                  <select class="form-control" name="judge1" id="judge-select-1" name="judge1">
+                    <option selected style="display: none;" disabled>Select number of teams</option>
+                    <option value="">4</option>
+                    <option value="">8</option>
+                    <option value="">16</option>
+                  </select>
                 </div>
               </div>
             </div>

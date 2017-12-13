@@ -361,3 +361,6 @@ a[data-target="#exampleModal2"] {
   display: inline-block;
   width: unset;
 }
+select {
+  color: #737B84!important;
+}
