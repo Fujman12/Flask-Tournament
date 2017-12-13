@@ -78,7 +78,7 @@ class Tournament(db.Model):
     name = db.Column(db.String(80))
     organizer_id = db.Column(db.Integer, db.ForeignKey('organizer.id'))
     organizer = db.relationship('Organizer', foreign_keys=[organizer_id])
-
+    number_of_teams = db.Column(db.Integer)
     captains = db.relationship('Captain', lazy='dynamic')
     current_round = db.Column(db.Integer, default=1)
 
@@ -112,6 +112,7 @@ class Tournament(db.Model):
                 cap.team.total_score = 0
                 for member in cap.team.members:
                     member.score = 0
+                    member.assessed = False
                     db.session.add(member)
                     db.session.commit()
                 db.session.add(cap)
@@ -216,8 +217,48 @@ class Pair(db.Model):
 
     assessed = db.Column(db.Boolean, default=False)
 
-    def update_scores(self):
+    def is_assessed(self):
+        bool_assessed = True
+        common_positions = self.common_positions()
+        for pos in common_positions:
+            for member in self.captains[0].team.members:
+                if member.role == pos:
+                    if not member.assessed:
+                        bool_assessed = False
+            for member in self.captains[1].team.members:
+                if member.role == pos:
+                    if not member.assessed:
+                        bool_assessed = False
+        print('bool assessed {}'.format(bool_assessed))
+        self.assessed = bool_assessed
+        print('self assessed {}'.format(self.assessed))
+        db.session.add(self)
+        db.session.commit()
+        if bool_assessed:
+            self.update_scores()
+            self.tournament.next_round()
 
+        return bool_assessed
+
+    def common_positions(self):
+        common_positions =[]
+        for pos in positions:
+            member0 = None
+            member0 = None
+            for member in self.captains[0].team.members:
+                if member.role == pos:
+                    member0 = member
+            for member in self.captains[1].team.members:
+                if member.role == pos:
+                    member1 = member
+
+            if member0 is not None and member1 is not None:
+                common_positions.append(pos)
+
+        return common_positions
+
+    def update_scores(self):
+        print('hi update score')
         self.cap0_score = self.captains[0].team.total_score
         self.cap1_score = self.captains[1].team.total_score
 

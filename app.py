@@ -175,6 +175,11 @@ def create_tournament():
             if request.values[key] != '':
                 id = request.values[key]
                 cap = Captain.query.get(int(id))
+                cap.team.total_score = 0
+                for member in cap.team.members:
+                    member.score = 0
+                    member.assessed = False
+                    db.session.add(member)
                 cap.tournament = tournament
 
                 if len(pair.captains) < 2:
@@ -196,6 +201,11 @@ def create_tournament():
                 tournament.judges.append(judge)
                 db.session.add(tournament)
                 db.session.commit()
+
+    number_of_teams = request.values['number-of-teams']
+    tournament.number_of_teams = number_of_teams
+    db.session.add(tournament)
+    db.session.commit()
 
     flash('Tournament has been created successfully!')
     return redirect(url_for('index'))
@@ -396,6 +406,7 @@ def select_position():
         pair_id = request.values['id']
         pair = Pair.query.filter_by(id=pair_id).first()
 
+
         member0_id = None
         member1_id = None
         member0 = None
@@ -413,6 +424,7 @@ def select_position():
 
         session['member0_id'] = member0_id
         session['member1_id'] = member1_id
+        session['pair_id'] = pair.id
 
         return jsonify({'member0': member0.serialize(), 'member1': member1.serialize(),
                         'member0_team': member0.team.serialize(),
@@ -465,12 +477,17 @@ def judge_submit_score():
         member1 = Member.query.filter_by(id=session['member1_id']).first()
         member0.score = total_score0
         member1.score = total_score1
+        member0.assessed = True
+        member1.assessed = True
 
         db.session.add(member0)
         db.session.add(member1)
         db.session.commit()
         member0.team.count_score()
         member1.team.count_score()
+
+        p = Pair.query.filter_by(id=session['pair_id']).first()
+        print('Pair assessed: {}'.format(p.is_assessed()))
         flash('You have successfully submitted score for {} from {} and {} from {}'.format(member0.name,
                                                                                            member0.team.name,
                                                                                            member1.name,
