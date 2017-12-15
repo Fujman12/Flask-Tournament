@@ -68,6 +68,8 @@ def index(pk=0):
     current_tournament = Tournament.query.filter_by(id=pk).first()
     if current_tournament is None:
         current_tournament = Tournament.query.first()
+        if current_tournament is None:
+            current_tournament = Tournament(name='Initial')
 
     judges = Judge.query.all()
     captains = Captain.query.all()

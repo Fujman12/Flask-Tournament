@@ -139,7 +139,7 @@
       {% if current_tournament.number_of_teams == 16 %}
   <div class="container sixteen-teams">
   <div class="split split-one">
-    <div class="round round-one current">
+    <div class="round round-one {% if current_tournament.current_round == 1 %} current {% endif %}">
       <div class="round-details">Round 1<br/><span class="date"></span></div>
       <ul class="matchup">
         <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -175,7 +175,7 @@
       </ul>
     </div>  <!-- END ROUND ONE -->
 
-        <div class="round round-two">
+        <div class="round round-two {% if current_tournament.current_round == 2 %} current {% endif %}">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
             <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -195,7 +195,7 @@
           </ul>                   
         </div>  <!-- END ROUND TWO -->
 
-        <div class="round round-three">
+        <div class="round round-three {% if current_tournament.current_round == 3 %} current {% endif %}">
           <div class="round-details">Round 3<br/><span class="date"></span></div>
           <ul class="matchup">
             <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -208,7 +208,7 @@
         </div>  <!-- END ROUND THREE -->    
       </div> 
 
-      <div class="champion">
+      <div class="champion {% if current_tournament.current_round == 4 %} current {% endif %}">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
@@ -233,7 +233,7 @@
     <div class="container eight-teams" >
       <div class="split split-one">
 
-        <div class="round round-two">
+        <div class="round round-two {% if current_tournament.current_round == 1 %} current {% endif %} ">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
             <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -253,7 +253,7 @@
           </ul>
         </div>  <!-- END ROUND TWO -->
 
-        <div class="round round-three">
+        <div class="round round-three {% if current_tournament.current_round == 2 %} current {% endif %}">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
             <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -266,7 +266,7 @@
         </div>  <!-- END ROUND THREE -->
       </div>
 
-      <div class="champion">
+      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %}">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
@@ -291,7 +291,7 @@
     <div class="container four-teams" >
       <div class="split split-one">
 
-        <div class="round round-three">
+        <div class="round round-three {% if current_tournament.current_round == 1 %} current {% endif %}">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
             <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
@@ -304,7 +304,7 @@
         </div>  <!-- END ROUND THREE -->
       </div>
 
-      <div class="champion">
+      <div class="champion {% if current_tournament.current_round == 2 %} current {% endif %} ">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>

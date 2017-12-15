@@ -108,7 +108,7 @@ class Tournament(db.Model):
                 db.session.commit()
             print(winners)
 
-            for cap in winners:
+            for cap in self.captains:
                 cap.team.total_score = 0
                 for member in cap.team.members:
                     member.score = 0
