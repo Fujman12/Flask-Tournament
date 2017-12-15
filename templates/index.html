@@ -784,8 +784,9 @@
                   <label for="select-participant-role">Role</label>
                   <select name="role" class="form-control" id="select-participant-role" required>
                     <option value="" style="display: none" disabled>Select role</option>
-                    <option value="Juror">Juror</option>
-                    <option value="Lead Prosecutor">Lead Prosecutor</option>
+                      {% for pos in positions %}
+                      <option value="{{ pos }}">{{ pos }}</option>
+                      {% endfor %}
                   </select>
                 </div>
               </div>

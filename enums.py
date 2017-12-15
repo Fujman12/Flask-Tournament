@@ -1,1 +1,1 @@
-positions = ['Juror', 'Lead Prosecutor', 'Position3', 'Position4', 'Position5', 'Position6', 'Position7', 'Position8']
+positions = ['Juror', 'Lead Prosecutor', 'Position 3', 'Position 4', 'Position 5', 'Position 6', 'Position 7', 'Position 8']

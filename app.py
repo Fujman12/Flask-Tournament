@@ -115,7 +115,8 @@ def index(pk=0):
                            round2=round2,
                            round3=round3,
                            round4=round4,
-                           round5=round5)
+                           round5=round5,
+                           positions=positions)
 
 
 @app.route('/login', methods=['GET', 'POST'])
