@@ -142,68 +142,68 @@
     <div class="round round-one current">
       <div class="round-details">Round 1<br/><span class="date"></span></div>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[0] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[1] %}{{ round1[1].captains[0].team.name }}<span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[1] %}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }}<span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[1] and round1[1].captains[1] %}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[2] %}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[2] %}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[3] %}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[3] %}{{ round1[3].captains[1].team.name }}<span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }}<span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[4] %}{{ round1[4].captains[0].team.name }} <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[4] %}{{ round1[4].captains[1].team.name }} <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[4] and round1[4].captains[0] %}{{ round1[4].captains[0].team.name }} <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[4] and round1[4].captains[1]%}{{ round1[4].captains[1].team.name }} <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[5] %}{{ round1[5].captains[0].team.name }}  <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[5] %}{{ round1[5].captains[1].team.name }} <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[5] and round1[5].captains[0]%}{{ round1[5].captains[0].team.name }}  <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[5] and round1[5].captains[1]%}{{ round1[5].captains[1].team.name }} <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[6] %}{{ round1[6].captains[0].team.name }} <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[6] %}{{ round1[6].captains[1].team.name }} <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[6] and round1[6].captains[0]%}{{ round1[6].captains[0].team.name }} <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[6] and round1[6].captains[1] %}{{ round1[6].captains[1].team.name }} <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[7] %}{{ round1[7].captains[0].team.name }} <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[7] %}{{ round1[7].captains[1].team.name }}<span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[7] and round1[7].captains[0]%}{{ round1[7].captains[0].team.name }} <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[7] and round1[7].captains[1] %}{{ round1[7].captains[1].team.name }}<span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
     </div>  <!-- END ROUND ONE -->
 
         <div class="round round-two">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round2[0] %}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[2]%}{{ round2[2].captains[0].team.name }} <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[2]%}{{ round2[2].captains[1].team.name }} <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[0]%}{{ round2[2].captains[0].team.name }} <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[1]%}{{ round2[2].captains[1].team.name }} <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[3]%}{{ round2[3].captains[0].team.name }} <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[3]%}{{ round2[3].captains[1].team.name }} <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[0]%}{{ round2[3].captains[0].team.name }} <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[1]%}{{ round2[3].captains[1].team.name }} <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND TWO -->
 
         <div class="round round-three">
           <div class="round-details">Round 3<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[0].team.name }} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[1]%}{{ round3[1].captains[1].team.name }} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[0]%}{{ round3[1].captains[0].team.name }} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[1]%}{{ round3[1].captains[1].team.name }} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND THREE -->    
       </div> 
@@ -213,8 +213,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[0].team.name }} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round4[0]%}{{ round4[0].captains[1].team.name }} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[1] %}{{ round4[0].captains[1].team.name }} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>    
       </div>
@@ -236,32 +236,32 @@
         <div class="round round-two">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round1[0] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[2]%}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[2]%}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[3]%}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[3]%}{{ round1[3].captains[1].team.name }} <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND TWO -->
 
         <div class="round round-three">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
@@ -271,8 +271,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
@@ -294,12 +294,12 @@
         <div class="round round-three">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[0]%}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
@@ -309,8 +309,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
