@@ -688,7 +688,7 @@
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="exampleInputNumberOfTeams">Choose number of teams</label>
-                  <select class="form-control" id="" name="number-of-teams">
+                  <select class="form-control" id="number-of-teams" name="number-of-teams">
                     <option selected style="display: none;" disabled>Select number of teams</option>
                     <option value="4">4</option>
                     <option value="8">8</option>
@@ -722,7 +722,7 @@
             </div>
             <div class="form-group capitan-select-section">
               <div class="form-row">
-                <div class="col-md-6 mt-10">
+                <!--div class="col-md-6 mt-10">
                   <div class="capitan-select-box-1">
                   <select class="form-control" id="capitan-select-1" name="captain1">
                     <option selected style="display: none" disabled>Select captain</option>
@@ -733,7 +733,7 @@
 
                   </div>
                 </div>
-                <div class="col-md-6 mt-10">
+                <div-- class="col-md-6 mt-10">
                   <div class="capitan-select-box-2">
                   <select class="form-control" id="capitan-select-2" name="captain2">
                     <option selected style="display: none" disabled>Select captain</option>
@@ -743,9 +743,9 @@
                   </select>
 
                   </div>
-                </div>
+                </div-->
               </div>
-              <a class="btn btn-primary mt-10" href="#plus-capitan-select">+</a>
+              <!--a class="btn btn-primary mt-10" href="#plus-capitan-select">+</a-->
             </div>
             <input type="submit" class="btn btn-primary btn-block" value="Create">
           </form>
@@ -1293,6 +1293,16 @@
       //     $("section").css("display", "none");
       //     $(".judge-select-wizard").css("display", "block");
       // });
+      $('#number-of-teams').on('change', function(){
+          var value = $('#number-of-teams').val()
+          $(".card-register .capitan-select-section .form-row").html('');
+          for (var i = 1; i <= value; i++) {
+                $(".card-register .capitan-select-section .form-row").append('<div class="col-md-6 mt-10"> <div class="capitan-select-box-' + i + '"> <select class="form-control" name="captain' + i + '" id="capitan-select-' + i + '"> <option value="" disabled selected style="display: none">Select captain</option>'
+                      + '{% for captain in captains %}<option value="{{ captain.id }}">{{ captain.first_name }}'
+                        + ' {{ captain.last_name }}</option>{% endfor %} </select> </div> </div>');
+
+          }
+      })
       var count_cap = 2;
       $("[href='#plus-capitan-select']").on("click", function() {
           if(count_cap<16) {
