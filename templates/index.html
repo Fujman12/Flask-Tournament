@@ -348,7 +348,7 @@
                   <div class="tab-content">
                       <div class="tab-pane tab-1" id="about">
                         <div class="wizard-content-wrapper">
-                          <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
+                          <h3 class="js-judge-wizard-header-0" id="player1">Team A - Bob</h3>
                           <div class="wizard-content-header mt-20">
                             <h4>Defensa</h4>
                             <h5>Medidas cauterlares</h5>
@@ -388,7 +388,7 @@
                               </ul>
                             </div>
                           </div>
-                          <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
+                          <h3 class="js-judge-wizard-header-1" id="player2">Team A - Bob</h3>
                           <div style="margin-top: 20px;" class="wizard-content-header">
                             <h4>Defensa</h4>
                             <h5>Medidas cauterlares</h5>
@@ -1215,6 +1215,7 @@
                   $('.js-judge-select-team').trigger('change');
               }
           });
+          $('.js-judge-select-team').html(pairs_html);
 
       });
 
@@ -1439,8 +1440,9 @@
               $('.wizard-content-line-second-part-7 input').val() != '' &&
               $('.wizard-content-line-second-part-8 input').val() != '' &&
               $('.wizard-content-line-second-part-9 input').val() != '') {
-              var sure = confirm('You are about to submit '+ $('.js-judge-wizard-header').text() + '. ' +
-                  '\nYou won\'t be able to edit scores.');
+              var sure = confirm('You are about to submit ' + $('#player1').text() + ' and ' +
+                                    $('#player2').text() + '.' +
+                                 '\nYou won\'t be able to edit scores.');
               if (sure) {
                   var form = $('.js-judge-form').serialize();
                   $.ajax({
