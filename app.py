@@ -18,9 +18,9 @@ def create_app():
 
     app.config['SECRET_KEY'] = 'Thisissecretkey!'
     #local
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
     # pythonwnyehre
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$new'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$new'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     db.init_app(app)
     migrate = Migrate(app, db)

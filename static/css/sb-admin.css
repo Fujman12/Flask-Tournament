@@ -364,3 +364,26 @@ a[data-target="#exampleModal2"] {
 select {
   color: #737B84!important;
 }
+
+.four-teams .split {
+  width: 40%;
+  margin: auto;
+
+}
+.four-teams .champion {
+  width: 40%;
+}
+
+.four-teams .round-three .matchup {
+  padding: 88px 0 75px;
+}
+
+@media (max-width: 768px) {
+    .four-teams .split {
+      width: 80%;
+
+    }
+    .four-teams .champion {
+      width: 80%;
+    }
+}

@@ -2,7 +2,6 @@
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -135,7 +134,7 @@
   {{ message }}
   </div>
   {% endfor %}
-    <h2 style="text-align: center; margin-bottom: 30px; color: #2C7399; letter-spacing: 3px; text-transform: uppercase">{% if current_tournament %}{{ current_tournament.name }}{% else %} Tournament {% endif %}</h2>
+    <h2 style="text-align: center; margin-bottom: 60px; color: #2C7399; letter-spacing: 3px; text-transform: uppercase">{% if current_tournament %}{{ current_tournament.name }}{% else %} Tournament {% endif %}</h2>
       {% if current_tournament.number_of_teams == 16 %}
   <div class="container sixteen-teams">
   <div class="split split-one">
@@ -218,12 +217,12 @@
           </ul>
         </div>    
       </div>
-      <div class="champion winner" style="display: none">
+      <div class="champion winner {% if current_tournament.current_round == 5 %} current {% endif %}" {% if not current_tournament.current_round == 5 %}style="display: none" {% endif %}>
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>    
           <ul class ="matchup championship">
-            <li class="team team-winner"></li>
+            <li class="team team-winner"> {% if round5[0] and round5[0].captains[0] %}{{ round5[0].captains[0].team.name }}{% endif %}</li>
           </ul>
         </div>    
       </div>
@@ -266,7 +265,7 @@
         </div>  <!-- END ROUND THREE -->
       </div>
 
-      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %}">
+      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %}" {% if current_tournament.current_round == 4 %}style="display:none"{% endif %}>
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
@@ -276,12 +275,12 @@
           </ul>
         </div>
       </div>
-      <div class="champion winner" style="display: none">
+      <div class="champion winner {% if current_tournament.current_round == 4 %} current {% endif %}" {% if not current_tournament.current_round == 4 %}style="display: none" {% endif %}>
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner"></li>
+            <li class="team team-winner">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} {% endif %} </li>
           </ul>
         </div>
       </div>
@@ -314,12 +313,12 @@
           </ul>
         </div>
       </div>
-      <div class="champion winner" style="display: none">
+      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %} winner" {% if not current_tournament.current_round == 3 %}style="display: none" {% endif %}>
         <div class="final">
           <i class="fa fa-trophy"></i>
-          <div class="round-details">winner<br/></div>
+          <div class="round-details"> winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner"></li>
+            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }}{% endif %}</li>
           </ul>
         </div>
       </div>
