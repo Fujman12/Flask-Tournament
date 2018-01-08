@@ -10,6 +10,7 @@ from flask_script import Manager
 from flask_admin import Admin
 from enums import positions
 import random
+from config import DB_PASSWORD, DB_URL, DB_USERNAME
 from decimal import *
 
 
@@ -17,11 +18,9 @@ def create_app():
     app = Flask(__name__)
 
     app.config['SECRET_KEY'] = 'Thisissecretkey!'
-    #local
-    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Fujman:1q2w3e@localhost:8889/newdb'
-    # pythonwnyehre
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://Armen:1q2w3e4r5t@Armen.mysql.pythonanywhere-services.com/Armen$new'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://{}:{}@{}'.format(DB_USERNAME, DB_PASSWORD, DB_URL)
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
     db.init_app(app)
     migrate = Migrate(app, db)
 
