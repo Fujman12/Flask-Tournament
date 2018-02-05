@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify
+from flask import Flask, render_template, redirect, url_for, request, flash, session, jsonify, render_template_string
 from flask_bootstrap import Bootstrap
 from flask_admin.contrib.sqla import ModelView
 from forms import LoginForm, SignUpForm
@@ -270,6 +270,8 @@ def remove_team(captain_id):
     captain = Captain.query.filter_by(id=captain_id).first()
     last_pair = captain.pairs[-1]
     captain.pairs.remove(last_pair)
+
+    #new_last = captain.pairs[-1].update_scores()
     #db.session.delete(last_pair)
 
     db.session.add(captain)
@@ -283,7 +285,6 @@ def advance_team(captain_id):
     captain = Captain.query.filter_by(id=captain_id).first()
     tournament = Tournament.query.filter_by(id=captain.tournament_id).first()
     current_pair = captain.pairs[-1]
-    current_pair.update_scores()
     current_round = current_pair.round
 
     put = False
@@ -291,7 +292,19 @@ def advance_team(captain_id):
         if pair.round == current_round + 1:
             if len(pair.captains) < 2:
                 put = True
+
+                captain.team.total_score = 0
+                for member in captain.team.members:
+                    member.score = 0
+                    member.assessed = False
+                    db.session.add(member)
+                    db.session.commit()
+                db.session.add(captain)
+                db.session.commit()
+
                 pair.captains.append(captain)
+                pair.update_scores()
+
                 db.session.add(pair)
                 db.session.commit()
 
@@ -305,8 +318,54 @@ def advance_team(captain_id):
     return jsonify({})
 
 
+@app.route('/refresh_table/<tournament_pk>')
+def refresh_table(tournament_pk):
+    tournament = Tournament.query.filter_by(id=tournament_pk).first()
+    number_of_teams = tournament.number_of_teams
 
+    round1 = []
+    round2 = []
+    round3 = []
+    round4 = []
+    round5 = []
 
+    for pair in tournament.pairs:
+        if pair.round == 1:
+            round1.append(pair)
+        elif pair.round == 2:
+            round2.append(pair)
+        elif pair.round == 3:
+            round3.append(pair)
+        elif pair.round == 4:
+            round4.append(pair)
+        elif pair.round == 5:
+            round5.append(pair)
+
+    if number_of_teams == 16:
+        return jsonify({'table_html': render_template_string('table/16.html',
+                                                       round1=round1,
+                                                       round2=round2,
+                                                       round3=round3,
+                                                       round4=round4,
+                                                       round5=round5),
+                        'N': number_of_teams})
+    if number_of_teams == 8:
+        return jsonify({'table_html': render_template('tables/8.html',
+                                                       round1=round1,
+                                                       round2=round2,
+                                                       round3=round3,
+                                                       round4=round4,
+                                                       round5=round5),
+                        'N': number_of_teams})
+
+    if number_of_teams == 4:
+        return jsonify({'table_html': render_template_string('table/4.html',
+                                                       round1=round1,
+                                                       round2=round2,
+                                                       round3=round3,
+                                                       round4=round4,
+                                                       round5=round5),
+                        'N': number_of_teams})
 
 
 # CAPTAIN SECTION

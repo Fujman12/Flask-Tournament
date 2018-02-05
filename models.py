@@ -259,9 +259,13 @@ class Pair(db.Model):
 
     def update_scores(self):
         print('hi update score')
-        self.cap0_score = self.captains[0].team.total_score
-        self.cap1_score = self.captains[1].team.total_score
 
+        try:
+            self.cap0_score = self.captains[0].team.total_score
+            self.cap1_score = self.captains[1].team.total_score
+        except IndexError:
+
+            pass
         db.session.add(self)
         db.session.commit()
 

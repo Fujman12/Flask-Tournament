@@ -1,0 +1,34 @@
+<div class="split split-one">
+
+        <div class="round round-three current">
+          <div class="round-details">Round 1<br/><span class="date"></span></div>
+          <ul class="matchup">
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span><span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+          </ul>
+          <ul class="matchup">
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+          </ul>
+        </div>  <!-- END ROUND THREE -->
+      </div>
+
+      <div class="champion current ">
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details">championship <br/><span class="date"></span></div>
+          <ul class ="matchup championship">
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="champion current  winner" style="display: none" >
+        <div class="final">
+          <i class="fa fa-trophy"></i>
+          <div class="round-details"> winner<br/></div>
+          <ul class ="matchup championship">
+            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }}<button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-times"></i></button>{% endif %}</li>
+          </ul>
+        </div>
+      </div>
