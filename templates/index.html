@@ -141,68 +141,68 @@
     <div class="round round-one {% if current_tournament.current_round == 1 %} current {% endif %}">
       <div class="round-details">Round 1<br/><span class="date"></span></div>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+          <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }}<span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[1] and round1[1].captains[1] %}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[1] and round1[1].captains[1] %}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }}<span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[4] and round1[4].captains[0] %}{{ round1[4].captains[0].team.name }} <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[4] and round1[4].captains[1]%}{{ round1[4].captains[1].team.name }} <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[4] and round1[4].captains[0] %}{{ round1[4].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[4] and round1[4].captains[1]%}{{ round1[4].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[5] and round1[5].captains[0]%}{{ round1[5].captains[0].team.name }}  <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[5] and round1[5].captains[1]%}{{ round1[5].captains[1].team.name }} <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[5] and round1[5].captains[0]%}{{ round1[5].captains[0].team.name }}  <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[5] and round1[5].captains[1]%}{{ round1[5].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[6] and round1[6].captains[0]%}{{ round1[6].captains[0].team.name }} <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[6] and round1[6].captains[1] %}{{ round1[6].captains[1].team.name }} <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[6] and round1[6].captains[0]%}{{ round1[6].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[6] and round1[6].captains[1] %}{{ round1[6].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[7] and round1[7].captains[0]%}{{ round1[7].captains[0].team.name }} <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[7] and round1[7].captains[1] %}{{ round1[7].captains[1].team.name }}<span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[7] and round1[7].captains[0]%}{{ round1[7].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[7] and round1[7].captains[1] %}{{ round1[7].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
     </div>  <!-- END ROUND ONE -->
 
         <div class="round round-two {% if current_tournament.current_round == 2 %} current {% endif %}">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[2] and round2[2].captains[0]%}{{ round2[2].captains[0].team.name }} <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[2] and round2[2].captains[1]%}{{ round2[2].captains[1].team.name }} <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[0]%}{{ round2[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[1]%}{{ round2[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[3] and round2[3].captains[0]%}{{ round2[3].captains[0].team.name }} <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[3] and round2[3].captains[1]%}{{ round2[3].captains[1].team.name }} <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[0]%}{{ round2[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[1]%}{{ round2[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND TWO -->
 
         <div class="round round-three {% if current_tournament.current_round == 3 %} current {% endif %}">
           <div class="round-details">Round 3<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round3[1] and round3[1].captains[0]%}{{ round3[1].captains[0].team.name }} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[1] and round3[1].captains[1]%}{{ round3[1].captains[1].team.name }} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[0]%}{{ round3[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[1]%}{{ round3[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND THREE -->    
       </div> 
@@ -212,8 +212,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round4[0] and round4[0].captains[1] %}{{ round4[0].captains[1].team.name }} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[1] %}{{ round4[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>    
       </div>
@@ -222,7 +222,7 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>    
           <ul class ="matchup championship">
-            <li class="team team-winner"> {% if round5[0] and round5[0].captains[0] %}{{ round5[0].captains[0].team.name }}{% endif %}</li>
+            <li class="team team-winner"> {% if round5[0] and round5[0].captains[0] %}{{ round5[0].captains[0].team.name }}<button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button>{% endif %}</li>
           </ul>
         </div>    
       </div>
@@ -235,32 +235,32 @@
         <div class="round round-two {% if current_tournament.current_round == 1 %} current {% endif %} ">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i> </button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i> </button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND TWO -->
 
         <div class="round round-three {% if current_tournament.current_round == 2 %} current {% endif %}">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
@@ -270,8 +270,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
@@ -280,7 +280,7 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} {% endif %} </li>
+            <li class="team team-winner">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> {% endif %} </li>
           </ul>
         </div>
       </div>
@@ -293,12 +293,12 @@
         <div class="round round-three {% if current_tournament.current_round == 1 %} current {% endif %}">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span><span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
@@ -308,8 +308,8 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
@@ -318,7 +318,7 @@
           <i class="fa fa-trophy"></i>
           <div class="round-details"> winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }}{% endif %}</li>
+            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }}<button style="background-color: #00a379; float: right; color: white; background-color: red;"><i class="fa fa-times"></i></button>{% endif %}</li>
           </ul>
         </div>
       </div>
@@ -337,7 +337,7 @@
               <form action="" method="" class="js-judge-form">
           <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
-      <div class="wizard-navigation">
+      <div class="wizard-navigation" style="display: none">
         <ul style="height: 38px">
             <li><a href="#about" data-toggle="tab">Criteria 1</a></li>
             <li><a href="#account" data-toggle="tab">Criteria 2</a></li>
@@ -427,190 +427,176 @@
                               </ul>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane tab-2" id="account">
-                        <div class="wizard-content-wrapper">
-                          <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
-                          <div class="wizard-content-header mt-20">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
+                          <div class="tab-pane tab-2 mt-50" id="account">
+                              <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
+                              <div class="wizard-content-header mt-20">
+                                <h4>Defensa</h4>
+                                <h5>Medidas cauterlares</h5>
+                              </div>
+                              <div class="wizard-main-content mt-20 mb-80">
+                                <div class="wizard-content-line-first-part-4">
+                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-4" type="hidden" class="wizard-line-input-1">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-5">
+                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-5" type="hidden" class="wizard-line-input-2">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-6">
+                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-6" type="hidden" class="wizard-line-input-3">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
+                              <div style="margin-top: 20px;" class="wizard-content-header">
+                                <h4>Defensa</h4>
+                                <h5>Medidas cauterlares</h5>
+                              </div>
+                              <div class="wizard-main-content mt-20">
+                                <div class="wizard-content-line-second-part-4">
+                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-4" type="hidden" class="wizard-line-input-1">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-5">
+                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-5" type="hidden" class="wizard-line-input-2">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-6">
+                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-6" type="hidden" class="wizard-line-input-3">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                              </div>
                           </div>
-                          <div class="wizard-main-content mt-20 mb-80">
-                            <div class="wizard-content-line-first-part-4">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-4" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-5">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-5" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-6">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-6" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
+                          <div class="tab-pane tab-3" id="address">
+                              <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
+                              <div class="wizard-content-header mt-20">
+                                <h4>Defensa</h4>
+                                <h5>Medidas cauterlares</h5>
+                              </div>
+                              <div class="wizard-main-content mt-20 mb-80">
+                                <div class="wizard-content-line-first-part-7">
+                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-7" type="hidden" class="wizard-line-input-1">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-8">
+                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-8" type="hidden" class="wizard-line-input-2">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-9">
+                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-first-9" type="hidden" class="wizard-line-input-3">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                              </div>
+                              <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
+                              <div style="margin-top: 20px;" class="wizard-content-header">
+                                <h4>Defensa</h4>
+                                <h5>Medidas cauterlares</h5>
+                              </div>
+                              <div class="wizard-main-content mt-20">
+                                <div class="wizard-content-line-second-part-7">
+                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-7" type="hidden" class="wizard-line-input-1">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-8">
+                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-8" type="hidden" class="wizard-line-input-2">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-9">
+                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
+                                  <input name="wizard-input-second-9" type="hidden" class="wizard-line-input-3">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    <li><a>5</a></li>
+                                  </ul>
+                                </div>
+                              </div>
                           </div>
-                          <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
-                          <div style="margin-top: 20px;" class="wizard-content-header">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
-                          </div>
-                          <div class="wizard-main-content mt-20">
-                            <div class="wizard-content-line-second-part-4">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-4" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
+                            <div class="text-center" style="position: relative; margin-top: 31px; margin-bottom: 59px;">
+                                <input type="button" style="background-color: #f5ae3e; height: 35px; font-size: 20px; padding: 0 15px; border-radius: 5px; position: absolute; right: 0; font-weight: 500; border: 2px solid black; " value="FINISH">
                             </div>
-                            <div class="wizard-content-line-second-part-5">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-5" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-second-part-6">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-6" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="tab-pane tab-3" id="address">
-                        <div class="wizard-content-wrapper">
-                          <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
-                          <div class="wizard-content-header mt-20">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
-                          </div>
-                          <div class="wizard-main-content mt-20 mb-80">
-                            <div class="wizard-content-line-first-part-7">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-7" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-8">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-8" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-9">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-9" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                          </div>
-                          <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
-                          <div style="margin-top: 20px;" class="wizard-content-header">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
-                          </div>
-                          <div class="wizard-main-content mt-20">
-                            <div class="wizard-content-line-second-part-7">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-7" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-second-part-8">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-8" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-second-part-9">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-9" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                          </div>
                         </div>
                       </div>
                   </div>
-                  <div class="wizard-footer height-wizard mt-30">
-                      <div class="pull-right">
-                          <input type='button' class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next' value='Next' />
-                          <input type='button' class='btn btn-finish btn-fill btn-warning btn-wd btn-sm js-judge-finish' name='finish' value='Finish' />
-
-                      </div>
-
-                      <div class="pull-left">
-                          <input type='button' class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous' value='Previous' />
-                      </div>
-                      <div class="clearfix"></div>
-                  </div>
-
               </form>
           </div>
       </div> <!-- wizard container -->
@@ -1071,6 +1057,7 @@
     <script src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/popper/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
 
     <!-- Plugin JavaScript -->
     <script src="{{ url_for('static', filename='vendor/jquery-easing/jquery.easing.min.js') }}"></script>

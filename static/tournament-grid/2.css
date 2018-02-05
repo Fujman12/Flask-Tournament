@@ -10,13 +10,14 @@ body {min-height: 100vh; font-family: 'Istok Web', sans-serif;background: url("h
 .container {max-width: 1100px;margin: 0 auto;display:block;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display: -webkit-flex;display: flex;-webkit-flex-direction:row;flex-direction: row;}
 .split {display:block;float:left;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;width: 80%;-webkit-flex-direction:row;-moz-flex-direction:row;flex-direction:row;}
 .champion {float:left;display:block;width: 20%;-webkit-flex-direction:row;flex-direction:row;-webkit-align-self:center;align-self:center;margin-top: -15px;text-align: center;padding: 230px 0\9;} 
-.champion i {color: #a0a6a8; font-size: 45px; padding: 10px 0; }
+.champion .final > i {color: #a0a6a8; font-size: 45px; padding: 10px 0; }
 .round {display:block;float:left;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;-webkit-flex-direction:column;flex-direction:column;width:95%;width:30.8333%\9;}
 .split-one .round {margin: 0 2.5% 0 0;}
 .matchup {margin:0;width: 100%;padding: 10px 0;height:60px;-webkit-transition: all 0.2s;transition: all 0.2s;}
-.score {font-size: 11px;text-transform: uppercase;float: right;color: #2C7399;font-weight: bold;font-family: "Istok Web", sans-serif, sans-serif;position: absolute;right: 5px;}
-.team {padding: 0 5px;margin: 3px 0;height: 25px; line-height: 25px;white-space: nowrap; overflow: hidden;position: relative;}
+.score {font-size: 11px;text-transform: uppercase;float: right; margin-right: 10px; color: #2C7399;font-weight: bold;font-family: "Istok Web", sans-serif, sans-serif;}
+.team {padding: 0 0 0 5px;margin: 3px 0;height: 25px; line-height: 25px;white-space: nowrap; overflow: hidden;position: relative;}
 .round-two .matchup {margin:0; height: 60px;padding: 55px 0;}
+button:active, button:hover, button:focus {outline: none;}
 .round-three .matchup {margin:0; height: 60px; padding: 110px 0;}
 .round-details {font-family: "Istok Web", sans-serif, sans-serif; font-size: 13px; color: #2C7399;text-transform: uppercase;text-align: center;height: 40px;}
 .champion li, .round li {background-color: #fff;box-shadow: none; opacity: 0.45;}
