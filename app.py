@@ -359,7 +359,7 @@ def refresh_table(tournament_pk):
                         'N': number_of_teams})
 
     if number_of_teams == 4:
-        return jsonify({'table_html': render_template_string('table/4.html',
+        return jsonify({'table_html': render_template('tables/4.html',
                                                        round1=round1,
                                                        round2=round2,
                                                        round3=round3,
