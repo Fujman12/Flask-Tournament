@@ -264,6 +264,51 @@ def all_members(tournament_id):
         return jsonify(data)
 
 
+@app.route('/remove_team/<captain_id>/', methods=['GET'])
+def remove_team(captain_id):
+    print(captain_id)
+    captain = Captain.query.filter_by(id=captain_id).first()
+    last_pair = captain.pairs[-1]
+    captain.pairs.remove(last_pair)
+    #db.session.delete(last_pair)
+
+    db.session.add(captain)
+    db.session.commit()
+
+    return jsonify({}), 200
+
+
+@app.route('/advance_team/<captain_id>')
+def advance_team(captain_id):
+    captain = Captain.query.filter_by(id=captain_id).first()
+    tournament = Tournament.query.filter_by(id=captain.tournament_id).first()
+    current_pair = captain.pairs[-1]
+    current_pair.update_scores()
+    current_round = current_pair.round
+
+    put = False
+    for pair in tournament.pairs:
+        if pair.round == current_round + 1:
+            if len(pair.captains) < 2:
+                put = True
+                pair.captains.append(captain)
+                db.session.add(pair)
+                db.session.commit()
+
+    if not put:
+        new_pair = Pair(tournament=tournament, round=current_round+1)
+        new_pair.captains.append(captain)
+
+        db.session.add(new_pair)
+        db.session.commit()
+
+    return jsonify({})
+
+
+
+
+
+
 # CAPTAIN SECTION
 
 @app.route('/create_member', methods=['POST'])
