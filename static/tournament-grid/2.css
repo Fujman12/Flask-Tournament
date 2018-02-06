@@ -17,6 +17,7 @@ body {min-height: 100vh; font-family: 'Istok Web', sans-serif;background: url("h
 .score {font-size: 11px;text-transform: uppercase;float: right; margin-right: 10px; color: #2C7399;font-weight: bold;font-family: "Istok Web", sans-serif, sans-serif;}
 .team {padding: 0 0 0 5px;margin: 3px 0;height: 25px; line-height: 25px;white-space: nowrap; overflow: hidden;position: relative;}
 .round-two .matchup {margin:0; height: 60px;padding: 55px 0;}
+button{border:0}
 button:active, button:hover, button:focus {outline: none;}
 .round-three .matchup {margin:0; height: 60px; padding: 110px 0;}
 .round-details {font-family: "Istok Web", sans-serif, sans-serif; font-size: 13px; color: #2C7399;text-transform: uppercase;text-align: center;height: 40px;}
