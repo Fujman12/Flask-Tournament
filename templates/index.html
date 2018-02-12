@@ -138,91 +138,91 @@
       {% if current_tournament.number_of_teams == 16 %}
   <div class="container sixteen-teams">
   <div class="split split-one">
-    <div class="round round-one {% if current_tournament.current_round == 1 %} current {% endif %}">
+    <div class="round round-one  current ">
       <div class="round-details">Round 1<br/><span class="date"></span></div>
       <ul class="matchup">
-          <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+          <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %}<span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[1] and round1[1].captains[1] %}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[1] and round1[1].captains[1] %}{{ round1[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[0].id }}" ><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[1].id }}" ><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[0].id }}" ><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[1].id }}" ><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[4] and round1[4].captains[0] %}{{ round1[4].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[4].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[4] and round1[4].captains[1]%}{{ round1[4].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[4].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[4] and round1[4].captains[0] %}{{ round1[4].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[4].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[4].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[4] and round1[4].captains[1]%}{{ round1[4].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[4].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[4].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[5] and round1[5].captains[0]%}{{ round1[5].captains[0].team.name }}  <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[5].captains[0].id }}" ><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[5] and round1[5].captains[1]%}{{ round1[5].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[5].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[5] and round1[5].captains[0]%}{{ round1[5].captains[0].team.name }}  {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[5].captains[0].id }}" ><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[5].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[5] and round1[5].captains[1]%}{{ round1[5].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[5].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[5].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[6] and round1[6].captains[0]%}{{ round1[6].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[6].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[6] and round1[6].captains[1] %}{{ round1[6].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[6].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[6] and round1[6].captains[0]%}{{ round1[6].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[6].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[6].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[6] and round1[6].captains[1] %}{{ round1[6].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[6].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[6].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
       <ul class="matchup">
-        <li class="team team-top">{% if round1[7] and round1[7].captains[0]%}{{ round1[7].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[7].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-        <li class="team team-bottom">{% if round1[7] and round1[7].captains[1] %}{{ round1[7].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[7].captains[1].id }}" ><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-top">{% if round1[7] and round1[7].captains[0]%}{{ round1[7].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[7].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[7].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+        <li class="team team-bottom">{% if round1[7] and round1[7].captains[1] %}{{ round1[7].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[7].captains[1].id }}" ><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[7].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
       </ul>
     </div>  <!-- END ROUND ONE -->
 
-        <div class="round round-two {% if current_tournament.current_round == 2 %} current {% endif %}">
+        <div class="round round-two  current ">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[0].id }}" ><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[0].id }}" ><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round2[2] and round2[2].captains[0]%}{{ round2[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[2].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[2] and round2[2].captains[1]%}{{ round2[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[2].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[0]%}{{ round2[2].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[2].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[2] and round2[2].captains[1]%}{{ round2[2].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[2].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[3] and round2[3].captains[0]%}{{ round2[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[3].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[3].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[3] and round2[3].captains[1]%}{{ round2[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[3].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[3].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[0]%}{{ round2[3].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[3].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[3].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[3] and round2[3].captains[1]%}{{ round2[3].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[3].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[3].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND TWO -->
 
-        <div class="round round-three {% if current_tournament.current_round == 3 %} current {% endif %}">
+        <div class="round round-three current">
           <div class="round-details">Round 3<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}" ><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}" ><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul> 
           <ul class="matchup">
-            <li class="team team-top">{% if round3[1] and round3[1].captains[0]%}{{ round3[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[1].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[1] and round3[1].captains[1]%}{{ round3[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[1].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[0]%}{{ round3[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[1].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[1] and round3[1].captains[1]%}{{ round3[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[1].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>                   
         </div>  <!-- END ROUND THREE -->    
       </div> 
 
-      <div class="champion {% if current_tournament.current_round == 4 %} current {% endif %}">
+      <div class="champion current">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round4[0] and round4[0].captains[1] %}{{ round4[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round4[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round4[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round4[0] and round4[0].captains[1] %}{{ round4[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round4[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round4[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>    
       </div>
-      <div class="champion winner {% if current_tournament.current_round == 5 %} current {% endif %}" {% if not current_tournament.current_round == 5 %}style="display: none" {% endif %}>
+      <div class="champion winner current" >
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>    
           <ul class ="matchup championship">
-            <li class="team team-winner"> {% if round5[0] and round5[0].captains[0] %}{{ round5[0].captains[0].team.name }}<button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round5[0].captains[0].id }}"><i class="fa fa-times"></i></button>{% endif %}</li>
+            <li class="team team-winner"> {% if round5[0] and round5[0].captains[0] %}{{ round5[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%}<button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round5[0].captains[0].id }}"><i class="fa fa-times"></i></button>{% endif %} {% endif %}</li>
           </ul>
         </div>    
       </div>
@@ -232,55 +232,55 @@
     <div class="container eight-teams" >
       <div class="split split-one">
 
-        <div class="round round-two {% if current_tournament.current_round == 1 %} current {% endif %} ">
+        <div class="round round-two current">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0] %}{{ round1[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-bottom">{% if round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i> </button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i> </button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i> </button> {% endif %} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i> </button> {% endif %} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[0]%}{{ round1[2].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[2].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[2] and round1[2].captains[1]%}{{ round1[2].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[2].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[2].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[0]%}{{ round1[3].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[3].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[3] and round1[3].captains[1]%}{{ round1[3].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round1[3].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[3].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND TWO -->
 
-        <div class="round round-three {% if current_tournament.current_round == 2 %} current {% endif %}">
+        <div class="round round-three current">
           <div class="round-details">Round 2<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1]%}{{ round2[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[0]%}{{ round2[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[1] and round2[1].captains[1]%}{{ round2[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[1].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
 
-      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %}" {% if current_tournament.current_round == 4 %}style="display:none"{% endif %}>
+      <div class="champion current" >
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[0]%}{{ round3[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round3[0] and round3[0].captains[1]%}{{ round3[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: #00a379;" class="advance" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button><button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round3[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
-      <div class="champion winner {% if current_tournament.current_round == 4 %} current {% endif %}" {% if not current_tournament.current_round == 4 %}style="display: none" {% endif %}>
+      <div class="champion winner current ">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} </li>
+            <li class="team team-winner">{% if round4[0] and round4[0].captains[0] %}{{ round4[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round4[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} {% endif %} </li>
           </ul>
         </div>
       </div>
@@ -290,35 +290,35 @@
     <div class="container four-teams" >
       <div class="split split-one">
 
-        <div class="round round-three {% if current_tournament.current_round == 1 %} current {% endif %}">
+        <div class="round round-three current">
           <div class="round-details">Round 1<br/><span class="date"></span></div>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap0_score|string }}</span><span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[0].cap0_score|string }}</span><span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[0] and round1[0].captains[1]%}{{ round1[0].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
           <ul class="matchup">
-            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[0]%}{{ round1[1].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[1].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round1[1] and round1[1].captains[1]%}{{ round1[1].captains[1].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round1[1].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> {% endif %} <span class="score">{{ round1[1].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>  <!-- END ROUND THREE -->
       </div>
 
-      <div class="champion {% if current_tournament.current_round == 2 %} current {% endif %} ">
+      <div class="champion current ">
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details">championship <br/><span class="date"></span></div>
           <ul class ="matchup championship">
-            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
-            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[0]%}{{ round2[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[0].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap0_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
+            <li class="team team-top">{% if round2[0] and round2[0].captains[1] %}{{ round2[0].captains[1].team.name }}{% if current_user.is_authenticated and current_user.role == 'organizer'%}  <button style="background-color: #00a379; float: right; color: white" class="advance" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-arrow-right"></i></button> <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round2[0].captains[1].id }}"><i class="fa fa-times"></i></button> {% endif %} <span class="score">{{ round2[0].cap1_score|string }}</span>{% else %}<span class="score"></span>{% endif %}</li>
           </ul>
         </div>
       </div>
-      <div class="champion {% if current_tournament.current_round == 3 %} current {% endif %} winner" {% if not current_tournament.current_round == 3 %}style="display: none" {% endif %}>
+      <div class="champion current winner" >
         <div class="final">
           <i class="fa fa-trophy"></i>
           <div class="round-details"> winner<br/></div>
           <ul class ="matchup championship">
-            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }}<button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-times"></i></button>{% endif %}</li>
+            <li class="team team-winner">{% if round3[0] and round3[0].captains[0] %}{{ round3[0].captains[0].team.name }} {% if current_user.is_authenticated and current_user.role == 'organizer'%} <button style="background-color: #00a379; float: right; color: white; background-color: red;" class="remove" capt-pk="{{ round3[0].captains[0].id }}"><i class="fa fa-times"></i></button>{% endif %} {% endif %}</li>
           </ul>
         </div>
       </div>
@@ -347,7 +347,7 @@
                   <div class="tab-content">
                       <div class="tab-pane tab-1" id="about">
                         <div class="wizard-content-wrapper">
-                          <h3 class="js-judge-wizard-header-0" id="player1">Team A - Bob</h3>
+                          <h3 class="js-judge-wizard-header" id="player1">Team A - Bob</h3>
                           <div class="wizard-content-header mt-20">
                             <h4>Defensa</h4>
                             <h5>Medidas cauterlares</h5>
@@ -387,48 +387,8 @@
                               </ul>
                             </div>
                           </div>
-                          <h3 class="js-judge-wizard-header-1" id="player2">Team A - Bob</h3>
-                          <div style="margin-top: 20px;" class="wizard-content-header">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
-                          </div>
-                          <div class="wizard-main-content mt-20">
-                            <div class="wizard-content-line-second-part-1">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-1" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-second-part-2">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-2" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-second-part-3">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-second-3" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                          </div>
+
                           <div class="tab-pane tab-2 mt-50" id="account">
-                              <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
                               <div class="wizard-content-header mt-20">
                                 <h4>Defensa</h4>
                                 <h5>Medidas cauterlares</h5>
@@ -468,49 +428,9 @@
                                   </ul>
                                 </div>
                               </div>
-                              <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
-                              <div style="margin-top: 20px;" class="wizard-content-header">
-                                <h4>Defensa</h4>
-                                <h5>Medidas cauterlares</h5>
-                              </div>
-                              <div class="wizard-main-content mt-20">
-                                <div class="wizard-content-line-second-part-4">
-                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-4" type="hidden" class="wizard-line-input-1">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                                <div class="wizard-content-line-second-part-5">
-                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-5" type="hidden" class="wizard-line-input-2">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                                <div class="wizard-content-line-second-part-6">
-                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-6" type="hidden" class="wizard-line-input-3">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                              </div>
+
                           </div>
                           <div class="tab-pane tab-3" id="address">
-                              <h3 class="js-judge-wizard-header-0">Team A - Bob</h3>
                               <div class="wizard-content-header mt-20">
                                 <h4>Defensa</h4>
                                 <h5>Medidas cauterlares</h5>
@@ -550,49 +470,10 @@
                                   </ul>
                                 </div>
                               </div>
-                              <h3 class="js-judge-wizard-header-1">Team A - Bob</h3>
-                              <div style="margin-top: 20px;" class="wizard-content-header">
-                                <h4>Defensa</h4>
-                                <h5>Medidas cauterlares</h5>
-                              </div>
-                              <div class="wizard-main-content mt-20">
-                                <div class="wizard-content-line-second-part-7">
-                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-7" type="hidden" class="wizard-line-input-1">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                                <div class="wizard-content-line-second-part-8">
-                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-8" type="hidden" class="wizard-line-input-2">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                                <div class="wizard-content-line-second-part-9">
-                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-second-9" type="hidden" class="wizard-line-input-3">
-                                  <ul>
-                                    <li><a>1</a></li>
-                                    <li><a>2</a></li>
-                                    <li><a>3</a></li>
-                                    <li><a>4</a></li>
-                                    <li><a>5</a></li>
-                                  </ul>
-                                </div>
-                              </div>
+
                           </div>
                             <div class="text-center" style="position: relative; margin-top: 31px; margin-bottom: 59px;">
-                                <input type="button" style="background-color: #f5ae3e; height: 35px; font-size: 20px; padding: 0 15px; border-radius: 5px; position: absolute; right: 0; font-weight: 500; border: 2px solid black; " value="FINISH">
+                                <input type="button" class="js-judge-finish" style="background-color: #f5ae3e; height: 35px; font-size: 20px; padding: 0 15px; border-radius: 5px; position: absolute; right: 0; font-weight: 500; border: 2px solid black; " value="FINISH">
                             </div>
                         </div>
                       </div>
@@ -766,9 +647,9 @@
             <div class="form-group participant-select-section">
               <div class="form-row">
                 <div class="col-md-12 mt-10">
-                  <label for="select-participant-role">Role</label>
+                  <label for="select-participant-role">Player's number</label>
                   <select name="role" class="form-control" id="select-participant-role" required>
-                    <option value="" style="display: none" disabled>Select role</option>
+                    <option value="" style="display: none" disabled>Select player's number</option>
                       {% for pos in positions %}
                       <option value="{{ pos }}">{{ pos }}</option>
                       {% endfor %}
@@ -864,9 +745,9 @@
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
-                  <label for="select-team">Choose pair of teams </label>
+                  <label for="select-team">Choose team </label>
                   <select class="form-control js-judge-select-team" id="select-team">
-                    <option value="" style="display: none" disabled>Select pair of teams</option>
+                    <option value="" style="display: none" disabled>Select team</option>
                   </select>
                 </div>
               </div>
@@ -874,9 +755,9 @@
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
-                  <label for="select-participant">Choose position</label>
+                  <label for="select-participant">Choose team member</label>
                   <select class="form-control js-judge-select-participant" id="select-participant">
-                    <option value="" style="display: none">Select position</option>
+                    <option value="" style="display: none">Select team member</option>
                   </select>
                 </div>
               </div>
@@ -1183,44 +1064,42 @@
 
       $('.js-judge-select-tournament').on('change', function(){
           var select = $(this);
-          var pairs_html = '<option value="" style="display:none" disabled>  Select pair of teams </option>';
+          var teams_html = '<option value="" style="display:none" disabled>  Select team </option>';
           //var teams_html = $('.js-judge-select-team').html();
           $.ajax({
-              url: '{{ url_for('tournaments_pairs') }}',
+              url: '{{ url_for('tournaments_teams') }}',
               type: 'post',
               data: {'id': select.val()},
               success: function(data) {
                   console.log(data);
-                  var pairs = data.pairs;
-                  pairs.forEach(function (pair, index) {
-                      pairs_html += '<option value="'+ pair.id +'">' + pair.team0.name + ' vs ' + pair.team1.name +
-                                    '</option>';
+                  var teams = data.teams;
+                  teams.forEach(function (team, index) {
+                      teams_html += '<option value="'+ team.id +'">' + team.name + '</option>';
 
                   });
-                  $('.js-judge-select-team').html(pairs_html);
+                  $('.js-judge-select-team').html(teams_html);
                   $('.js-judge-select-team').trigger('change');
               }
           });
-          $('.js-judge-select-team').html(pairs_html);
 
       });
 
       $('.js-judge-select-team').on('change', function () {
           var select = $(this);
-          var positions_html = '<option value="" style="display:none" disabled>  Select position </option>';
+          var participants_html = '<option value="" style="display:none" disabled>  Select participant </option>';
 
           $.ajax({
-              url: '{{ url_for('positions_to_assess') }}',
+              url: '{{ url_for('teams_participants') }}',
               type: 'post',
               data: {'id': select.val()},
               success: function(data) {
                   console.log(data);
-                  var positions_to_assess = data.positions_to_assess;
-                  positions_to_assess.forEach(function (p, index) {
-                      positions_html += '<option value="'+ p +'">' + p + '</option>';
+                  var participants = data.participants;
+                  participants.forEach(function (p, index) {
+                      participants_html += '<option value="'+ p.id +'">' + p.name + '</option>';
 
                   });
-                  $('.js-judge-select-participant').html(positions_html);
+                  $('.js-judge-select-participant').html(participants_html);
               }
           })
       });
@@ -1230,21 +1109,18 @@
               $("section").css("display", "none");
               $(".judge-select-wizard").css("display", "block");
               $.ajax({
-                  url: '{{ url_for('select_position') }}',
+                  url: '{{ url_for('judge_select_participant') }}',
                   type: 'post',
-                  data: {'position': $('.js-judge-select-participant').val(), 'id': $('.js-judge-select-team').val()},
+                  data: {'id': $('.js-judge-select-participant').val()},
                   success: function(data) {
                       console.log(data);
-                      $('.js-judge-wizard-header-0').text('Team '+ data.member0_team.name +
-                                                          ' – ' + data.member0.name + '(' +
-                                                          $('.js-judge-select-participant').val() + ')')
-                      $('.js-judge-wizard-header-1').text('Team '+ data.member1_team.name +
-                                                          ' – ' + data.member1.name + '(' +
-                                                          $('.js-judge-select-participant').val() + ')')
+                      $('.js-judge-wizard-header').text('Team '+ $('.js-judge-select-team option:selected').text() +
+                          ' – ' +$('.js-judge-select-participant option:selected').text())
                   }
               })
           }
       });
+
       $("#create-team").on("click", function() {
           $("section").css("display", "none");
           $(".create-participant-box").css("display", "block");
@@ -1426,18 +1302,8 @@
               $('.wizard-content-line-first-part-6 input').val() != '' &&
               $('.wizard-content-line-first-part-7 input').val() != '' &&
               $('.wizard-content-line-first-part-8 input').val() != '' &&
-              $('.wizard-content-line-first-part-9 input').val() != '' &&
-              $('.wizard-content-line-second-part-1 input').val() != '' &&
-              $('.wizard-content-line-second-part-2 input').val() != '' &&
-              $('.wizard-content-line-second-part-3 input').val() != '' &&
-              $('.wizard-content-line-second-part-4 input').val() != '' &&
-              $('.wizard-content-line-second-part-5 input').val() != '' &&
-              $('.wizard-content-line-second-part-6 input').val() != '' &&
-              $('.wizard-content-line-second-part-7 input').val() != '' &&
-              $('.wizard-content-line-second-part-8 input').val() != '' &&
-              $('.wizard-content-line-second-part-9 input').val() != '') {
-              var sure = confirm('You are about to submit ' + $('#player1').text() + ' and ' +
-                                    $('#player2').text() + '.' +
+              $('.wizard-content-line-first-part-9 input').val() != '') {
+              var sure = confirm('You are about to submit ' + $('#player1').text() +
                                  '\nYou won\'t be able to edit scores.');
               if (sure) {
                   var form = $('.js-judge-form').serialize();
@@ -1543,7 +1409,6 @@
                 url: '/refresh_table/' + pk,
                 type: 'get',
                 success: function(data){
-                    alert('refres');
                     if (data.N == 16) {
                         $('div.sixteen-teams').html(data.table_html)
                     }
@@ -1568,10 +1433,14 @@
                 type:'post',
                 data: form.serialize(),
                 success: function(data){
-                    alert('New team member has been added!');
-                    $('#select-participant-role').val('');
-                    $('#participant-email').val('');
-                    $('#participant-name').val('');
+                    if(data.status == 'error') {
+                        alert('This number is already taken. Please choose another one')
+                    } else {
+                        alert('New team member has been added!');
+                        $('#select-participant-role').val('');
+                        $('#participant-email').val('');
+                        $('#participant-name').val('');
+                    }
                 }
             });
         });
@@ -1625,24 +1494,23 @@
         })
         $(document).on("click", ".advance", function(){
             var btn = $(this);
-            alert('asd');
             $.ajax({
                 url: '/advance_team/' + btn.attr("capt-pk"),
                 type: 'get',
-                success: function(){
-                    alert('go');
+                success: function(data){
+                    if (data.status == 'error') {
+                        alert("Please fill the current round before advancing teams further")
+                    }
                     refresh();
                 }
             })
         })
         $(document).on("click", ".remove", function(){
             var btn = $(this);
-            alert('asd');
             $.ajax({
                 url: '/remove_team/' + btn.attr("capt-pk"),
                 type: 'get',
                 success: function(){
-                    alert('go');
                     refresh()
                 }
             })
