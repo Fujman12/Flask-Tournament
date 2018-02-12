@@ -544,8 +544,7 @@ def teams_participants():
         team = Team.query.filter_by(id=team_id).first()
         if team is not None:
 
-            return jsonify(participants=[participant.serialize() for participant in team.members
-                                         if participant.score is None])
+            return jsonify(participants=[participant.serialize() for participant in team.members])
 
         else:
             return jsonify(participants=[])
@@ -563,42 +562,21 @@ def judge_select_participant():
 @app.route('/judge_submit_score', methods=['POST'])
 def judge_submit_score():
     if current_user.role == 'judge':
-        total_score0 = 0
-        total_score1 = 0
+        total_score = 0
         for i in range(10):
-            key = 'wizard-input-first-{}'.format(i)
+            key = 'wizard-input-{}'.format(i)
             if key in request.values:
                 score = request.values[key]
-                print(score)
-                total_score0 += Decimal(score)
+                total_score += Decimal(score)
 
-        for i in range(10):
-            key = 'wizard-input-second-{}'.format(i)
-            if key in request.values:
-                score = request.values[key]
-                print(score)
-                total_score1 += Decimal(score)
+        member = Member.query.filter_by(id=session['member_id']).first()
+        member.score = total_score
 
-        member0 = Member.query.filter_by(id=session['member0_id']).first()
-        member1 = Member.query.filter_by(id=session['member1_id']).first()
-        member0.score = total_score0
-        member1.score = total_score1
-        member0.assessed = True
-        member1.assessed = True
-
-        db.session.add(member0)
-        db.session.add(member1)
+        db.session.add(member)
         db.session.commit()
-        member0.team.count_score()
-        member1.team.count_score()
-
-        p = Pair.query.filter_by(id=session['pair_id']).first()
-        print('Pair assessed: {}'.format(p.is_assessed()))
-        flash('You have successfully submitted score for {} from {} and {} from {}'.format(member0.name,
-                                                                                           member0.team.name,
-                                                                                           member1.name,
-                                                                                           member1.team.name))
-    return jsonify({'member0_score': str(total_score0), 'team0_score': str(member0.team.total_score)})
+        member.team.count_score()
+        flash('You have successfully submitted score for {} from {}'.format(member.name, member.team.name))
+    return jsonify({'score': str(total_score), 'team_score': str(member.team.total_score)})
 
 
 if __name__ == '__main__':
