@@ -647,9 +647,9 @@
             <div class="form-group participant-select-section">
               <div class="form-row">
                 <div class="col-md-12 mt-10">
-                  <label for="select-participant-role">Role</label>
+                  <label for="select-participant-role">Player's number</label>
                   <select name="role" class="form-control" id="select-participant-role" required>
-                    <option value="" style="display: none" disabled>Select role</option>
+                    <option value="" style="display: none" disabled>Select player's number</option>
                       {% for pos in positions %}
                       <option value="{{ pos }}">{{ pos }}</option>
                       {% endfor %}
@@ -745,9 +745,9 @@
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
-                  <label for="select-team">Choose pair of teams </label>
+                  <label for="select-team">Choose team </label>
                   <select class="form-control js-judge-select-team" id="select-team">
-                    <option value="" style="display: none" disabled>Select pair of teams</option>
+                    <option value="" style="display: none" disabled>Select team</option>
                   </select>
                 </div>
               </div>
@@ -755,9 +755,9 @@
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
-                  <label for="select-participant">Choose position</label>
+                  <label for="select-participant">Choose team member</label>
                   <select class="form-control js-judge-select-participant" id="select-participant">
-                    <option value="" style="display: none">Select position</option>
+                    <option value="" style="display: none">Select team member</option>
                   </select>
                 </div>
               </div>
@@ -1433,10 +1433,14 @@
                 type:'post',
                 data: form.serialize(),
                 success: function(data){
-                    alert('New team member has been added!');
-                    $('#select-participant-role').val('');
-                    $('#participant-email').val('');
-                    $('#participant-name').val('');
+                    if(data.status == 'error') {
+                        alert('This number is already taken. Please choose another one')
+                    } else {
+                        alert('New team member has been added!');
+                        $('#select-participant-role').val('');
+                        $('#participant-email').val('');
+                        $('#participant-name').val('');
+                    }
                 }
             });
         });

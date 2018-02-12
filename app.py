@@ -376,6 +376,10 @@ def create_member():
         name = request.values['name']
         email = request.values['email']
         role = request.values['role']
+        for member in team.members:
+            if member.role == role:
+                return jsonify({'status': 'error'})
+
         member = Member(team=team, name=name, email=email, role=role)
         db.session.add(member)
         db.session.commit()
