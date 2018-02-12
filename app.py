@@ -271,9 +271,6 @@ def remove_team(captain_id):
     last_pair = captain.pairs[-1]
     captain.pairs.remove(last_pair)
 
-    #new_last = captain.pairs[-1].update_scores()
-    #db.session.delete(last_pair)
-
     db.session.add(captain)
     db.session.commit()
 
@@ -286,6 +283,8 @@ def advance_team(captain_id):
     tournament = Tournament.query.filter_by(id=captain.tournament_id).first()
     current_pair = captain.pairs[-1]
     current_round = current_pair.round
+    if current_round > 1 and len(current_pair.captains) < 2:
+        return jsonify({'status': "error"})
 
     put = False
     for pair in tournament.pairs:
@@ -564,17 +563,18 @@ def judge_submit_score():
     if current_user.role == 'judge':
         total_score = 0
         for i in range(10):
-            key = 'wizard-input-{}'.format(i)
+            key = 'wizard-input-first-{}'.format(i)
             if key in request.values:
                 score = request.values[key]
                 total_score += Decimal(score)
 
         member = Member.query.filter_by(id=session['member_id']).first()
         member.score = total_score
-
+        print(total_score)
         db.session.add(member)
         db.session.commit()
         member.team.count_score()
+        member.team.captain.pairs[-1].update_scores()
         flash('You have successfully submitted score for {} from {}'.format(member.name, member.team.name))
     return jsonify({'score': str(total_score), 'team_score': str(member.team.total_score)})
 
