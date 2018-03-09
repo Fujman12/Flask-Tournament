@@ -334,150 +334,442 @@
       <div class="wizard-container">
 
           <div class="card wizard-card" data-color="orange" id="wizardProfile">
-              <form action="" method="" class="js-judge-form">
+              <form action="" method="" class="js-judge-form" novalidate="novalidate">
           <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
-      <div class="wizard-navigation" style="display: none">
-        <ul style="height: 38px">
-            <li><a href="#about" data-toggle="tab">Criteria 1</a></li>
-            <li><a href="#account" data-toggle="tab">Criteria 2</a></li>
-            <li><a href="#address" data-toggle="tab">Criteria 3</a></li>
+      <div class="wizard-navigation">
+        <ul style="height: 38px" class="nav nav-pills">
+            <li style="width: 33.3333%;"><a href="#about" data-toggle="tab" class="" aria-expanded="false">Criteria 1</a></li>
+            <li style="width: 33.3333%;"><a href="#account" data-toggle="tab" class="" aria-expanded="false">Criteria 2</a></li>
+            <li style="width: 33.3333%;"><a href="#address" data-toggle="tab" class="active" aria-expanded="true">Criteria 3</a></li>
         </ul>
-      </div>
+      <div class="moving-tab" style="width: 33.3333%; transform: translate3d(713.333px, 0px, 0px); transition: transform 0s;">Criteria 3</div></div>
                   <div class="tab-content">
-                      <div class="tab-pane tab-1" id="about">
-                        <div class="wizard-content-wrapper">
-                          <h3 class="js-judge-wizard-header" id="player1">Team A - Bob</h3>
-                          <div class="wizard-content-header mt-20">
-                            <h4>Defensa</h4>
-                            <h5>Medidas cauterlares</h5>
+                      <div class="tab-pane tab-1" id="about" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">Participant number:</h4>
+                            <h4 style="margin-bottom: 28px;">123134243142134</h4>
+                            <h4 style="margin-bottom: 28px;">123</h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
                           </div>
-                          <div class="wizard-main-content mt-20 mb-80">
-                            <div class="wizard-content-line-first-part-1">
-                              <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-1" type="hidden" class="wizard-line-input-1">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-2">
-                              <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-2" type="hidden" class="wizard-line-input-2">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                            <div class="wizard-content-line-first-part-3">
-                              <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                              <input name="wizard-input-first-3" type="hidden" class="wizard-line-input-3">
-                              <ul>
-                                <li><a>1</a></li>
-                                <li><a>2</a></li>
-                                <li><a>3</a></li>
-                                <li><a>4</a></li>
-                                <li><a>5</a></li>
-                              </ul>
-                            </div>
-                          </div>
-
-                          <div class="tab-pane tab-2 mt-50" id="account">
-                              <div class="wizard-content-header mt-20">
-                                <h4>Defensa</h4>
-                                <h5>Medidas cauterlares</h5>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
+                                <div class="wizard-content-line-first-part-0">
+                                  <ul>
+                                    <li class="player-1"><a>1</a></li>
+                                    <li class="player-2"><a>2</a></li>
+                                    <li class="player-3"><a>3</a></li>
+                                    <li class="player-4"><a>4</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-wrapper-player-1" style="display: none">
+                                    <div class="wizard-content-line-first-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-first-part-wrapper-player-2" style="display: none">
+                                    <div class="wizard-content-line-first-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-first-part-wrapper-player-3" style="display: none">
+                                    <div class="wizard-content-line-first-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-first-part-wrapper-player-4" style="display: none">
+                                    <div class="wizard-content-line-first-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+                                        
+                                      </ul>
+                                    </div>
+                                </div>  
                               </div>
-                              <div class="wizard-main-content mt-20 mb-80">
+                              <div class="wizard-main-content" style="display: inline-block; margin-left: 20px; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 2</h3>
+                                <div class="wizard-content-line-second-part-0">
+                                  <ul>
+                                    <li class="player-1"><a>1</a></li>
+                                    <li class="player-2"><a>2</a></li>
+                                    <li class="player-3"><a>3</a></li>
+                                    <li class="player-4"><a>4</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-wrapper-player-1" style="display: none">
+                                    <div class="wizard-content-line-second-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-second-part-wrapper-player-2" style="display: none">
+                                    <div class="wizard-content-line-second-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-second-part-wrapper-player-3" style="display: none">
+                                    <div class="wizard-content-line-second-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                </div>
+                                <div class="wizard-content-line-second-part-wrapper-player-4" style="display: none">
+                                    <div class="wizard-content-line-second-part-1">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-2">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-second-part-3">
+                                      <ul>
+                                        <li><a>1</a></li>
+                                        <li><a>2</a></li>
+                                        <li><a>3</a></li>
+                                        <li><a>4</a></li>
+
+                                      </ul>
+                                    </div>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane tab-2" id="account" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">123134243142134</h4>
+                            <h4 style="margin-bottom: 28px;">123</h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
+                          </div>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
                                 <div class="wizard-content-line-first-part-4">
-                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-4" type="hidden" class="wizard-line-input-1">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
                                   </ul>
                                 </div>
                                 <div class="wizard-content-line-first-part-5">
-                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-5" type="hidden" class="wizard-line-input-2">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
                                   </ul>
                                 </div>
                                 <div class="wizard-content-line-first-part-6">
-                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-6" type="hidden" class="wizard-line-input-3">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
                                   </ul>
                                 </div>
                               </div>
-
-                          </div>
-                          <div class="tab-pane tab-3" id="address">
-                              <div class="wizard-content-header mt-20">
-                                <h4>Defensa</h4>
-                                <h5>Medidas cauterlares</h5>
-                              </div>
-                              <div class="wizard-main-content mt-20 mb-80">
-                                <div class="wizard-content-line-first-part-7">
-                                  <p style="">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-7" type="hidden" class="wizard-line-input-1">
+                              <div class="wizard-main-content" style="display: inline-block; margin-left: 20px; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 2</h3>
+                                <div class="wizard-content-line-second-part-4">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-5">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-6">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
+                                  </ul>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane tab-3" id="address" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">123134243142134</h4>
+                            <h4 style="margin-bottom: 28px;">123</h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
+                          </div>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
+                                <div class="wizard-content-line-first-part-7">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
                                   </ul>
                                 </div>
                                 <div class="wizard-content-line-first-part-8">
-                                  <p>Lorem consectetur adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-8" type="hidden" class="wizard-line-input-2">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
                                   </ul>
                                 </div>
                                 <div class="wizard-content-line-first-part-9">
-                                  <p>Lorem ipsum adipisicing elit. Modi, impedit?: </p>
-                                  <input name="wizard-input-first-9" type="hidden" class="wizard-line-input-3">
                                   <ul>
                                     <li><a>1</a></li>
                                     <li><a>2</a></li>
                                     <li><a>3</a></li>
                                     <li><a>4</a></li>
-                                    <li><a>5</a></li>
+                                    
                                   </ul>
                                 </div>
                               </div>
-
+                              <div class="wizard-main-content" style="display: inline-block; margin-left: 20px; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 2</h3>
+                                <div class="wizard-content-line-second-part-7">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-8">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-second-part-9">
+                                  <ul>
+                                    <li><a>1</a></li>
+                                    <li><a>2</a></li>
+                                    <li><a>3</a></li>
+                                    <li><a>4</a></li>
+                                    
+                                  </ul>
+                                </div>
+                              </div>
                           </div>
-                            <div class="text-center" style="position: relative; margin-top: 31px; margin-bottom: 59px;">
-                                <input type="button" class="js-judge-finish" style="background-color: #f5ae3e; height: 35px; font-size: 20px; padding: 0 15px; border-radius: 5px; position: absolute; right: 0; font-weight: 500; border: 2px solid black; " value="FINISH">
-                            </div>
                         </div>
                       </div>
                   </div>
+                  <div class="wizard-footer height-wizard mt-30">
+                      <div class="pull-right">
+                          <input type="button" class="btn btn-next btn-fill btn-warning btn-wd btn-sm disabled" name="next" value="Next" style="display: none;">
+                          <input type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm js-judge-finish" name="finish" value="Finish" style="display: inline-block;">
+
+                      </div>
+
+                      <div class="pull-left">
+                          <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous">
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+
               </form>
           </div>
       </div> <!-- wizard container -->
@@ -1199,20 +1491,48 @@
           //element.addClass('active');
           return element.find('a').text();
       }
-
+      $(".tab-1 .wizard-content-line-first-part-0 li[class='player-1']").on("click", function(){
+          $("div[class^='wizard-content-line-first-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-first-part-wrapper-player-1").css({"display": "block"});
+          $("div[class^='wizard-content-line-first-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-first-part-wrapper-player-1 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-first-part-0 li[class='player-2']").on("click", function(){
+          $("div[class^='wizard-content-line-first-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-first-part-wrapper-player-2").css({"display": "block"});
+          $("div[class^='wizard-content-line-first-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-first-part-wrapper-player-2 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-first-part-0 li[class='player-3']").on("click", function(){
+          $("div[class^='wizard-content-line-first-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-first-part-wrapper-player-3").css({"display": "block"});
+          $("div[class^='wizard-content-line-first-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-first-part-wrapper-player-3 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-first-part-0 li[class='player-4']").on("click", function(){
+          $("div[class^='wizard-content-line-first-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-first-part-wrapper-player-4").css({"display": "block"});
+          $("div[class^='wizard-content-line-first-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-first-part-wrapper-player-4 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-first-part-0 li").on("click", function(){
+          $(".tab-1 .wizard-content-line-first-part-0 li").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-first-part-0 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-first-part-0 input").val(select_li($(this)));
+      });
       $(".tab-1 .wizard-content-line-first-part-1 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-first-part-1 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-first-part-1 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-first-part-1 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-first-part-1 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-first-part-1 input").val(select_li($(this)));
       });
       $(".tab-1 .wizard-content-line-first-part-2 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-first-part-2 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-first-part-2 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-first-part-2 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-first-part-2 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-first-part-2 input").val(select_li($(this)));
       });
       $(".tab-1 .wizard-content-line-first-part-3 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-first-part-3 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-first-part-3 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-first-part-3 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-first-part-3 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-first-part-3 input").val(select_li($(this)));
       });
       $(".tab-2 .wizard-content-line-first-part-4 li").on("click", function(){
@@ -1247,19 +1567,48 @@
       });
 
 
+      $(".tab-1 .wizard-content-line-second-part-0 li[class='player-1']").on("click", function(){
+          $("div[class^='wizard-content-line-second-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-second-part-wrapper-player-1").css({"display": "block"});
+          $("div[class^='wizard-content-line-second-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-second-part-wrapper-player-1 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-second-part-0 li[class='player-2']").on("click", function(){
+          $("div[class^='wizard-content-line-second-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-second-part-wrapper-player-2").css({"display": "block"});
+          $("div[class^='wizard-content-line-second-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-second-part-wrapper-player-2 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-second-part-0 li[class='player-3']").on("click", function(){
+          $("div[class^='wizard-content-line-second-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-second-part-wrapper-player-3").css({"display": "block"});
+          $("div[class^='wizard-content-line-second-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-second-part-wrapper-player-3 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-second-part-0 li[class='player-4']").on("click", function(){
+          $("div[class^='wizard-content-line-second-part-wrapper-player']").css({"display": "none"});
+          $(".wizard-content-line-second-part-wrapper-player-4").css({"display": "block"});
+          $("div[class^='wizard-content-line-second-part-wrapper-player'] li").removeClass("focus");
+          $(".wizard-content-line-second-part-wrapper-player-4 li").addClass("focus");
+      });
+      $(".tab-1 .wizard-content-line-second-part-0 li").on("click", function(){
+          $(".tab-1 .wizard-content-line-second-part-0 li").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-second-part-0 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-second-part-0 input").val(select_li($(this)));
+      });
       $(".tab-1 .wizard-content-line-second-part-1 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-second-part-1 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-second-part-1 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-second-part-1 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-second-part-1 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-second-part-1 input").val(select_li($(this)));
       });
       $(".tab-1 .wizard-content-line-second-part-2 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-second-part-2 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-second-part-2 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-second-part-2 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-second-part-2 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-second-part-2 input").val(select_li($(this)));
       });
       $(".tab-1 .wizard-content-line-second-part-3 li").on("click", function(){
-          $(".tab-1 .wizard-content-line-second-part-3 li").css({"background-color": "unset"});
-          $(".tab-1 .wizard-content-line-second-part-3 li").removeClass('active');
+          $(".tab-1 .wizard-content-line-second-part-3 li[class='focus']").css({"background-color": "unset"});
+          $(".tab-1 .wizard-content-line-second-part-3 li[class='focus']").removeClass('active');
           $(".tab-1 .wizard-content-line-second-part-3 input").val(select_li($(this)));
       });
       $(".tab-2 .wizard-content-line-second-part-4 li").on("click", function(){
