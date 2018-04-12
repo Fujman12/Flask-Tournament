@@ -140,6 +140,7 @@ class Tournament(db.Model):
         return {
             'id': self.id,
             'name': self.name,
+            'current_round': self.current_round
         }
 
     def __repr__(self):

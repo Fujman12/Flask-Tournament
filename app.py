@@ -468,7 +468,7 @@ def tournaments_teams():
             if captain.team:
                 teams.append(captain.team)
 
-        return jsonify(teams=[team.serialize() for team in teams])
+        return jsonify(teams=[team.serialize() for team in teams], current_round=tournament.current_round)
 
 
 @app.route('/tournaments_pairs', methods=['GET', 'POST'])
