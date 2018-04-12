@@ -333,11 +333,11 @@
   <section id="bracket" class="judge-select-wizard" style="display: none">
     <div class="container">
       <!--      Wizard container        -->
-      {% if round1[0]%}
+      {% if current_tournament.current_round == 1 %}
         {% include 'rounds/round_1.html' %}
-      {% elif round2[0] %}
+      {% elif current_tournament.current_round == 2 %}
         {% include 'rounds/round_2.html' %}
-      {% elif round3[0] or round4[0] or round5[0] %}
+      {% else %}
         {% include 'rounds/round_3-5.html' %}
       {% endif %}
     </div> <!--  big container -->
