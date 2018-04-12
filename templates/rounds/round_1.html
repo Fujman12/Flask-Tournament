@@ -1,0 +1,150 @@
+ <div class="wizard-container">
+
+          <div class="card wizard-card" data-color="orange" id="wizardProfile">
+              <form action="" method="" class="js-judge-form" novalidate="novalidate">
+                  <input class="input-team-id" value="" name="team_id" type="hidden">
+          <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+      <div class="wizard-navigation">
+        <ul style="height: 38px" class="nav nav-pills">
+            <li style="width: 33.3333%;"><a href="#about" data-toggle="tab" class="" aria-expanded="false">Criteria 1</a></li>
+            <li style="width: 33.3333%;"><a href="#account" data-toggle="tab" class="" aria-expanded="false">Criteria 2</a></li>
+            <li style="width: 33.3333%;"><a href="#address" data-toggle="tab" class="active" aria-expanded="true">Criteria 3</a></li>
+        </ul>
+      <div class="moving-tab" style="width: 33.3333%; transform: translate3d(713.333px, 0px, 0px); transition: transform 0s;">Criteria 3</div></div>
+                  <div class="tab-content">
+                      <div class="tab-pane tab-1" id="about" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">{% if round1[0] and round1[0].captains[0]%}{{ round1[0].captains[0].team.name }} - {{ round1[0].captains[0].team.id }} {% elif round1[0] and round1[0].captains[1] %}{{ round1[0].captains[1].team.name }}{% endif %}</h4>
+                            <h4 style="margin-bottom: 28px;"> Round  - {% if round1[0]%}{{ round1[0].round }}{% endif %}</h4>
+                            <h4 style="margin-bottom: 28px;">{{ current_tournament }}- <div class="js-judge-wizard-header">!!!!</div> </h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
+                          </div>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
+                                <div class="wizard-content-line-first-part-0">
+                                  <ul>
+                                    <li class="player-1"><a>Team 1</a></li>
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-wrapper-player-1" style="display: none">
+                                    <div class="wizard-content-line-first-part-1">
+                                      <ul>
+                                        <li><a>0</a></li>
+                                        <li><a>1</a></li>
+                                        <input type="hidden" value="" name="value">
+
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-2">
+                                      <ul>
+                                        <li><a>0</a></li>
+                                        <li><a>1</a></li>
+                                        <input type="hidden" value="" name="value">
+                                      </ul>
+                                    </div>
+                                    <div class="wizard-content-line-first-part-3">
+                                      <ul>
+                                        <li><a>0</a></li>
+                                        <li><a>1</a></li>
+                                        <input type="hidden" value="" name="value">
+                                      </ul>
+                                    </div>
+                                    
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane tab-2" id="account" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">123134243142134</h4>
+                            <h4 style="margin-bottom: 28px;">123</h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
+                          </div>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
+                                <div class="wizard-content-line-first-part-4">
+                                  <ul>
+                                      <li><a>0</a></li>
+                                      <li><a>1</a></li>
+                                      <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-5">
+                                  <ul>
+                                      <li><a>0</a></li>
+                                      <li><a>1</a></li>
+                                      <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-6">
+                                  <ul>
+                                      <li><a>0</a></li>
+                                      <li><a>1</a></li>
+                                      <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="tab-pane tab-3" id="address" aria-expanded="false">
+                        <div class="wizard-content-wrapper" style="width: 95%; margin-bottom: 30px;">
+                          <div style="display: inline-block;">
+                            <h3 style="margin-bottom: 28px;">Topic one</h3>
+                            <h4 style="margin-bottom: 28px;">123134243142134</h4>
+                            <h4 style="margin-bottom: 28px;">123</h4>
+                            <h4 style="margin-bottom: 28px;">123234134</h4>
+                          </div>
+                          <div class="wizard-main-content-wrapper" style="display: inline-block; float: right;">
+                              <div class="wizard-main-content" style="display: inline-block; vertical-align: top;">
+                                <h3 style="margin-bottom: 28px;">Team 1</h3>
+                                <div class="wizard-content-line-first-part-7">
+                                  <ul>
+                                    <li><a>0</a></li>
+                                    <li><a>1</a></li>
+                                    <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-8">
+                                  <ul>
+                                    <li><a>0</a></li>
+                                    <li><a>1</a></li>
+                                    <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                                <div class="wizard-content-line-first-part-9">
+                                  <ul>
+                                    <li><a>0</a></li>
+                                    <li><a>1</a></li>
+                                    <input type="hidden" value="" name="value">
+                                  </ul>
+                                </div>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="wizard-footer height-wizard mt-30">
+                      <div class="pull-right">
+                          <input type="button" class="btn btn-next btn-fill btn-warning btn-wd btn-sm disabled" name="next" value="Next" style="display: none;">
+                          <input type="button" class="btn btn-finish btn-fill btn-warning btn-wd btn-sm js-judge-finish" name="finish" value="Finish" style="display: inline-block;">
+
+                      </div>
+
+                      <div class="pull-left">
+                          <input type="button" class="btn btn-previous btn-fill btn-default btn-wd btn-sm" name="previous" value="Previous">
+                      </div>
+                      <div class="clearfix"></div>
+                  </div>
+
+              </form>
+          </div>
+      </div> <!-- wizard container -->

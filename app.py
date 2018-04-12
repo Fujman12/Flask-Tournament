@@ -566,13 +566,13 @@ def judge_select_participant():
 def judge_submit_score():
     if current_user.role == 'judge':
         total_score = 0
-        for i in range(10):
-            key = 'wizard-input-first-{}'.format(i)
-            if key in request.values:
-                score = request.values[key]
-                total_score += Decimal(score)
-
-        member = Member.query.filter_by(id=session['member_id']).first()
+        values = list()
+        values = request.form.getlist('value')
+        team_id = request.form['team_id']
+        for val in values:
+            print(val)
+            total_score += Decimal(val)
+        member = Member.query.filter_by(team_id=team_id).first()
         member.score = total_score
         print(total_score)
         db.session.add(member)
