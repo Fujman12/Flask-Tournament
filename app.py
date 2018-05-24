@@ -468,19 +468,16 @@ def tournaments_teams():
             if captain.team:
                 teams.append(captain.team)
 
-        return jsonify(teams=[team.serialize() for team in teams], current_round=tournament.my_current_round())
+        if tournament.my_current_round() <= 1:
 
-
-@app.route('/tournaments_pairs', methods=['GET', 'POST'])
-def tournaments_pairs():
-    if current_user.role == 'judge':
-        tournament_id = request.values['id']
-        tournament = Tournament.query.filter_by(id=tournament_id).first()
-        current_pairs = []
-        for pair in tournament.pairs:
-            if pair.round == tournament.current_round:
-                current_pairs.append(pair)
-        return jsonify(pairs=[pair.serialize() for pair in current_pairs])
+            return jsonify(teams=[team.serialize() for team in teams], current_round=tournament.my_current_round())
+        else:
+            current_pairs = []
+            for pair in tournament.pairs:
+                if pair.round == tournament.current_round:
+                    current_pairs.append(pair)
+            return jsonify(pairs=[pair.serialize() for pair in current_pairs],
+                           current_round=tournament.my_current_round())
 
 
 @app.route('/positions_to_assess', methods=['GET', 'POST'])

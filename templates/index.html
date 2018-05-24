@@ -1760,14 +1760,14 @@
             <div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
-                  <label for="select-team">Choose team </label>
+                  <label for="select-team">Choose team(s) </label>
                   <select class="form-control js-judge-select-team" id="select-team">
                     <option value="" style="display: none" disabled>Select team</option>
                   </select>
                 </div>
               </div>
             </div>
-            <div class="form-group">
+            <!--div class="form-group">
               <div class="form-row">
                 <div class="col-md-12">
                   <label for="select-participant">Choose team member</label>
@@ -1776,7 +1776,7 @@
                   </select>
                 </div>
               </div>
-            </div>
+            </div-->
             <a class="btn btn-primary btn-block participant-select-button" href="#">Select</a>
           </form>
         </div>
@@ -2082,6 +2082,7 @@
       $('.js-judge-select-tournament').on('change', function(){
           var select = $(this);
           var teams_html = '<option value="" style="display:none" disabled>  Select team </option>';
+          var pairs_html = '<option value="" style="display:none" disabled>  Select pair of teams </option>';
           //var teams_html = $('.js-judge-select-team').html();
           $.ajax({
               url: '{{ url_for('tournaments_teams') }}',
@@ -2089,12 +2090,22 @@
               data: {'id': select.val()},
               success: function(data) {
                   console.log(data);
-                  var teams = data.teams;
-                  teams.forEach(function (team, index) {
-                      teams_html += '<option value="'+ team.id +'">' + team.name + '</option>';
 
-                  });
-                  $('.js-judge-select-team').html(teams_html);
+                  if (data.current_round <= 1) {
+                      var teams = data.teams;
+                      teams.forEach(function (team, index) {
+                          teams_html += '<option value="' + team.id + '">' + team.name + '</option>';
+
+                      });
+                      $('.js-judge-select-team').html(teams_html);
+                  } else {
+                      var pairs = data.pairs;
+                      pairs.forEach(function (pair, index) {
+                          pairs_html += '<option value="' + pair.id + '">' +'"'+pair.team0.name + '"'+ ' vs ' + '"'+pair.team1.name + '"' + '</option>';
+
+                      });
+                      $('.js-judge-select-team').html(pairs_html);
+                  }
                   $('.js-judge-select-team').trigger('change');
                   current_round = data.current_round;
 
@@ -2125,21 +2136,21 @@
       });
 
       $(".participant-select-button").on("click", function() {
-          if ($('.js-judge-select-participant').val() != '' && $('.js-judge-select-participant').val() != null) {
+          if ($('.js-judge-select-team').val() != '' && $('.js-judge-select-team').val() != null) {
               $("section").css("display", "none");
               $(".judge-select-wizard").css("display", "block");
-              $.ajax({
-                  url: '{{ url_for('judge_select_participant') }}',
-                  type: 'post',
-                  data: {'id': $('.js-judge-select-participant').val()},
-                  success: function(data) {
-                      console.log(data);
-                      $('.js-judge-wizard-header').text('Team '+ $('.js-judge-select-team option:selected').text() +
-                          ' – ' +$('.js-judge-select-participant option:selected').text())
+              some(current_round);
+              //$.ajax({
+              //    url: '{{ url_for('judge_select_participant') }}',
+              //   type: 'post',
+              //    data: {'id': $('.js-judge-select-participant').val()},
+              //   success: function(data) {
+              //        console.log(data);
+              //        $('.js-judge-wizard-header').text('Team '+ $('.js-judge-select-team option:selected').text());
 
-                      some(current_round)
-                  }
-              })
+
+              //    }
+              //})
           }
       });
 
