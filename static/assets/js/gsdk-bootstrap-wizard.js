@@ -58,6 +58,16 @@ function some(round_number){
             $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
             $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
             break;
+        case 4:
+            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+            break;
+        case 5:
+            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+            break;
     }
 
     // Wizard Initialization
