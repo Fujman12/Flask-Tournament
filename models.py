@@ -136,10 +136,19 @@ class Tournament(db.Model):
     #
     #     return False
 
+    def my_current_round(self):
+        max_round = 0
+        for pair in self.pairs:
+            if len(pair.captains) > 0 and pair.round > max_round:
+                max_round = pair.round
+
+        return max_round
+
     def serialize(self):
         return {
             'id': self.id,
             'name': self.name,
+            'current_round': self.current_round
         }
 
     def __repr__(self):

@@ -1983,6 +1983,7 @@
       });
     </script>
     <script>
+      var current_round;
       $(".data-table-judges,.data-table-teams").css("display", "none");
       $(".judges").on("click", function() {
           $("section").css("display", "none");
@@ -2072,6 +2073,7 @@
                   });
                   $('.js-judge-select-tournament').html(tournaments_html);
                   $('.js-judge-select-tournament').trigger('change');
+
               }
           });
 
@@ -2094,6 +2096,9 @@
                   });
                   $('.js-judge-select-team').html(teams_html);
                   $('.js-judge-select-team').trigger('change');
+                  current_round = data.current_round;
+
+
               }
           });
 
@@ -2131,6 +2136,8 @@
                       console.log(data);
                       $('.js-judge-wizard-header').text('Team '+ $('.js-judge-select-team option:selected').text() +
                           ' – ' +$('.js-judge-select-participant option:selected').text())
+
+                      some(current_round)
                   }
               })
           }

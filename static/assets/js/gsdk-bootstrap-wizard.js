@@ -18,7 +18,7 @@
 searchVisible = 0;
 transparent = true;
 
-$(document).ready(function(){
+function some(round_number){
 
     /*  Activate the tooltips      */
     $('[rel="tooltip"]').tooltip();
@@ -41,7 +41,6 @@ $(document).ready(function(){
         }
 	});
 
-    var round_number = 2;
 
     switch(round_number) {
         case 1:
@@ -172,7 +171,7 @@ $(document).ready(function(){
 
     $('.set-full-height').css('height', 'auto');
 
-});
+};
 
 
 
