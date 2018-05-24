@@ -41,6 +41,26 @@ $(document).ready(function(){
         }
 	});
 
+    var round_number = 2;
+
+    switch(round_number) {
+        case 1:
+            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-1-1");
+            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-1-2");
+            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-1-3");
+            break;
+        case 2:
+            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-2-1");
+            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-2-2");
+            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-2-3");
+            break;
+        case 3:
+            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+            break;
+    }
+
     // Wizard Initialization
   	$('.wizard-card').bootstrapWizard({
         'tabClass': 'nav nav-pills',
@@ -126,7 +146,6 @@ $(document).ready(function(){
             refreshAnimation($wizard, index);
         }
   	});
-
 
     // Prepare the preview for profile picture
     $("#wizard-picture").change(function(){
