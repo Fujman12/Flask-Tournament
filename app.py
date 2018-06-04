@@ -474,7 +474,7 @@ def tournaments_teams():
         else:
             current_pairs = []
             for pair in tournament.pairs:
-                if pair.round == tournament.current_round:
+                if pair.round == tournament.my_current_round():
                     current_pairs.append(pair)
             return jsonify(pairs=[pair.serialize() for pair in current_pairs],
                            current_round=tournament.my_current_round())
