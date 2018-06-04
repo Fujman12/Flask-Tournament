@@ -280,7 +280,7 @@ class Pair(db.Model):
 
     def serialize(self):
         team1 = None
-        if len(self.captains[1]) > 1:
+        if len(self.captains) > 1:
             team1 = self.captains[1].team.serialize()
         return {
             'id': self.id,
