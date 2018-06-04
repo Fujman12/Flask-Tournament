@@ -148,7 +148,7 @@ class Tournament(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'current_round': self.current_round
+            'current_round': self.my_current_round()
         }
 
     def __repr__(self):
@@ -279,11 +279,14 @@ class Pair(db.Model):
         return True
 
     def serialize(self):
+        team1 = None
+        if self.captains[1].team is not None:
+            team1 = self.captains[1].team.serialize()
         return {
             'id': self.id,
             'round': self.round,
             'team0': self.captains[0].team.serialize(),
-            'team1': self.captains[1].team.serialize()
+            'team1': team1
         }
 
     def __repr__(self):
