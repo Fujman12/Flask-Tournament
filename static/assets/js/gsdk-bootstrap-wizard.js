@@ -16,8 +16,8 @@
 // Get Shit Done Kit Bootstrap Wizard Functions
 
 setTimeout(() => {
-  document.querySelector('#select-participant').click()
-  setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
+  // document.querySelector('#select-participant').click()
+  // setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
 }, 1000)
 
 (function() {
@@ -52,7 +52,7 @@ function some(round_number){
     }
   });
 
-  round_number = 2;
+  // round_number = 2;
 
   globalConfig.round_number = round_number;
 
