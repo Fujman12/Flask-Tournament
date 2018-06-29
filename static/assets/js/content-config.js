@@ -186,23 +186,238 @@ var globalConfig = {
           label: {
             title: 'Parte I',
           },
+          questions: [
+            {
+              text: 'Question one I',
+              isSubTitle: false,
+            },
+          ],
         },
         {
           label: {
             title: 'Parte II',
           },
+          questions: [
+            {
+              text: 'Question one II',
+              isSubTitle: false,
+            },
+          ],
         },
         {
           label: {
             title: 'Parte III',
           },
+          questions: [
+            {
+              text: 'Question one III',
+              isSubTitle: false,
+            },
+          ],
         },
         {
           label: {
             title: 'Parte IV',
           },
+          questions: [
+            {
+              text: 'Question one IV',
+              isSubTitle: false,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      content: [
+        {
+          label: {
+            title: 'Parte I',
+          },
+          questions: [
+            {
+              text: 'Question one I',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte II',
+          },
+          questions: [
+            {
+              text: 'Question one II',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte III',
+          },
+          questions: [
+            {
+              text: 'Question one III',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte IV',
+          },
+          questions: [
+            {
+              text: 'Question one IV',
+              isSubTitle: false,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      content: [
+        {
+          label: {
+            title: 'Parte I',
+          },
+          questions: [
+            {
+              text: 'Question one I',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte II',
+          },
+          questions: [
+            {
+              text: 'Question one II',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte III',
+          },
+          questions: [
+            {
+              text: 'Question one III',
+              isSubTitle: false,
+            },
+          ],
+        },
+        {
+          label: {
+            title: 'Parte IV',
+          },
+          questions: [
+            {
+              text: 'Question one IV',
+              isSubTitle: false,
+            },
+          ],
         },
       ],
     },
   ]
 };
+
+for (var roundId = 0; roundId < globalConfig.tabs.length ; roundId++) {
+	var content = globalConfig.tabs[roundId].content
+  globalConfig.tabs[roundId].id = roundId
+
+  for (var tabId = 0; tabId < content.length ; tabId++) {
+    content[tabId].id = roundId + '-' + tabId
+    content[tabId].questions = content[tabId].questions.map(function (question, idx) {
+      return {
+        index: roundId + '-' + tabId + '-' + idx,
+        text: question.text,
+        isSubTitle: question.isSubTitle,
+      }
+    })
+  }
+}
+
+var roundScores = [
+  {
+    roundId: 1,
+    teams: [
+      {
+        id: 1,
+        scores: []
+      }
+    ]
+  },
+  {
+    roundId: 2,
+    teams: [
+      {
+        id: 1,
+        scores: []
+      },
+      {
+        id: 2,
+        scores: []
+      }
+    ]
+  },
+  {
+    roundId: 3,
+    teams: [
+      {
+        id: 1,
+        scores: []
+      },
+      {
+        id: 2,
+        scores: []
+      }
+    ]
+  },
+  {
+    roundId: 4,
+    teams: [
+      {
+        id: 1,
+        scores: []
+      },
+      {
+        id: 2,
+        scores: []
+      }
+    ]
+  },
+  {
+    roundId: 5,
+    teams: [
+      {
+        id: 1,
+        scores: []
+      },
+      {
+        id: 2,
+        scores: []
+      }
+    ]
+  },
+]
+
+for (var roundId = 0; roundId < roundScores.length; roundId++) {
+	var round = roundScores[roundId]
+
+  for (var teamId = 0; teamId < round.teams.length ; teamId++) {
+  	var team = round.teams[teamId]
+
+    for (let tabId = 0; tabId < globalConfig.tabs[roundId].content.length; tabId++) {
+      team.scores.push({
+        tabId: globalConfig.tabs[roundId].id,
+        ratings: [],
+      })
+    }
+  }
+}
