@@ -57,7 +57,7 @@ function some(round_number){
   globalConfig.round_number = round_number;
 
   generateTabs(round_number < 3 ? round_number : 3)
-  generateQuestions(round_number < 3 ? round_number : 3)
+  generateQuestions(round_number < 3 ? round_number : 3, +round_number === 1 ? round_number : 2)
 
   // Wizard Initialization
   $('.wizard-card').bootstrapWizard({
@@ -226,7 +226,32 @@ function generateTabs(index) {
   $('.wizard-navigation .nav-pills').html(content)
 }
 
-function generateQuestions(index) {
+function generateRates(question, index, teamId) {
+  var scores = '<div class="wizard-content-line-first-part">' +
+    '<ul>'
+
+  var scoreRange = question.scoreRange
+    ? question.scoreRange
+    : globalConfig.tabs[index - 1].scoreRange
+
+  for (let scoreN = scoreRange[0]; scoreN <= scoreRange[1]; scoreN++) {
+    scores += '<li style="margin-right: 5px;" data-index="' +
+      question.index +
+    '" data-team-id="' +
+      teamId +
+    '">' +
+      '<a>' +
+        scoreN +
+      '</a>' +
+    '</li>'
+  }
+
+  scores += '</ul></div>'
+
+  return scores
+}
+
+function generateQuestions(index, teams) {
   var content = ''
   var tabQuestions = globalConfig.tabs[index - 1].content
 
@@ -244,27 +269,17 @@ function generateQuestions(index) {
       var scores = ''
 
       if (!question.isSubTitle) {
-        scores = '<div class="wizard-content-line-first-part">' +
-          '<ul>'
-
-        var scoreRange = question.scoreRange
-          ? question.scoreRange
-          : globalConfig.tabs[index - 1].scoreRange
-
-        for (let scoreN = scoreRange[0]; scoreN <= scoreRange[1]; scoreN++) {
-        	scores += '<li style="margin-right: 5px;" data-index="' +
-            question.index +
-          '"><a>' + scoreN + '</a></li>'
-        }
-
-        scores += '</ul></div>'
+        scores = generateRates(question, index, 1)
+        scores += +teams === 2 ? generateRates(question, index, 2) : ''
       }
 
       content += '<div class="wizard-content-wrapper__question">' +
         '<h' + tag + ' style="margin-bottom: 28px; max-width: 65%">' +
           question.text +
         '</h' + tag + '>' +
-        scores +
+        '<div style="display: flex;">' +
+          scores +
+        '</div>' +
       '</div>'
     }
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1)').html(content)
