@@ -2,6 +2,7 @@ var globalConfig = {
   round_number: 1,
   tabs: [
     {
+      scoreRange: [1, 2],
       content: [
         {
           label: {
@@ -147,6 +148,7 @@ var globalConfig = {
       ],
     },
     {
+      scoreRange: [1, 4],
       content: [
         {
           label: {
@@ -181,6 +183,7 @@ var globalConfig = {
       ]
     },
     {
+      scoreRange: [1, 4],
       content: [
         {
           label: {
@@ -229,6 +232,7 @@ var globalConfig = {
       ],
     },
     {
+      scoreRange: [1, 4],
       content: [
         {
           label: {
@@ -277,6 +281,7 @@ var globalConfig = {
       ],
     },
     {
+      scoreRange: [1, 4],
       content: [
         {
           label: {

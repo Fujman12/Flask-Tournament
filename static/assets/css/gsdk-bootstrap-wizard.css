@@ -3,16 +3,16 @@
  =========================================================
  * Bootstrap Wizard - v1.1.1
  =========================================================
- 
+
  * Product Page: https://www.creative-tim.com/product/bootstrap-wizard
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/bootstrap-wizard/blob/master/LICENSE.md)
- 
+
  =========================================================
- 
+
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
- 
+
 a {
   color: #2CA8FF;
 }
@@ -411,7 +411,7 @@ div[class^="wizard-content-line"] p,div[class^="wizard-content-line"] ul,div[cla
   display: inline-block;
 }
 div[class^="wizard-content-line"] p{
-  font-size: 19px;  
+  font-size: 19px;
 }
 div[class^="wizard-content-line"] ul {
   padding: 0;
@@ -1007,4 +1007,10 @@ label small {
   .btn-wd {
     min-width: 140px;
   }
+}
+
+.wizard-content-wrapper__question {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }

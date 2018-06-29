@@ -231,13 +231,36 @@ function generateQuestions(index) {
     for (var i = 0; i < questions.length; i++) {
       var question = questions[i]
       var tag = question.isSubTitle ? 3 : 4
+      var scores = ''
 
-      content += '<h' + tag + ' style="margin-bottom: 28px;">' +
-        question.text +
-        '</h' + tag + '>'
+      if (!question.isSubTitle) {
+        scores = '<div class="wizard-content-line-first-part">' +
+          '<ul>'
+
+        var scoreRange = question.scoreRange
+          ? question.scoreRange
+          : globalConfig.tabs[index - 1].scoreRange
+
+        for (let scoreN = scoreRange[0]; scoreN <= scoreRange[1]; scoreN++) {
+        	scores += '<li style="margin-right: 5px;"><a>' + scoreN + '</a></li>'
+        }
+
+        scores += '</ul></div>'
+      }
+
+      content += '<div class="wizard-content-wrapper__question">' +
+        '<h' + tag + ' style="margin-bottom: 28px; max-width: 65%">' +
+          question.text +
+        '</h' + tag + '>' +
+        scores +
+      '</div>'
     }
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1)').html(content)
   }
+}
+
+function generateMarks() {
+
 }
 
 function debounce(func, wait, immediate) {
