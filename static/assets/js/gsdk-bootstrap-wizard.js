@@ -15,56 +15,13 @@
 
 // Get Shit Done Kit Bootstrap Wizard Functions
 
+setTimeout(() => {
+  document.querySelector('#select-participant').click()
+  setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
+}, 1000)
+
 searchVisible = 0;
 transparent = true;
-
-var globalConfig = {
-  round_number: 1,
-  tabs: [
-    {
-      list: [
-        {
-          title: 'Parte I',
-        },
-        {
-          title: 'Parte II',
-        },
-        {
-          title: 'Parte III',
-        },
-        {
-          title: 'Parte IV',
-        }
-      ],
-    },
-    {
-      list: [
-        {
-          title: 'Parte I',
-        },
-        {
-          title: 'Parte II',
-        },
-      ]
-    },
-    {
-      list: [
-        {
-          title: 'Parte I',
-        },
-        {
-          title: 'Parte II',
-        },
-        {
-          title: 'Parte III',
-        },
-        {
-          title: 'Parte IV',
-        }
-      ],
-    },
-  ]
-};
 
 function some(round_number){
 
@@ -89,11 +46,12 @@ function some(round_number){
     }
   });
 
-  // round_number = 5;
+  round_number = 1;
 
   globalConfig.round_number = round_number;
 
   generateTabs(round_number < 3 ? round_number : 3)
+  generateQuestions(round_number < 3 ? round_number : 3)
 
   // Wizard Initialization
   $('.wizard-card').bootstrapWizard({
@@ -237,7 +195,7 @@ $(window).resize(function(){
 
 function refreshAnimation($wizard, index){
   var round_number = globalConfig.round_number < 3 ? globalConfig.round_number : 3
-  total_steps = globalConfig.tabs[round_number - 1].list.length;
+  total_steps = globalConfig.tabs[round_number - 1].content.length;
   move_distance = $wizard.width() / total_steps * index;
 
   $wizard.find('.moving-tab').css('width', 100 / total_steps + '%');
@@ -249,17 +207,37 @@ function refreshAnimation($wizard, index){
 
 function generateTabs(index) {
   var content = ''
-  var tabs = globalConfig.tabs[index - 1].list
+  var tabs = globalConfig.tabs[index - 1].content
 
   for (var i = 0; i < tabs.length; i++) {
     content += '<li style="width: ' + 100 / tabs.length + '%;">' +
       '<a href="#round-' + index + '-' + (i + 1) + '" data-toggle="tab" class="" aria-expanded="false">' +
-        tabs[i].title +
+        tabs[i].label.title +
       '</a>' +
     '</li>'
   }
 
   $('.wizard-navigation .nav-pills').html(content)
+}
+
+function generateQuestions(index) {
+  var content = ''
+  var tabQuestions = globalConfig.tabs[index - 1].content
+
+  for (var idx = 0; idx < tabQuestions.length; idx++) {
+    content = ''
+    var questions = tabQuestions[idx].questions
+
+    for (var i = 0; i < questions.length; i++) {
+      var question = questions[i]
+      var tag = question.isSubTitle ? 3 : 4
+
+      content += '<h' + tag + ' style="margin-bottom: 28px;">' +
+        question.text +
+        '</h' + tag + '>'
+    }
+    $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1)').html(content)
+  }
 }
 
 function debounce(func, wait, immediate) {
