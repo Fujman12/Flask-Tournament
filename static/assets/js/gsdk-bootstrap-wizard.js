@@ -18,6 +18,54 @@
 searchVisible = 0;
 transparent = true;
 
+var globalConfig = {
+  round_number: 1,
+  tabs: [
+    {
+      list: [
+        {
+          title: 'Parte I',
+        },
+        {
+          title: 'Parte II',
+        },
+        {
+          title: 'Parte III',
+        },
+        {
+          title: 'Parte IV',
+        }
+      ],
+    },
+    {
+      list: [
+        {
+          title: 'Parte I',
+        },
+        {
+          title: 'Parte II',
+        },
+      ]
+    },
+    {
+      list: [
+        {
+          title: 'Parte I',
+        },
+        {
+          title: 'Parte II',
+        },
+        {
+          title: 'Parte III',
+        },
+        {
+          title: 'Parte IV',
+        }
+      ],
+    },
+  ]
+};
+
 function some(round_number){
 
   /*  Activate the tooltips      */
@@ -41,34 +89,11 @@ function some(round_number){
     }
   });
 
+  // round_number = 5;
 
-  switch(round_number) {
-    case 1:
-      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-1-1");
-      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-1-2");
-      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-1-3");
-      break;
-    case 2:
-      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-2-1");
-      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-2-2");
-      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-2-3");
-      break;
-    case 3:
-      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-      break;
-    case 4:
-      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-      break;
-    case 5:
-      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-      break;
-  }
+  globalConfig.round_number = round_number;
+
+  generateTabs(round_number < 3 ? round_number : 3)
 
   // Wizard Initialization
   $('.wizard-card').bootstrapWizard({
@@ -211,16 +236,30 @@ $(window).resize(function(){
 });
 
 function refreshAnimation($wizard, index){
-  total_steps = 4;
-  move_distance = $wizard.width() / total_steps;
-  move_distance *= index;
+  var round_number = globalConfig.round_number < 3 ? globalConfig.round_number : 3
+  total_steps = globalConfig.tabs[round_number - 1].list.length;
+  move_distance = $wizard.width() / total_steps * index;
 
   $wizard.find('.moving-tab').css('width', 100 / total_steps + '%');
   $('.moving-tab').css({
     'transform':'translate3d(' + move_distance + 'px, 0, 0)',
     'transition': 'all 0.3s ease-out'
-
   });
+}
+
+function generateTabs(index) {
+  var content = ''
+  var tabs = globalConfig.tabs[index - 1].list
+
+  for (var i = 0; i < tabs.length; i++) {
+    content += '<li style="width: ' + 100 / tabs.length + '%;">' +
+      '<a href="#round-' + index + '-' + (i + 1) + '" data-toggle="tab" class="" aria-expanded="false">' +
+        tabs[i].title +
+      '</a>' +
+    '</li>'
+  }
+
+  $('.wizard-navigation .nav-pills').html(content)
 }
 
 function debounce(func, wait, immediate) {
