@@ -3,13 +3,13 @@
  =========================================================
  * Bootstrap Wizard - v1.1.1
  =========================================================
- 
+
  * Product Page: https://www.creative-tim.com/product/bootstrap-wizard
  * Copyright 2017 Creative Tim (http://www.creative-tim.com)
  * Licensed under MIT (https://github.com/creativetimofficial/bootstrap-wizard/blob/master/LICENSE.md)
- 
+
  =========================================================
- 
+
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
  */
 
@@ -20,219 +20,218 @@ transparent = true;
 
 function some(round_number){
 
-    /*  Activate the tooltips      */
-    $('[rel="tooltip"]').tooltip();
+  /*  Activate the tooltips      */
+  $('[rel="tooltip"]').tooltip();
 
-    // Code for the Validator
-    var $validator = $('.wizard-card form').validate({
-		  rules: {
-		    firstname: {
-		      required: true,
-		      minlength: 3
-		    },
-		    lastname: {
-		      required: true,
-		      minlength: 3
-		    },
-		    email: {
-		      required: true,
-		      minlength: 3,
-		    }
-        }
-	});
-
-
-    switch(round_number) {
-        case 1:
-            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-1-1");
-            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-1-2");
-            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-1-3");
-            break;
-        case 2:
-            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-2-1");
-            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-2-2");
-            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-2-3");
-            break;
-        case 3:
-            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-            break;
-        case 4:
-            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-            break;
-        case 5:
-            $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
-            $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
-            $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
-            break;
+  // Code for the Validator
+  var $validator = $('.wizard-card form').validate({
+    rules: {
+      firstname: {
+        required: true,
+        minlength: 3
+      },
+      lastname: {
+        required: true,
+        minlength: 3
+      },
+      email: {
+        required: true,
+        minlength: 3,
+      }
     }
+  });
 
-    // Wizard Initialization
-  	$('.wizard-card').bootstrapWizard({
-        'tabClass': 'nav nav-pills',
-        'nextSelector': '.btn-next',
-        'previousSelector': '.btn-previous',
 
-        onNext: function(tab, navigation, index) {
-        	var $valid = $('.wizard-card form').valid();
-        	if(!$valid) {
-        		$validator.focusInvalid();
-        		return false;
-        	}
-        },
+  switch(round_number) {
+    case 1:
+      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-1-1");
+      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-1-2");
+      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-1-3");
+      break;
+    case 2:
+      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-2-1");
+      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-2-2");
+      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-2-3");
+      break;
+    case 3:
+      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+      break;
+    case 4:
+      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+      break;
+    case 5:
+      $(".wizard-navigation .nav-pills li:nth-child(1) a").attr("href", "#round-3-1");
+      $(".wizard-navigation .nav-pills li:nth-child(2) a").attr("href", "#round-3-2");
+      $(".wizard-navigation .nav-pills li:nth-child(3) a").attr("href", "#round-3-3");
+      break;
+  }
 
-        onInit : function(tab, navigation, index){
+  // Wizard Initialization
+  $('.wizard-card').bootstrapWizard({
+    'tabClass': 'nav nav-pills',
+    'nextSelector': '.btn-next',
+    'previousSelector': '.btn-previous',
 
-          //check number of tabs and fill the entire row
-          var $total = navigation.find('li').length;
-          $width = 100/$total;
-          var $wizard = navigation.closest('.wizard-card');
+    onNext: function(tab, navigation, index) {
+      var $valid = $('.wizard-card form').valid();
+      if(!$valid) {
+        $validator.focusInvalid();
+        return false;
+      }
+    },
 
-          $display_width = $(document).width();
+    onInit : function(tab, navigation, index){
 
-          if($display_width < 600 && $total > 3){
-              $width = 50;
-          }
+      //check number of tabs and fill the entire row
+      var $total = navigation.find('li').length;
+      $width = 100/$total;
+      var $wizard = navigation.closest('.wizard-card');
 
-           navigation.find('li').css('width',$width + '%');
-           $first_li = navigation.find('li:first-child a').html();
-           $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
-           $('.wizard-card .wizard-navigation').append($moving_div);
-           refreshAnimation($wizard, index);
-           $('.moving-tab').css('transition','transform 0s');
-       },
+      $display_width = $(document).width();
 
-        onTabClick : function(tab, navigation, index){
+      if($display_width < 600 && $total > 3){
+        $width = 50;
+      }
 
-            var $valid = $('.wizard-card form').valid();
+      navigation.find('li').css('width',$width + '%');
+      $first_li = navigation.find('li:first-child a').html();
+      $moving_div = $('<div class="moving-tab">' + $first_li + '</div>');
+      $('.wizard-card .wizard-navigation').append($moving_div);
+      refreshAnimation($wizard, index);
+      $('.moving-tab').css('transition','transform 0s');
+    },
 
-            if(!$valid){
-                return false;
-            } else {
-                return true;
-            }
-        },
+    onTabClick : function(tab, navigation, index){
 
-        onTabShow: function(tab, navigation, index) {
-            var $total = navigation.find('li').length;
-            var $current = index+1;
+      var $valid = $('.wizard-card form').valid();
 
-            var $wizard = navigation.closest('.wizard-card');
+      if(!$valid){
+        return false;
+      } else {
+        return true;
+      }
+    },
 
-            // If it's the last tab then hide the last button and show the finish instead
-            if($current >= $total) {
-                $($wizard).find('.btn-next').hide();
-                $($wizard).find('.btn-finish').show();
-            } else {
-                $($wizard).find('.btn-next').show();
-                $($wizard).find('.btn-finish').hide();
-            }
+    onTabShow: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
 
-            button_text = navigation.find('li:nth-child(' + $current + ') a').html();
+      var $wizard = navigation.closest('.wizard-card');
 
-            setTimeout(function(){
-                $('.moving-tab').text(button_text);
-            }, 150);
+      // If it's the last tab then hide the last button and show the finish instead
+      if($current >= $total) {
+        $($wizard).find('.btn-next').hide();
+        $($wizard).find('.btn-finish').show();
+      } else {
+        $($wizard).find('.btn-next').show();
+        $($wizard).find('.btn-finish').hide();
+      }
 
-            var checkbox = $('.footer-checkbox');
+      button_text = navigation.find('li:nth-child(' + $current + ') a').html();
 
-            if( !index == 0 ){
-                $(checkbox).css({
-                    'opacity':'0',
-                    'visibility':'hidden',
-                    'position':'absolute'
-                });
-            } else {
-                $(checkbox).css({
-                    'opacity':'1',
-                    'visibility':'visible'
-                });
-            }
+      setTimeout(function(){
+        $('.moving-tab').text(button_text);
+      }, 150);
 
-            refreshAnimation($wizard, index);
-        }
-  	});
+      var checkbox = $('.footer-checkbox');
 
-    // Prepare the preview for profile picture
-    $("#wizard-picture").change(function(){
-        readURL(this);
-    });
+      if( !index == 0 ){
+        $(checkbox).css({
+          'opacity':'0',
+          'visibility':'hidden',
+          'position':'absolute'
+        });
+      } else {
+        $(checkbox).css({
+          'opacity':'1',
+          'visibility':'visible'
+        });
+      }
 
-    $('[data-toggle="wizard-radio"]').click(function(){
-        wizard = $(this).closest('.wizard-card');
-        wizard.find('[data-toggle="wizard-radio"]').removeClass('active');
-        $(this).addClass('active');
-        $(wizard).find('[type="radio"]').removeAttr('checked');
-        $(this).find('[type="radio"]').attr('checked','true');
-    });
+      refreshAnimation($wizard, index);
+    }
+  });
 
-    $('[data-toggle="wizard-checkbox"]').click(function(){
-        if( $(this).hasClass('active')){
-            $(this).removeClass('active');
-            $(this).find('[type="checkbox"]').removeAttr('checked');
-        } else {
-            $(this).addClass('active');
-            $(this).find('[type="checkbox"]').attr('checked','true');
-        }
-    });
+  // Prepare the preview for profile picture
+  $("#wizard-picture").change(function(){
+    readURL(this);
+  });
 
-    $('.set-full-height').css('height', 'auto');
+  $('[data-toggle="wizard-radio"]').click(function(){
+    wizard = $(this).closest('.wizard-card');
+    wizard.find('[data-toggle="wizard-radio"]').removeClass('active');
+    $(this).addClass('active');
+    $(wizard).find('[type="radio"]').removeAttr('checked');
+    $(this).find('[type="radio"]').attr('checked','true');
+  });
+
+  $('[data-toggle="wizard-checkbox"]').click(function(){
+    if( $(this).hasClass('active')){
+      $(this).removeClass('active');
+      $(this).find('[type="checkbox"]').removeAttr('checked');
+    } else {
+      $(this).addClass('active');
+      $(this).find('[type="checkbox"]').attr('checked','true');
+    }
+  });
+
+  $('.set-full-height').css('height', 'auto');
 
 };
 
 
 
- //Function to show image before upload
+//Function to show image before upload
 
 function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
 
-        reader.onload = function (e) {
-            $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
-        }
-        reader.readAsDataURL(input.files[0]);
+    reader.onload = function (e) {
+      $('#wizardPicturePreview').attr('src', e.target.result).fadeIn('slow');
     }
+    reader.readAsDataURL(input.files[0]);
+  }
 }
 
 $(window).resize(function(){
-    $('.wizard-card').each(function(){
-        $wizard = $(this);
-        index = $wizard.bootstrapWizard('currentIndex');
-        refreshAnimation($wizard, index);
+  $('.wizard-card').each(function(){
+    $wizard = $(this);
+    index = $wizard.bootstrapWizard('currentIndex');
+    refreshAnimation($wizard, index);
 
-        $('.moving-tab').css({
-            'transition': 'transform 0s'
-        });
+    $('.moving-tab').css({
+      'transition': 'transform 0s'
     });
+  });
 });
 
 function refreshAnimation($wizard, index){
-    total_steps = 3;
-    move_distance = $wizard.width() / total_steps;
-    step_width = move_distance;
-    move_distance *= index;
+  total_steps = 4;
+  move_distance = $wizard.width() / total_steps;
+  move_distance *= index;
 
-    $wizard.find('.moving-tab').css('width', '33.3333%');
-    $('.moving-tab').css({
-        'transform':'translate3d(' + move_distance + 'px, 0, 0)',
-        'transition': 'all 0.3s ease-out'
+  $wizard.find('.moving-tab').css('width', 100 / total_steps + '%');
+  $('.moving-tab').css({
+    'transform':'translate3d(' + move_distance + 'px, 0, 0)',
+    'transition': 'all 0.3s ease-out'
 
-    });
+  });
 }
 
 function debounce(func, wait, immediate) {
-	var timeout;
-	return function() {
-		var context = this, args = arguments;
-		clearTimeout(timeout);
-		timeout = setTimeout(function() {
-			timeout = null;
-			if (!immediate) func.apply(context, args);
-		}, wait);
-		if (immediate && !timeout) func.apply(context, args);
-	};
+  var timeout;
+  return function() {
+    var context = this, args = arguments;
+    clearTimeout(timeout);
+    timeout = setTimeout(function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    }, wait);
+    if (immediate && !timeout) func.apply(context, args);
+  };
 };
