@@ -20,6 +20,12 @@ setTimeout(() => {
   setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
 }, 1000)
 
+(function() {
+  var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+  window.requestAnimationFrame = requestAnimationFrame;
+})();
+
 searchVisible = 0;
 transparent = true;
 
@@ -228,6 +234,10 @@ function generateQuestions(index) {
     content = ''
     var questions = tabQuestions[idx].questions
 
+    if (tabQuestions[idx].label.subtitle) {
+      $('#round-' + index + '-' + (idx + 1) + '-second-title').text(tabQuestions[idx].label.subtitle)
+    }
+
     for (var i = 0; i < questions.length; i++) {
       var question = questions[i]
       var tag = question.isSubTitle ? 3 : 4
@@ -242,7 +252,9 @@ function generateQuestions(index) {
           : globalConfig.tabs[index - 1].scoreRange
 
         for (let scoreN = scoreRange[0]; scoreN <= scoreRange[1]; scoreN++) {
-        	scores += '<li style="margin-right: 5px;"><a>' + scoreN + '</a></li>'
+        	scores += '<li style="margin-right: 5px;" data-index="' +
+            question.index +
+          '"><a>' + scoreN + '</a></li>'
         }
 
         scores += '</ul></div>'
@@ -256,11 +268,20 @@ function generateQuestions(index) {
       '</div>'
     }
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1)').html(content)
+
+    $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1) li').on('click', function () {
+      var el = $(this)
+      requestAnimationFrame(function () {
+        selectScore(el, el.find('a').text())
+      })
+    })
   }
 }
 
-function generateMarks() {
-
+function selectScore(el, value) {
+  var parent = el.parent()
+  parent.find('li').removeClass('wizard-content-wrapper__li--active')
+  el.addClass('wizard-content-wrapper__li--active')
 }
 
 function debounce(func, wait, immediate) {

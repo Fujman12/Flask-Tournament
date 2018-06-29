@@ -1014,3 +1014,7 @@ label small {
   justify-content: space-between;
   align-items: flex-start;
 }
+
+.wizard-content-wrapper__li--active {
+  background: #FF9500;
+}
