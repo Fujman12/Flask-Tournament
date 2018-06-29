@@ -52,7 +52,7 @@ function some(round_number){
     }
   });
 
-  round_number = 1;
+  round_number = 2;
 
   globalConfig.round_number = round_number;
 
@@ -227,7 +227,7 @@ function generateTabs(index) {
 }
 
 function generateRates(question, index, teamId) {
-  var scores = '<div class="wizard-content-line-first-part">' +
+  var scores = '<div class="wizard-content-line-first-part__score">' +
     '<ul>'
 
   var scoreRange = question.scoreRange

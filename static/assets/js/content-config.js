@@ -414,30 +414,161 @@ var globalConfig = {
         {
           label: {
             title: 'Parte I',
+            subtitle: 'Instrumento de Evaluación Audiencia Inicial',
           },
           questions: [
             {
-              text: 'Second round',
+              text: 'CONTROL DE LA DETENCIÓN (7 min por cada rol procesal)',
               isSubTitle: true,
             },
             {
-              text: 'Question one',
+              text: 'Sus argumentos sobre el control o no de la detención fueron correctos',
               isSubTitle: false,
+            },
+            {
+              text: 'Sus argumentos fueron solo respecto a la detención y la retención del imputado',
+              isSubTitle: false,
+            },
+            {
+              text: 'Sus argumentos estaban sustentados en antecedentes de investigación pertinentes',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'FORMULACIÓN DE IMPUTACIÓN (5 min por cada rol procesal)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Mencionó solo hechos penalmente relevantes, pidió aclaraciones pertinentes',
+              isSubTitle: false,
+            },
+            {
+              text: 'Estuvo atento y tomó nota de la intervención de su contraparte',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'VINCULACIÓN A PROCESO (12 min por cada rol procesal) ',
+              isSubTitle: true,
+            },
+            {
+              text: 'Expone claramente su teoría del caso',
+              isSubTitle: false,
+            },
+            {
+              text: 'Enumera o impugna los datos de prueba de forma correcta',
+              isSubTitle: false,
+            },
+            {
+              text: 'Argumenta y enlaza los elementos fácticos, probatorios y jurídicos',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'MEDIDAS CAUTELARES (7 min por cada rol procesal)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Solicita la imposición o denegación de la o las medidas cautelares (proporcionalidad, instrumentalidad)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Argumenta sobre los elementos objetivos y subjetivos de la teoría del riesgo (naturaleza del hecho, daño causado, arraigo, antecedentes de fuga, etc.)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Aporta datos concretos sobre el riesgo planteado o su inexistencia',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'PLAZO DE CIERRE (3 min por cada rol procesal)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Solicitó un plazo adecuado de investigación',
+              isSubTitle: false,
+            },
+            {
+              text: 'Justificó / se opuso de manera correcta el plazo solicitado',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'GENERALES (Durante toda la audiencia)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Oralidad / Lenguaje verbal (tono de voz, dicción, ritmo, volumen, vocabulario)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Expresión / Lenguaje no verbal acorde con el lenguaje verbal',
+              isSubTitle: false,
+            },
+            {
+              text: 'Profesionalismo en la sala (puntualidad, preparación, respeto)',
+              isSubTitle: false,
+              scoreRange: [0, 8],
             },
           ]
         },
         {
           label: {
             title: 'Parte II',
+            subtitle: 'Instrumento de Evaluación Debate sobre Prueba Ilícita',
           },
           questions: [
             {
-              text: 'Second round tab',
+              text: 'NULIDAD DE LA PRUEBA (8 minutos) Debate 1 - Defensa vs Ministerio Público',
               isSubTitle: true,
             },
             {
-              text: 'Question one',
+              text: 'El supuesto de ilicitud probatoria invocado fue correcto / la refutación al supuesto de ilicitud probatoria fue correcto',
               isSubTitle: false,
+            },
+            {
+              text: 'Planteó la ilicitud probatoria en datos de prueba pertinentes / refutó el planteamiento en datos de prueba pertinentes',
+              isSubTitle: false,
+            },
+            {
+              text: 'Los argumentos del planteamiento de ilicitud fueron correctos / los argumentos de refutación fueron correctos',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'NULIDAD DE LA PRUEBA (8 minutos) Debate 2 - Ministerio Público vs Defensa',
+              isSubTitle: true,
+            },
+            {
+              text: 'El supuesto de ilicitud probatoria invocado fue correcto / la refutación al supuesto de ilicitud probatoria fue correcto',
+              isSubTitle: false,
+            },
+            {
+              text: 'Planteó la ilicitud probatoria en datos de prueba pertinentes / refutó el planteamiento en datos de prueba pertinentes',
+              isSubTitle: false,
+            },
+            {
+              text: 'Los argumentos del planteamiento de ilicitud fueron correctos / los argumentos de refutación fueron correctos',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'GENERALES (Durante toda la audiencia)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Oralidad / Lenguaje verbal (tono de voz, dicción, ritmo, volumen, vocabulario)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Expresión / Lenguaje no verbal acorde con el lenguaje verbal',
+              isSubTitle: false,
+            },
+            {
+              text: 'Profesionalismo en la sala (puntualidad, preparación, respeto)',
+              isSubTitle: false,
+              scoreRange: [0, 8],
             },
           ]
         },
@@ -603,6 +734,7 @@ for (var roundId = 0; roundId < globalConfig.tabs.length ; roundId++) {
       return {
         index: roundId + '-' + tabId + '-' + idx,
         text: question.text,
+        scoreRange: question.scoreRange,
         isSubTitle: question.isSubTitle,
       }
     })

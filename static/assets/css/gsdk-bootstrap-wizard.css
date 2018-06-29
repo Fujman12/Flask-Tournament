@@ -1018,3 +1018,17 @@ label small {
 .wizard-content-wrapper__li--active {
   background: #FF9500;
 }
+
+.wizard-content-line-first-part__score {
+  max-width: 143px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.wizard-content-line-first-part__score li {
+  margin-bottom: 5px;
+}
+
+.wizard-content-line-first-part__score:last-of-type {
+  margin-left: 20px;
+}
