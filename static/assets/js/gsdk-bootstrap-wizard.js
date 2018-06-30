@@ -298,16 +298,33 @@ function generateQuestions(index, teams) {
 
 function selectScore(el) {
   var parent = el.parent()
-  console.log(el)
-  let [
+  const [
     roundId,
     tabId,
     questId,
   ] = el.data('index').split('-')
 
-  console.log(roundId, tabId, questId)
+  let tab = roundScores
+    .find(round => +round.roundId === +roundId).teams
+    .find(team => +team.id === +el.data('team-id')).scores
+    .find(tab => `${tab.tabId}` === `${roundId}-${tabId}`)
+
+  let questionMark = tab.ratings.find(question => +question.id === +questId)
+  let score = el.data('value')
+
+  if (questionMark) {
+    questionMark.score = score
+  }
+
+  if (!questionMark) {
+    tab.ratings.push({
+      id: questId,
+      score,
+    })
+  }
+
   parent.find('li').removeClass('wizard-content-wrapper__li--active')
-  el.addClass('wizard-content-wrapper__li--active')
+  parent.find(`li[data-value="${score}"]`).addClass('wizard-content-wrapper__li--active')
 }
 
 function debounce(func, wait, immediate) {
