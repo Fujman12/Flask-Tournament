@@ -726,13 +726,13 @@ var globalConfig = {
 
 for (var roundId = 0; roundId < globalConfig.tabs.length ; roundId++) {
 	var content = globalConfig.tabs[roundId].content
-  globalConfig.tabs[roundId].id = roundId
+  globalConfig.tabs[roundId].id = (+roundId + 1)
 
   for (var tabId = 0; tabId < content.length ; tabId++) {
-    content[tabId].id = roundId + '-' + tabId
+    content[tabId].id = (+roundId + 1) + '-' + (+tabId + 1)
     content[tabId].questions = content[tabId].questions.map(function (question, idx) {
       return {
-        index: roundId + '-' + tabId + '-' + idx,
+        index: (roundId + 1) + '-' + (tabId + 1) + '-' + idx,
         text: question.text,
         scoreRange: question.scoreRange,
         isSubTitle: question.isSubTitle,
@@ -813,7 +813,7 @@ for (var roundId = 0; roundId < roundScores.length; roundId++) {
 
     for (let tabId = 0; tabId < globalConfig.tabs[roundId].content.length; tabId++) {
       team.scores.push({
-        tabId: globalConfig.tabs[roundId].id,
+        tabId: globalConfig.tabs[roundId].content[tabId].id,
         ratings: [],
       })
     }

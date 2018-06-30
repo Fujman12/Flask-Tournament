@@ -16,8 +16,8 @@
 // Get Shit Done Kit Bootstrap Wizard Functions
 
 setTimeout(() => {
-  // document.querySelector('#select-participant').click()
-  // setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
+  document.querySelector('#select-participant').click()
+  setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
 }, 1000)
 
 (function() {
@@ -239,7 +239,10 @@ function generateRates(question, index, teamId) {
       question.index +
     '" data-team-id="' +
       teamId +
-    '">' +
+    '" data-value="' +
+      scoreN +
+    '"' +
+    '>' +
       '<a>' +
         scoreN +
       '</a>' +
@@ -287,14 +290,22 @@ function generateQuestions(index, teams) {
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1) li').on('click', function () {
       var el = $(this)
       requestAnimationFrame(function () {
-        selectScore(el, el.find('a').text())
+        selectScore(el)
       })
     })
   }
 }
 
-function selectScore(el, value) {
+function selectScore(el) {
   var parent = el.parent()
+  console.log(el)
+  let [
+    roundId,
+    tabId,
+    questId,
+  ] = el.data('index').split('-')
+
+  console.log(roundId, tabId, questId)
   parent.find('li').removeClass('wizard-content-wrapper__li--active')
   el.addClass('wizard-content-wrapper__li--active')
 }
