@@ -54,8 +54,8 @@ function some(round_number){
 
   // round_number = 3;
 
-  globalConfig.round_number = round_number;
-  globalConfig.actual_round_number = 4;
+  globalConfig.round_number = round_number <= 3 ? round_number : 3;
+  globalConfig.actual_round_number = round_number;
 
   generateTabs(round_number < 3 ? round_number : 3)
   generateQuestions(round_number < 3 ? round_number : 3, +round_number === 1 ? round_number : 2)
