@@ -15,10 +15,10 @@
 
 // Get Shit Done Kit Bootstrap Wizard Functions
 
-setTimeout(() => {
-  document.querySelector('#select-participant').click()
-  setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
-}, 1000)
+// setTimeout(() => {
+//   document.querySelector('#select-participant').click()
+//   setTimeout(() => document.querySelector('.btn.btn-primary.btn-block.participant-select-button').click(), 500)
+// }, 1000)
 
 (function() {
   var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
@@ -52,9 +52,10 @@ function some(round_number){
     }
   });
 
-  // round_number = 2;
+  // round_number = 3;
 
   globalConfig.round_number = round_number;
+  globalConfig.actual_round_number = 4;
 
   generateTabs(round_number < 3 ? round_number : 3)
   generateQuestions(round_number < 3 ? round_number : 3, +round_number === 1 ? round_number : 2)
@@ -224,6 +225,10 @@ function generateTabs(index) {
   }
 
   $('.wizard-navigation .nav-pills').html(content)
+  bindPlayersChange()
+  $(`.participant-choose ul`).each(function () {
+    rerenderPlayerChoose($(this))
+  })
 }
 
 function generateRates(question, index, teamId) {
@@ -288,10 +293,7 @@ function generateQuestions(index, teams) {
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1)').html(content)
 
     $('#round-' + index + '-' + (idx + 1) + ' > div > div:nth-of-type(1) li').on('click', function () {
-      var el = $(this)
-      requestAnimationFrame(function () {
-        selectScore(el)
-      })
+      selectScore($(this))
     })
   }
 }
@@ -304,12 +306,22 @@ function selectScore(el) {
     questId,
   ] = el.data('index').split('-')
 
-  let tab = roundScores
+  let team = roundScores
     .find(round => +round.roundId === +roundId).teams
-    .find(team => +team.id === +el.data('team-id')).scores
+    .find(team => +team.id === +el.data('team-id'))
+
+  let tab = team.scores
     .find(tab => `${tab.tabId}` === `${roundId}-${tabId}`)
 
-  let questionMark = tab.ratings.find(question => +question.id === +questId)
+  let questionMark = team.selectedPlayerId
+    ? tab.ratings.find(
+        question => +question.id === +questId &&
+          +question.playerId === +team.selectedPlayerId
+      )
+    : tab.ratings.find(
+      question => +question.id === +questId
+    )
+
   let score = el.data('value')
 
   if (questionMark) {
@@ -317,14 +329,67 @@ function selectScore(el) {
   }
 
   if (!questionMark) {
-    tab.ratings.push({
+    tab.ratings.push(team.selectedPlayerId ? {
+      id: questId,
+      playerId: team.selectedPlayerId,
+      score,
+    } : {
       id: questId,
       score,
     })
   }
 
-  parent.find('li').removeClass('wizard-content-wrapper__li--active')
-  parent.find(`li[data-value="${score}"]`).addClass('wizard-content-wrapper__li--active')
+  rerenderLis(parent, score)
+}
+
+function bindPlayersChange() {
+  $('.participant-choose li').on('click', function () {
+    if (globalConfig.round_number < 3) return
+
+    let teamId = $(this).data('team-id')
+    let playerId = $(this).data('value')
+
+    let team = roundScores
+      .find(round => +round.roundId === globalConfig.round_number).teams
+      .find(team => +team.id === +teamId)
+
+    team.selectedPlayerId = playerId
+
+    $(`.participant-choose ul[data-team-id=${teamId}]`).each(function () {
+      rerenderPlayerChoose($(this))
+    })
+
+    team.scores.forEach(score => {
+      const [, tabId] = score.tabId.split('-')
+      $(`#round-3-${tabId} .wizard-content-wrapper__question > div > .wizard-content-line-first-part__score:nth-of-type(${teamId}) ul`).each(function () {
+        let [,, questId] = $(this).find('li:first-child').data('index').split('-')
+        let rating = score.ratings.find(rating =>
+          +rating.id === +questId && +rating.playerId === +playerId
+        )
+
+        let val = rating ? rating.score : 10000000
+
+        rerenderLis($(this), val)
+      })
+    })
+  })
+}
+
+function rerenderPlayerChoose(parent) {
+  let teamId = parent.data('team-id')
+
+  let playerId = roundScores
+    .find(round => +round.roundId === globalConfig.round_number).teams
+    .find(team => +team.id === +teamId).selectedPlayerId
+
+  rerenderLis(parent, playerId)
+}
+
+function rerenderLis(parent, value) {
+  requestAnimationFrame(function () {
+    parent.find('li').removeClass('wizard-content-wrapper__li--active')
+    parent.find(`li[data-value=${value}]`).addClass('wizard-content-wrapper__li--active')
+  })
 }
 
 function debounce(func, wait, immediate) {

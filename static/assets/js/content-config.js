@@ -1,5 +1,6 @@
 var globalConfig = {
   round_number: 1,
+  actual_round_number: 1,
   tabs: [
     {
       scoreRange: [1, 2],
@@ -583,7 +584,35 @@ var globalConfig = {
           },
           questions: [
             {
-              text: 'Question one I',
+              text: 'Alegatos De Apertura (Duplicated for Pros/Defensa)',
+              isSubTitle: true,
+            },
+            {
+              text: 'Relato organizado de hechos',
+              isSubTitle: false,
+            },
+            {
+              text: 'Anuncia los medios probatorios que apoyaran su relato',
+              isSubTitle: false,
+            },
+            {
+              text: 'Preciso las figuras jurídicas aplicables',
+              isSubTitle: false,
+            },
+            {
+              text: 'Realizo las figuras jurídicas aplicables',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje no verbal para ilustrar el alegato',
+              isSubTitle: false,
+            },
+            {
+              text: 'Capta de manera positiva el interés del juzgador',
+              isSubTitle: false,
+            },
+            {
+              text: 'Us del manera positiva de un lema o tema',
               isSubTitle: false,
             },
           ],
@@ -594,7 +623,73 @@ var globalConfig = {
           },
           questions: [
             {
-              text: 'Question one II',
+              text: 'Periodo Probatorio',
+              isSubTitle: true,
+            },
+            {
+              text: 'Acredito al declarante',
+              isSubTitle: false,
+            },
+            {
+              text: 'Examino al declarante de manera organizada',
+              isSubTitle: false,
+            },
+            {
+              text: 'Examino al declarante sobre los temas pertinentes',
+              isSubTitle: false,
+            },
+            {
+              text: 'Examino al declarante con preguntas no objectables',
+              isSubTitle: false,
+            },
+            {
+              text: 'Extrajo toda la información relevante (incluyendo declaraciones previas si es pertinente)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Introdujo medios de prueba (documentos o evidencia material) o efectua tecnicas demostrativas idoneas',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje Verbal adecuado, claro y entendible',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje no verbal acorde con el lenguaje verbal',
+              isSubTitle: false,
+            },
+            {
+              text: 'El testigo se comporta de manera ética e idónea a su rol',
+              isSubTitle: false,
+              scoreRange: [0, 8],
+            },
+
+            {
+              text: 'Contra Examen',
+              isSubTitle: true,
+            },
+            {
+              text: 'Realizo preguntas no objetables',
+              isSubTitle: false,
+            },
+            {
+              text: 'Enfoco al declarante en temas y objetivos concretos escuchando activamente para debilitarlo',
+              isSubTitle: false,
+            },
+            {
+              text: 'Extrajo toda la información relevante (incluyendo declaraciones previas si es pertinente)',
+              isSubTitle: false,
+            },
+            {
+              text: 'Controlo al testigo',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje verbal adecuado, claro y entendible',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje no verbal acorde con el lenguaje verbal',
               isSubTitle: false,
             },
           ],
@@ -605,7 +700,64 @@ var globalConfig = {
           },
           questions: [
             {
-              text: 'Question one III',
+              text: 'Alegatos De Clausura',
+              isSubTitle: true,
+            },
+            {
+              text: 'Relato organizado de hechos',
+              isSubTitle: false,
+            },
+            {
+              text: 'Orientó al tribunal en la toma de decisiones conforme a la prueba realmente producida en juicio',
+              isSubTitle: false,
+            },
+            {
+              text: 'Orientó al tribunal en la toma de decisiones conforme a la prueba que se asume producía en juicio',
+              isSubTitle: false,
+            },
+            {
+              text: 'Preciso las figuras jurídicas aplicables y solicitó el sentido del fallo',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje verbal adecuado, claro y entendible',
+              isSubTitle: false,
+            },
+            {
+              text: 'Lenguaje no verbal acorde con el lenguaje verbal ',
+              isSubTitle: false,
+            },
+            {
+              text: 'Utilizo apoyo visual para ilustrar el alegato',
+              isSubTitle: false,
+            },
+            {
+              text: 'Argumento como la contraparte no acredito su teoría del case',
+              isSubTitle: false,
+            },
+            {
+              text: 'Mantuvo de manera positiva el interés del juzgador',
+              isSubTitle: false,
+            },
+            {
+              text: 'Uso de manera positiva de un lema o tema',
+              isSubTitle: false,
+            },
+
+            {
+              text: 'Replica Y Duplica',
+              isSubTitle: true,
+            },
+            {
+              text: 'La réplica atendió lo expresado por el defensor en sus Alegatos de Clausura. La duplica atendió lo expresado por el M.P. durante la replica',
+              isSubTitle: false,
+            },
+            {
+              text: 'No argumento fuera del alcance del la réplica o la duplica a través de nuevos argumentos no expuestos en los alegatos de clausura o la replica.',
+              isSubTitle: false,
+            },
+            {
+              text: 'Se advierte una preparación de la replica y la duplica de acuerdo a su teoría del caso. ',
               isSubTitle: false,
             },
           ],
@@ -616,106 +768,23 @@ var globalConfig = {
           },
           questions: [
             {
-              text: 'Question one IV',
-              isSubTitle: false,
+              text: 'Generales ',
+              isSubTitle: true,
             },
-          ],
-        },
-      ],
-    },
-    {
-      scoreRange: [1, 4],
-      content: [
-        {
-          label: {
-            title: 'Parte I',
-          },
-          questions: [
             {
-              text: 'Question one I',
+              text: 'Fue congruente en la teoría del caso manifestada en su alegato de apertura, en la producción de prueba y en el alegato de clausura',
               isSubTitle: false,
+              scoreRange: [0, 8],
             },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte II',
-          },
-          questions: [
             {
-              text: 'Question one II',
+              text: 'Fue convincente en la démonstration de la teoría del caso manifestada en su alegato de apertura, en la producción de prueba y en el alegato de clausura',
               isSubTitle: false,
+              scoreRange: [0, 8],
             },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte III',
-          },
-          questions: [
             {
-              text: 'Question one III',
+              text: 'Profesionalismo en la sala',
               isSubTitle: false,
-            },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte IV',
-          },
-          questions: [
-            {
-              text: 'Question one IV',
-              isSubTitle: false,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      scoreRange: [1, 4],
-      content: [
-        {
-          label: {
-            title: 'Parte I',
-          },
-          questions: [
-            {
-              text: 'Question one I',
-              isSubTitle: false,
-            },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte II',
-          },
-          questions: [
-            {
-              text: 'Question one II',
-              isSubTitle: false,
-            },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte III',
-          },
-          questions: [
-            {
-              text: 'Question one III',
-              isSubTitle: false,
-            },
-          ],
-        },
-        {
-          label: {
-            title: 'Parte IV',
-          },
-          questions: [
-            {
-              text: 'Question one IV',
-              isSubTitle: false,
+              scoreRange: [0, 8],
             },
           ],
         },
@@ -766,39 +835,16 @@ var roundScores = [
   },
   {
     roundId: 3,
+    playersRange: [1, 4],
     teams: [
       {
         id: 1,
+        selectedPlayerId: 1,
         scores: []
       },
       {
         id: 2,
-        scores: []
-      }
-    ]
-  },
-  {
-    roundId: 4,
-    teams: [
-      {
-        id: 1,
-        scores: []
-      },
-      {
-        id: 2,
-        scores: []
-      }
-    ]
-  },
-  {
-    roundId: 5,
-    teams: [
-      {
-        id: 1,
-        scores: []
-      },
-      {
-        id: 2,
+        selectedPlayerId: 1,
         scores: []
       }
     ]
